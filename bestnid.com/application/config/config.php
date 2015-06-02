@@ -16,7 +16,7 @@
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/codeigniter';
+$config['base_url'] = 'http://localhost/bestnid.com';
 
 /*
 |--------------------------------------------------------------------------
