@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-06-2015 a las 21:09:19
+-- Tiempo de generación: 01-06-2015 a las 03:36:45
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -89,8 +89,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `DNI` int(9) unsigned NOT NULL,
   `nombre` text NOT NULL,
   `apellido` text NOT NULL,
-  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `direccion` varchar(50) NOT NULL,
   `telefono` int(20) unsigned NOT NULL,
   `userAdmin` tinyint(1) NOT NULL
@@ -100,8 +100,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `password`, `direccion`, `telefono`, `userAdmin`) VALUES
-(1, 36546888, 'Emiliano', 'Retamar', 'ejemplo@hotmail.com', 'hola', 'Calle Falsa 123', 4222244, 0);
+INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `password`, `email`, `direccion`, `telefono`, `userAdmin`) VALUES
+(1, 36546888, 'Emiliano', 'Retamar', 'hola', 'ejemplo@hotmail.com', 'Calle Falsa 123', 4222244, 0);
 
 --
 -- Índices para tablas volcadas
@@ -135,7 +135,7 @@ ALTER TABLE `subasta`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
- ADD PRIMARY KEY (`idUsuario`), ADD UNIQUE KEY `email` (`email`), ADD UNIQUE KEY `DNI` (`DNI`);
+ ADD PRIMARY KEY (`idUsuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas

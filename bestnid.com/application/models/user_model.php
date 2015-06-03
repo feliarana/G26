@@ -9,10 +9,7 @@ class User_model extends CI_Model {
 	function verificar_email($email){
 		$this->db->where('email',$email); //Query de la BD de mysql (primero el where y despues el from)
 		$query = $this->db->get('usuario');
-		if($query->num_rows > 0)	//Si existe el usuario, devuelve false.
-			return false;
-		else
-			return true;
+		return $query;
 	}
 
 	function agregar_usuario($usuario){
