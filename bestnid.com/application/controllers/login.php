@@ -7,6 +7,7 @@ class Login extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('html');
 		$this->load->helper('url');
+		$this->load->library('session');
 		$this->load->model('login_model');
 	}
 
@@ -25,8 +26,15 @@ class Login extends CI_Controller {
 		if($query) {
 			/* Obtengo la tupla correspondiente al email del usuario en cuestion (como el email no puede repetirse, la consulta solo retorna una sola tupla) */
 			$usuario = $query->result(); // result() es una funcion del objeto query que devuelve un arreglo de tuplas (en este caso devuelve una sola tupla)
-			if($usuario[0]->password == $datos['password']) // $usuario[0] accede a la primera tupla del arreglo y ->password accede al valor que se encuentra en el campo password
+			if($usuario[0]->password == $datos['password']) { // $usuario[0] accede a la primera tupla del arreglo y ->password accede al valor que se encuentra en el campo password
+				$user = array('email' => $usuario[0]->email,
+					'nombre' => $usuario[0]->nombre,
+					'apellido' => $usuario[0]->apellido,
+					'id' => $usuario[0]->idUsuario,
+					'login' => true);
+				$this->session->set_userdata($user);
 				$this->load->view('index_view');
+			}
 			else
 				echo 'La contraseña es incorrecta';
 		}
