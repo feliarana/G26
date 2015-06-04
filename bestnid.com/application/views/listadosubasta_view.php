@@ -6,13 +6,12 @@
 </head>
 
 <body>
-<?php
-	foreach ($subastas->result() as $subasta) { ?>
-		<ul>
-			<li> <?= $subasta->nombre; ?> </li>
-		</ul>
-
+	<?php
+		foreach($subastas->result() as $subasta) { ?>
+			<ul>
+				<li> <?= $subasta->nombre; ?> </li>
+			</ul>
 	<?php } ?>
-
 </body>
+
 </html>

@@ -8,7 +8,12 @@ class Listadosubasta extends CI_Controller {
 	}
 
 	function index() {
-		$data['subastas'] = $this->listadosubasta_model->obtenerSubastas(); //En %data me guardo el resultado de la funcion obtenerSubastas()
-		$this->load->view('listadosubasta_view',$data);
+		$data['subastas'] = $this->listadosubasta_model->obtenerSubastas(); //En $data me guardo el resultado de la funcion obtenerSubastas()
+		if($data['subastas'])
+			$this->load->view('listadosubasta_view', $data);
+		else
+			echo 'No hay subastas disponibles';
 	}
 }
+
+?>
