@@ -28,7 +28,7 @@
 	 			);
 	 	
 	 		$email = array('name' => 'email',
-	 			'type' => 'email'
+	 			'type' => 'email',
 		 		'placeholder' => 'E-mail',
 		 		'required' => 'required'
 		 		);

@@ -25,10 +25,10 @@
 				</p>
 			</div>
 			<div class="col-md-1"> <!-- Se ubica en columna 8 -->
-				<a href="">Registrarse</a>
+				<a href="<?= base_url('/index.php/register') ?>">Registrarse</a>
 			</div>
 			<div class="col-md-2"> <!-- Se ubica en columna 9 -->
-				<a href="">Iniciar Sesión</a>
+				<a href="<?= base_url('/index.php/login') ?>">Iniciar Sesión</a>
 			</div>
 			<div class="col-md-2">
 			</div>

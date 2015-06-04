@@ -17,9 +17,9 @@
 		<h2 align="center">Elegí con el corazón</h2>
 		<br>
 		<br>
-		<? $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
+		<?php $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
 		<?= form_open("/login/recibirDatos", $atributos) ?>
-		<?
+		<?php
 			$email = array(
 				'name' => 'email',
 				'class' => 'form-control',
