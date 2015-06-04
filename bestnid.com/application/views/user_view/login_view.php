@@ -15,20 +15,22 @@
 		<h2 align="center">Elegí con el corazón</h2>
 		<br>
 		<br>
-		<? $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
+		<?php $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
 		<?= form_open("usuarios/recibirDatos", $atributos) ?>
-		<?
+		<?php
 			$email = array(
 				'name' => 'email',
 				'class' => 'form-control',
 				'type' => 'email',
-				'placeholder' => 'Email',
+				'placeholder' => 'E-mail',
+				'required' => 'required'
 			);
 			$password = array(
 				'name' => 'password',
 				'class' => 'form-control',
 				'type' => 'password',
-				'placeholder' => 'Contraseña'
+				'placeholder' => 'Contraseña',
+				'required' => 'required'
 			);
 		?>
 		<div class="row">

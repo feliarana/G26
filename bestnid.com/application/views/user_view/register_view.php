@@ -10,20 +10,25 @@
 	<?php
 
 		$DNI = array('name'=>'DNI',
-	 		'placeholder'=>'D.N.I');
+	 		'placeholder'=>'D.N.I',
+	 		'required' => 'required');
 
  	 	$nombre = array('name'=>'nombre',
-	 		'placeholder'=>'Nombre');
+	 		'placeholder'=>'Nombre',
+	 		'required' => 'required');
 
  	 	$apellido = array('name'=>'apellido',
-	 		'placeholder'=>'Apellido');
+	 		'placeholder'=>'Apellido',
+	 		'required' => 'required');
 	 	
 	 	$email = array('name' => 'email',
-	 		'placeholder' => 'E-mail ');
+	 		'placeholder' => 'E-mail ',
+	 		'required' => 'required');
 
 	 	$password= array('name'=>'password', // FALTA REINGRESE PASSWORD Y QUE VERIFIQUE QUE SEAN IGUALES
 	 		'placeholder'=>'Contraseña',
-	 		'type'=>'password'); 
+	 		'type'=>'password',
+	 		'required' => 'required'); 
 
      	$direccion = array('name'=>'direccion',
 	 		'placeholder'=>'Direccion');
@@ -40,15 +45,17 @@
 		<br>
 		<?=	form_input($email) ?>
 		<br>
-		<?=	form_input($password) ?>  
+		<?=	form_password($password) ?>  
 		<br>
 		<?=	form_input($direccion) ?>
 		<br>
 		<?=	form_input($telefono) ?>
 		<br>
-		<?=	form_submit('aceptar','Aceptar') ?>
+		<?=	form_submit('submit_reg','Registrarse') ?>
 	</p>
 	<a href="<?= base_url().'index.php/usuarios/' ?>" title="Iniciar sesion">Iniciar sesion</a>
 	<?= form_close() ?>
+	<hr />
+	<?= validation_errors();?>
 	</body>
 </html>

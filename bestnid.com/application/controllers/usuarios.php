@@ -5,10 +5,11 @@ class Usuarios extends CI_Controller{
 		parent::__construct();
 		$this->load->helper('form');
 		$this->load->helper('url');
-		$this->load->model('user_model');
-		$this->load->library('session');
-		$this->load->model('login_model');
 		$this->load->helper('html');
+		$this->load->model('user_model');
+		$this->load->model('login_model');
+		$this->load->library('session');
+		$this->load->library('form_validation');
 	}
 
 	//LOGIN DESDE ACA
@@ -78,4 +79,5 @@ class Usuarios extends CI_Controller{
 		else
 			echo "El email ya se encuentra registrado.";
 	}
+
 }
