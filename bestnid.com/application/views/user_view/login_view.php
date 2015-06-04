@@ -16,7 +16,7 @@
 		<br>
 		<br>
 		<? $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
-		<?= form_open("/login/recibirDatos", $atributos) ?>
+		<?= form_open("usuarios/recibirDatos", $atributos) ?>
 		<?
 			$email = array(
 				'name' => 'email',
@@ -56,10 +56,12 @@
 		<p align="center">
 			<?= form_submit('', 'Iniciar Sesión', "class='btn btn-darkest'") ?>
 		</p>
+		<a href="<?= base_url().'index.php/usuarios/registro'?>" title="Registrarse">Registrarse</a>
+
 		<?= form_close() ?>
 		<!-- JQuery cargado de forma local (sin conexion a internet) -->
     	<script src="<?= base_url('js/jquery.js') ?>"></script>
     	<!-- Se cargan las funciones javascript de Bootstrap -->
-    	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
+    	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>	
 	</body>
 </html>

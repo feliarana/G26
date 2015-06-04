@@ -6,7 +6,7 @@
 
 	<body>
 	<h1 align="center">	Bienvenido a Bestnid. Por favor, ingrese sus datos. </h1>
-	<?= form_open('register/verificarDatos') ?>
+	<?= form_open('usuarios/verificarDatos') ?>
 	<?php
 
 		$DNI = array('name'=>'DNI',
@@ -48,6 +48,7 @@
 		<br>
 		<?=	form_submit('aceptar','Aceptar') ?>
 	</p>
+	<a href="<?= base_url().'index.php/usuarios/' ?>" title="Iniciar sesion">Iniciar sesion</a>
 	<?= form_close() ?>
 	</body>
 </html>
