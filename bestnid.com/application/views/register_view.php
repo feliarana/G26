@@ -4,34 +4,54 @@
 		<title>Registro de Bestnid</title>
 	</head>
 	<body>
+		<p align="center">
+			<a href="<?= base_url('/index.php/index') ?>">
+				<img src="<?= base_url('images/logo.png') ?>">
+			</a>
+		</p>
 		<h1 align="center">Bienvenido a Bestnid. Por favor, ingrese sus datos.</h1>
 		<?= form_open('register/verificarDatos') ?>
 		<?php
 			$DNI = array('name' => 'DNI',
-	 			'placeholder' => 'D.N.I');
+	 			'placeholder' => 'D.N.I',
+	 			'required' => 'required'
+	 			);
 			
 			$nombre = array('name' => 'nombre',
-	 		'placeholder' => 'Nombre');
+	 		'placeholder' => 'Nombre',
+	 		'required' => 'required'
+	 		);
 
  	 		$apellido = array('name' => 'apellido',
-	 			'placeholder' => 'Apellido');
+	 			'placeholder' => 'Apellido',
+	 			'required' => 'required'
+	 			);
 	 	
 	 		$email = array('name' => 'email',
-		 		'placeholder' => 'E-mail');
+	 			'type' => 'email'
+		 		'placeholder' => 'E-mail',
+		 		'required' => 'required'
+		 		);
 
 	 		$password = array('name' => 'password',
 	 			'placeholder' => 'Contraseña',
-	 			'type' => 'password');
+	 			'type' => 'password',
+	 			'required' => 'required'
+	 			);
 
 	 		$password2 = array('name' => 'password2',
 	 			'placeholder' => 'Repetir Contraseña',
-	 			'type' => 'password');
+	 			'type' => 'password',
+	 			'required' => 'required'
+	 			);
 
      		$direccion = array('name' => 'direccion',
-	 			'placeholder' => 'Direccion');
+	 			'placeholder' => 'Direccion'
+	 			);
  	 
  	 		$telefono = array('name' => 'telefono',
-	 			'placeholder' => 'Telefono');
+	 			'placeholder' => 'Telefono'
+	 			);
 		?>
 		<p align="center">
 			<?=	form_input($DNI) ?>
@@ -50,7 +70,7 @@
 			<br>
 			<?=	form_input($telefono) ?>
 			<br>
-			<?=	form_submit('aceptar', 'Aceptar') ?>
+			<?=	form_submit('submit_reg', 'Registrarse') ?>
 		</p>
 		<?= form_close() ?>
 	</body>

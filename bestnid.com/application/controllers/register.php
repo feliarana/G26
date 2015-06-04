@@ -5,6 +5,7 @@ class Register extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->helper('form');
+		$this->load->helper('html');
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('register_model');

@@ -9,7 +9,9 @@
 	</head>
 	<body>
 		<p align="center">
-		<img src="<?= base_url('images/logo.png') ?>">
+			<a href="<?= base_url('/index.php/index') ?>">
+				<img src="<?= base_url('images/logo.png') ?>">
+			</a>
 		</p>
 		<h1 align="center">Bestnid</h1>
 		<h2 align="center">Elegí con el corazón</h2>
@@ -23,12 +25,14 @@
 				'class' => 'form-control',
 				'type' => 'email',
 				'placeholder' => 'Email',
+				'required' => 'required'
 			);
 			$password = array(
 				'name' => 'password',
 				'class' => 'form-control',
 				'type' => 'password',
-				'placeholder' => 'Contraseña'
+				'placeholder' => 'Contraseña',
+				'required' => 'required'
 			);
 		?>
 		<div class="row">
