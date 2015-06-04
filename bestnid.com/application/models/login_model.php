@@ -12,7 +12,7 @@ class Login_model extends CI_Model {
 	function buscarUsuario($emailUser) {
 		$this->db->where('email', $emailUser);
 		$query = $this->db->get('usuario');
-		if($query->num_rows() > 0)
+		if($query->num_rows > 0)
 			return ($query);
 		else
 			return (false);

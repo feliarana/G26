@@ -15,20 +15,22 @@
 		<h2 align="center">Elegí con el corazón</h2>
 		<br>
 		<br>
-		<? $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
-		<?= form_open("/login/recibirDatos", $atributos) ?>
-		<?
+		<?php $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
+		<?= form_open("usuarios/recibirDatos", $atributos) ?>
+		<?php
 			$email = array(
 				'name' => 'email',
 				'class' => 'form-control',
 				'type' => 'email',
-				'placeholder' => 'Email',
+				'placeholder' => 'E-mail',
+				'required' => 'required'
 			);
 			$password = array(
 				'name' => 'password',
 				'class' => 'form-control',
 				'type' => 'password',
-				'placeholder' => 'Contraseña'
+				'placeholder' => 'Contraseña',
+				'required' => 'required'
 			);
 		?>
 		<div class="row">
@@ -56,10 +58,12 @@
 		<p align="center">
 			<?= form_submit('', 'Iniciar Sesión', "class='btn btn-darkest'") ?>
 		</p>
+		<a href="<?= base_url().'index.php/usuarios/registro'?>" title="Registrarse">Registrarse</a>
+
 		<?= form_close() ?>
 		<!-- JQuery cargado de forma local (sin conexion a internet) -->
     	<script src="<?= base_url('js/jquery.js') ?>"></script>
     	<!-- Se cargan las funciones javascript de Bootstrap -->
-    	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
+    	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>	
 	</body>
 </html>
