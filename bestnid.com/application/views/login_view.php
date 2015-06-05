@@ -16,6 +16,17 @@
 		<h1 align="center">Bestnid</h1>
 		<h2 align="center">Elegí con el corazón</h2>
 		<br>
+		<?php
+			if(isset($datos_error)) { 
+		?>
+				<h4>
+					<p align="center">
+						<font color="red"> <?= $datos_error ?> </font>
+					</p>
+				</h4>
+		<?php
+			}
+		?>
 		<br>
 		<?php $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
 		<?= form_open("/login/recibirDatos", $atributos) ?>

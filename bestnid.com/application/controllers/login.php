@@ -35,11 +35,15 @@ class Login extends CI_Controller {
 				$this->session->set_userdata($user);
 				$this->load->view('index_view');
 			}
-			else
-				echo 'La contraseña es incorrecta';
+			else {
+				$mensaje['datos_error'] = 'Los datos ingresados son incorrectos';
+				$this->load->view('login_view', $mensaje);
+			}
 		}
-		else
-			echo 'El email es incorrecto';
+		else {
+			$mensaje['datos_error'] = 'Los datos ingresados son incorrectos';
+			$this->load->view('login_view', $mensaje);	
+		}
 	}
 }
 
