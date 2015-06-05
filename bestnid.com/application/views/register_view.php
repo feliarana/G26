@@ -13,10 +13,13 @@
 				<img src="<?= base_url('images/logo.png') ?>">
 			</a>
 		</p>
-		<h1 align="center">Bienvenido a Bestnid. Por favor, ingrese sus datos.</h1>
+		<h1 align="center">¡Bienvenido a Bestnid!</h1>
+		<h2 align="center">Por favor, ingrese sus datos</h2>
+		<br>
 		<?= form_open('register/verificarDatos') ?>
 		<?php
 			$DNI = array('name' => 'DNI',
+				'class' => 'form-control',
 	 			'placeholder' => 'D.N.I',
 	 			'required' => 'required',
 	 			'pattern' => '[0-9]{8}',
@@ -24,6 +27,7 @@
 	 			);
 			
 			$nombre = array('name' => 'nombre',
+			'class' => 'form-control',
 	 		'placeholder' => 'Nombre',
 	 		'required' => 'required',
 	 		'pattern' => '[A-Za-z]{2,20}',
@@ -31,6 +35,7 @@
 	 		);
 
  	 		$apellido = array('name' => 'apellido',
+ 	 			'class' => 'form-control',
 	 			'placeholder' => 'Apellido',
 	 			'required' => 'required',
 	 			'pattern' => '[A-Za-z]{2,20}',
@@ -38,6 +43,7 @@
 	 			);
 	 	
 	 		$email = array('name' => 'email',
+	 			'class' => 'form-control',
 	 			'type' => 'email',
 		 		'placeholder' => 'E-mail',
 		 		'required' => 'required',
@@ -46,6 +52,7 @@
 		 		);
 
 	 		$password = array('name' => 'password',
+	 			'class' => 'form-control',
 	 			'placeholder' => 'Contraseña',
 	 			'type' => 'password',
 	 			'required' => 'required',
@@ -54,6 +61,7 @@
 	 			);
 
 	 		$password2 = array('name' => 'password2',
+	 			'class' => 'form-control',
 	 			'placeholder' => 'Repetir Contraseña',
 	 			'type' => 'password',
 	 			'required' => 'required',
@@ -62,62 +70,66 @@
 	 			);
 
      		$direccion = array('name' => 'direccion',
-	 			'placeholder' => 'Direccion'
+     			'class' => 'form-control',
+	 			'placeholder' => 'Direccion',
+	 			'required' => 'required',
+	 			'pattern' => '.{1,30}',
+	 			'title' => 'Por favor, ingrese un mínimo de 1 caracteres. Maximo 30.'
 	 			);
  	 
  	 		$telefono = array('name' => 'telefono',
+ 	 			'class' => 'form-control',
 	 			'placeholder' => 'Telefono',
 	 			'pattern' => '[0-9]{8,15}',
 	 			'title' => 'Por favor, ingrese un mínimo de 8 NUMEROS'
 	 			);
 		?>
 		<p align="center">
-
-		<div class="row">
-			<div class="col-md-5">
+			<div class="row">
+				<div class="col-md-5">
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">	
+						<?=	form_input($DNI) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($nombre) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($apellido) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($email) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_password($password) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($password2) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($direccion) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($telefono) ?>
+					</div>
+					<p align="center">
+						<?=	form_submit('submit_reg', 'Registrarse', "class='btn btn-darkest'") ?>
+					</p>
+					<?php
+						if(isset($datos_error)) { ?>
+							<h4>
+								<p align="center">
+									<font color="red"> <?= $datos_error ?> </font>
+								</p>
+							</h4>
+					<?php
+						}
+					?>
+				</div>
+				<div class="col-md-5">
+				</div>
 			</div>
-			<div class="col-md-2">
-				<div class="form-group">	
-				<?=	form_input($DNI) ?>
-				</div>
-				<div class="form-group">	
-				<?=	form_input($nombre) ?>
-				</div>
-				<div class="form-group">	
-				<?=	form_input($apellido) ?>
-				</div>
-				<div class="form-group">	
-				<?=	form_input($email) ?>
-				</div>
-				<div class="form-group">	
-				<?=	form_password($password) ?>
-				</div>
-				<div class="form-group">	
-				<?=	form_input($password2) ?>
-				</div>
-				<div class="form-group">	
-				<?=	form_input($direccion) ?>
-				</div>
-				<div class="form-group">	
-				<?=	form_input($telefono) ?>
-				</div>
-
-				<p align="left">
-					<?=	form_submit('submit_reg', 'Registrarse') ?>
-				</p>
-				<?php
-					if(isset($datos_error)) { 
-				?>
-					<h4>
-						<p align="center">
-						<font color="red"> <?= $datos_error ?> </font>
-						</p>
-					</h4>
-				<?php
-					}
-				?>
-			 </div>
-		</div>
 		</p>
 		<?= form_close() ?>
 		<!-- JQuery cargado de forma local (sin conexion a internet) -->

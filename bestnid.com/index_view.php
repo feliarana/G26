@@ -17,10 +17,10 @@
 			<div class="col-md-3">
 			</div>
 			<div class="col-md-1">
-  				<a href="<?= base_url('images/enConstruccion.jpg') ?>">Categorías</a> <!-- Se ubica en columna 4 -->
+  				<a href="<?=base_url('images/enConstruccion.jpg') ?>" />Categorías</a> <!-- Se ubica en columna 4 -->
   			</div>
   			<div class="col-md-1">
-				<a href="<?= base_url('images/enConstruccion.jpg') ?>">Ayuda</a> <!-- Se ubica en columna 5 -->
+				<a href="<?=base_url('images/enConstruccion.jpg') ?>">Ayuda</a> <!-- Se ubica en columna 5 -->
 			</div>
 			<div class="col-md-2">
 				<!-- Se ubica en columna 6 -->
@@ -31,42 +31,15 @@
 			<div class="col-md-1"> <!-- Se ubica en columna 8 -->
 				<a href="<?= base_url('/index.php/register') ?>">Registrarse</a>
 			</div>
-			<?php
-				if(isset($this->session->userdata['login'])) { ?>
-					<div class="col-md-2"> <!-- Se ubica en columna 9 -->
-						<a href="<?= base_url('/index.php/logout') ?>">Cerrar Sesión</a>
-					</div>
-					<div class="col-md-2">
-						<p align="center">
-							<span class="glyphicon glyphicon-user"> 
-								<br>
-								<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?> 
-							</span>
-						</p>
-					</div>
-			<?php
-				}
-				else { ?>
-					<div class="col-md-2"> <!-- Se ubica en columna 9 -->
-						<a href="<?= base_url('/index.php/login') ?>">Iniciar Sesión</a>
-					</div>
-					<div class="col-md-2">
-					</div>
-			<?php
-				}
-			?>
+			<div class="col-md-2"> <!-- Se ubica en columna 9 -->
+				<a href="<?= base_url('/index.php/login') ?>">Iniciar Sesión</a>
+			</div>
+			<div class="col-md-2">
+			</div>
 		</div>
 		<h1 align="center">Bestnid</h1>
 		<h2 align="center">Elegí con el corazón</h2>
 		<br>
-		<?php
-			if(isset($this->session->userdata['login'])) { ?>
-				<center>
-					<button type="button" class="btn btn-darkest">Publicar una subasta</button>
-				</center>
-		<?php
-			}
-		?>
 		<!-- Estos archivos deben cargarse si o si antes de definir la tabla, sino no los toma -->
 		<!-- Se carga jquery -->
     	<script src="<?= base_url('js/jquery.js') ?>" type="text/javascript" charset="utf8"></script>
@@ -77,7 +50,7 @@
 				<tr>
 					<th>Imagen</th>
 					<th>Nombre</th>
-					<th>Descripcion</th>
+					<th>Descripción</th>
 					<th>Fecha de Finalización</th>
 				</tr>
 			</thead>

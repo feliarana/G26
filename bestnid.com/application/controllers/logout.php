@@ -4,13 +4,14 @@ class Logout extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
+		$this->load->helper('url');
 		$this->load->library('session');
 	}
 
-	function index($user){
-		$this->session->unset_userdata($user);
+	function index() {
 		$this->session->sess_destroy();
-		redirect('index');
+		redirect(base_url('/index.php/index'));
 	}
 }
+
 ?>
