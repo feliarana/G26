@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet" media="screen">
 		<title>Registro de Bestnid</title>
 	</head>
 	<body>
@@ -54,24 +58,47 @@
 	 			);
 		?>
 		<p align="center">
-			<?=	form_input($DNI) ?>
-			<br>
-			<?=	form_input($nombre) ?>
-			<br>
-			<?=	form_input($apellido) ?>
-			<br>
-			<?=	form_input($email) ?>
-			<br>
-			<?=	form_input($password) ?>
-			<br>
-			<?=	form_input($password2) ?>
-			<br>
-			<?=	form_input($direccion) ?>
-			<br>
-			<?=	form_input($telefono) ?>
-			<br>
-			<?=	form_submit('submit_reg', 'Registrarse') ?>
+
+		<div class="row">
+			<div class="col-md-5">
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">	
+				<?=	form_input($DNI) ?>
+				</div>
+				<div class="form-group">	
+				<?=	form_input($nombre) ?>
+				</div>
+				<div class="form-group">	
+				<?=	form_input($apellido) ?>
+				</div>
+				<div class="form-group">	
+				<?=	form_input($email) ?>
+				</div>
+				<div class="form-group">	
+				<?=	form_input($password) ?>
+				</div>
+				<div class="form-group">	
+				<?=	form_input($password2) ?>
+				</div>
+				<div class="form-group">	
+				<?=	form_input($direccion) ?>
+				</div>
+				<div class="form-group">	
+				<?=	form_input($telefono) ?>
+				</div>
+
+				<p align="left">
+					<?=	form_submit('submit_reg', 'Registrarse') ?>
+				</p>
+			
+			 </div>
+		</div>
 		</p>
 		<?= form_close() ?>
+		<!-- JQuery cargado de forma local (sin conexion a internet) -->
+    	<script src="<?= base_url('js/jquery.js') ?>"></script>
+    	<!-- Se cargan las funciones javascript de Bootstrap -->
+    	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
 	</body>
 </html>
