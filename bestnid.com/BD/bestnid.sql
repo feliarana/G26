@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-06-2015 a las 10:56:56
+-- Tiempo de generación: 05-06-2015 a las 20:41:15
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `categoria` (
 `idCategoria` int(10) unsigned NOT NULL,
   `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `subasta` (
   `fechaInicio` date NOT NULL,
   `fechaFin` date NOT NULL,
   `ganador` int(10) unsigned DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `subasta`
@@ -93,7 +93,16 @@ CREATE TABLE IF NOT EXISTS `subasta` (
 INSERT INTO `subasta` (`idSubasta`, `nombre`, `descripcion`, `idUsuario`, `idCategoria`, `fechaInicio`, `fechaFin`, `ganador`) VALUES
 (5, 'Computadora', 'Una computadora para vender', 1, 2, '2015-06-02', '2015-06-18', NULL),
 (6, 'Heladera', 'Una heladera nueva, con refrigerador', 5, 2, '2015-06-04', '2015-06-08', NULL),
-(7, 'Televisor', 'Televisor pantalla plana de 32''''', 8, 2, '2015-06-01', '2015-06-07', NULL);
+(7, 'Televisor', 'Televisor pantalla plana de 32''''', 8, 2, '2015-06-01', '2015-06-07', NULL),
+(8, 'Netbook', 'Netbook del gobierno pa'' juga'' al conter', 8, 2, '2015-06-01', '2015-06-16', NULL),
+(9, 'Fiat 600', 'Fitito para irse de gira con los pibe', 1, 1, '2015-05-27', '2015-06-06', NULL),
+(10, 'Chevrolet Astra', 'A gas', 6, NULL, '2015-06-03', '2015-06-11', NULL),
+(11, 'Renault 18', 'Patente nueva', 7, NULL, '2015-05-23', '2015-06-26', NULL),
+(12, 'Monitor de PC', 'Nuevo 21''', 5, 2, '2015-06-01', '2015-06-12', NULL),
+(13, 'Camioneta Amarok', 'Ultimo modelo 2015', 1, 1, '2015-05-31', '2015-06-14', NULL),
+(14, 'Nebulizador', 'Excelente estado', 6, 2, '2015-06-04', '2015-06-30', NULL),
+(15, 'Ford Escort', 'Color blanco, usado', 7, 1, '2015-05-29', '2015-06-17', NULL),
+(16, 'Lavarropas', 'Automatico', 7, 2, '2015-05-26', '2015-06-09', NULL);
 
 -- --------------------------------------------------------
 
@@ -111,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `direccion` varchar(50) NOT NULL,
   `telefono` int(20) unsigned NOT NULL,
   `userAdmin` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -122,7 +131,9 @@ INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `passw
 (5, 4567788, 'Emi', 'Retamar', 'hola@hotmail.com', '1231435', 'sakdjkld', 12314, 0),
 (6, 2132133, 'deh', 'dah', 'di@hotmail.com', '123', 'kasjdkla', 123, 0),
 (7, 2, 'hi', 'ho', 'hu', '123', 'sdj', 123, 0),
-(8, 0, '', '', '', '', '', 0, 0);
+(8, 0, '', '', '', '', '', 0, 0),
+(9, 577783472, 'dsadas', 'aldsjflakjs', 'aklsdj@akldsjaks', '123', 'kaljds', 0, 0),
+(10, 34994585, 'Deh', 'Dah', 'askld|@gmail.com', '123', 'fuck', 14677, 0);
 
 --
 -- Índices para tablas volcadas
@@ -166,7 +177,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-MODIFY `idCategoria` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `idCategoria` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `comentario`
 --
@@ -181,12 +192,12 @@ MODIFY `idOferta` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `subasta`
 --
 ALTER TABLE `subasta`
-MODIFY `idSubasta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `idSubasta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-MODIFY `idUsuario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `idUsuario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- Restricciones para tablas volcadas
 --
