@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-06-2015 a las 20:47:25
--- Versión del servidor: 5.6.21
--- Versión de PHP: 5.6.3
+-- Tiempo de generación: 05-06-2015 a las 22:30:34
+-- Versión del servidor: 5.6.24
+-- Versión de PHP: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -83,26 +83,21 @@ CREATE TABLE IF NOT EXISTS `subasta` (
   `idCategoria` int(10) unsigned DEFAULT NULL,
   `fechaInicio` date NOT NULL,
   `fechaFin` date NOT NULL,
-  `ganador` int(10) unsigned DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+  `ganador` int(10) unsigned DEFAULT NULL,
+  `nombreImagen` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `subasta`
 --
 
-INSERT INTO `subasta` (`idSubasta`, `nombre`, `descripcion`, `idUsuario`, `idCategoria`, `fechaInicio`, `fechaFin`, `ganador`) VALUES
-(5, 'Computadora', 'Una computadora para vender', 1, 2, '2015-06-02', '2015-06-18', NULL),
-(6, 'Heladera', 'Una heladera nueva, con refrigerador', 5, 2, '2015-06-04', '2015-06-08', NULL),
-(7, 'Televisor', 'Televisor pantalla plana de 32''''', 8, 2, '2015-06-01', '2015-06-07', NULL),
-(8, 'Netbook', 'Netbook del gobierno pa'' juga'' al conter', 8, 2, '2015-06-01', '2015-06-16', NULL),
-(9, 'Fiat 600', 'Fitito para irse de gira con los pibe', 1, 1, '2015-05-27', '2015-06-06', NULL),
-(10, 'Chevrolet Astra', 'A gas', 6, NULL, '2015-06-03', '2015-06-11', NULL),
-(11, 'Renault 18', 'Patente nueva', 7, NULL, '2015-05-23', '2015-06-26', NULL),
-(12, 'Monitor de PC', 'Nuevo 21''', 5, 2, '2015-06-01', '2015-06-12', NULL),
-(13, 'Camioneta Amarok', 'Ultimo modelo 2015', 1, 1, '2015-05-31', '2015-06-14', NULL),
-(14, 'Nebulizador', 'Excelente estado', 6, 2, '2015-06-04', '2015-06-30', NULL),
-(15, 'Ford Escort', 'Color blanco, usado', 7, 1, '2015-05-29', '2015-06-17', NULL),
-(16, 'Lavarropas', 'Automatico', 7, 2, '2015-05-26', '2015-06-09', NULL);
+INSERT INTO `subasta` (`idSubasta`, `nombre`, `descripcion`, `idUsuario`, `idCategoria`, `fechaInicio`, `fechaFin`, `ganador`, `nombreImagen`) VALUES
+(19, 'Kriptonita', '200 gramos de Kriptonita', 1, NULL, '2015-06-01', '2015-06-30', NULL, 'kriptonita.jpg'),
+(20, 'Espejo', 'Espejo sin marco. Medidas: 0.8m x 1.2m', 5, NULL, '2015-06-01', '2015-06-29', NULL, 'espejo.jpg'),
+(21, 'Silla', 'Silla donde se sentó Freddie Mercury una vez', 6, NULL, '2015-06-03', '2015-06-07', NULL, 'silla.jpg'),
+(22, 'Aceite y vinagre', '200ml de aceite y 300ml de vinagre. No incluye fascos', 8, NULL, '2015-06-05', '2015-06-15', NULL, 'aceitevinagre.jpg'),
+(25, 'Llama ', 'Llama adulta oriunda de Tilcara. Es mansita', 10, NULL, '2015-06-04', '2015-07-03', NULL, 'llama.jpg'),
+(26, 'Guante ', 'Guante de malla de acero inox. tejido, anticorte, marca *manulatex* de industria francesa', 10, NULL, '2015-06-03', '2015-07-01', NULL, 'guante.jpg');
 
 -- --------------------------------------------------------
 
@@ -120,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `direccion` varchar(50) NOT NULL,
   `telefono` int(20) unsigned NOT NULL,
   `userAdmin` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -130,9 +125,7 @@ INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `passw
 (1, 36546888, 'Emiliano', 'Retamar', 'ejemplo@hotmail.com', 'hola', 'Calle Falsa 123', 4222244, 0),
 (5, 4567788, 'Emi', 'Retamar', 'hola@hotmail.com', '1231435', 'sakdjkld', 12314, 0),
 (6, 2132133, 'deh', 'dah', 'di@hotmail.com', '123', 'kasjdkla', 123, 0),
-(7, 2, 'hi', 'ho', 'hu', '123', 'sdj', 123, 0),
 (8, 0, '', '', '', '', '', 0, 0),
-(9, 577783472, 'dsadas', 'aldsjflakjs', 'aklsdj@akldsjaks', '123', 'kaljds', 0, 0),
 (10, 34994585, 'Deh', 'Dah', 'askld|@gmail.com', '123', 'fuck', 14677, 0);
 
 --
@@ -192,12 +185,12 @@ MODIFY `idOferta` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `subasta`
 --
 ALTER TABLE `subasta`
-MODIFY `idSubasta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+MODIFY `idSubasta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-MODIFY `idUsuario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `idUsuario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- Restricciones para tablas volcadas
 --

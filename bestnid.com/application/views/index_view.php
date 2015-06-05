@@ -17,10 +17,10 @@
 			<div class="col-md-3">
 			</div>
 			<div class="col-md-1">
-  				<a href="">Categorías</a> <!-- Se ubica en columna 4 -->
+  				<a href="<?=base_url('images/enConstruccion.jpg') ?>" />Categorías</a> <!-- Se ubica en columna 4 -->
   			</div>
   			<div class="col-md-1">
-				<a href="">Contáctenos</a> <!-- Se ubica en columna 5 -->
+				<a href="<?=base_url('images/enConstruccion.jpg') ?>">Ayuda</a> <!-- Se ubica en columna 5 -->
 			</div>
 			<div class="col-md-2">
 				<!-- Se ubica en columna 6 -->
@@ -48,21 +48,26 @@
 		<table cellpadding="0" cellspacing="0" border="0" class="display" id="tablaSubastas">
 			<thead>
 				<tr>
+					<th></th>
 					<th>Nombre</th>
-					<th>Fecha de Publicación</th>
+					<th>Descripción</th>
 					<th>Fecha de Finalización</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php
 					if($subastas) {
+
 						foreach($subastas->result() as $subasta) { ?>
 							<tr class="gradeX">
+								<td>
+									<center> <img src="<?php echo base_url('images/'.$subasta->nombreImagen); ?>" width="50px" height="50" > </center>
+								</td>
 								<td>
 									<center> <?= $subasta->nombre ?> </center>
 								</td>
 								<td> 
-									<center> <?= $subasta->fechaInicio ?> </center>
+									<center> <?= $subasta->descripcion ?> </center>
 								</td>
 								<td>
 									<center> <?= $subasta->fechaFin ?> </center>
