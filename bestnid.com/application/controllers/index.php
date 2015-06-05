@@ -5,15 +5,12 @@ class Index extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->helper('url');
-		$this->load->model('listadosubasta_model');
+		$this->load->model('listar_subastas_model');
 	}
 
 	function index() {
-		$data['subastas'] = $this->listadosubasta_model->obtenerSubastas(); //En $data me guardo el resultado de la funcion obtenerSubastas()
-		if($data['subastas'])
-			$this->load->view('index_view', $data);
-		else
-			echo 'No hay subastas disponibles';
+		$datos['subastas'] = $this->listar_subastas_model->obtenerSubastas(); // En $datos['subastas'] se guarda el resultado de la consulta que genera obtenerSubastas()
+		$this->load->view('index_view', $datos);
 	}
 }
 
