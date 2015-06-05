@@ -7,8 +7,9 @@ class Register_model extends CI_Model {
 		$this->load->database(); // Se carga la base de datos configurada en el archivo config/database.php
 	}
 
-	function verificar_email($email) {
+	function verificar_datos($email, $DNI) {
 		$this->db->where('email', $email); // Query de la BD de mysql (primero el where y despues el from)
+		$this->db->or_where('DNI', $DNI);
 		$query = $this->db->get('usuario');
 		if($query->num_rows > 0) // Si obtiene algun resultado significa que el email ya existe en la BD
 			return (false);

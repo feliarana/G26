@@ -9,6 +9,7 @@ class Register extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('register_model');
+		$this->load->model('listar_subastas_model');
 	}
 
 	function index () {
@@ -17,30 +18,43 @@ class Register extends CI_Controller {
 
 	function verificarDatos() { // AGREGAR QUE VERIFIQUE QUE NO QUEDE CAMPOS VACIOS
 		$datos = array(
-			'DNI' => $this->input->post('DNI'),
-			'nombre' => $this->input->post('nombre'),
-			'apellido' => $this->input->post('apellido'),
-			'email' => $this->input->post('email'),
-			'password' => $this->input->post('password'),
-			'direccion' => $this->input->post('direccion'),
-			'telefono' => $this->input->post('telefono'),
-			'userAdmin' => false
-			);
-		$query = $this->register_model->verificar_email($datos['email']);
-		if($query) { // Si devuelve true, se registra el usuario, se crea la sesion y se carga la vista correspondiente
+		'DNI' => $this->input->post('DNI'),
+		'nombre' => $this->input->post('nombre'),
+		'apellido' => $this->input->post('apellido'),
+		'email' => $this->input->post('email'),
+		'password' => $this->input->post('password'),
+		'direccion' => $this->input->post('direccion'),
+		'telefono' => $this->input->post('telefono'),
+		'userAdmin' => false
+		);
+		$pass2= $this->input->post('password2');
+		$passCoincide=($datos ['password'] == $pass2);
+		$query = $this->register_model->verificar_datos($datos['email'], $datos['DNI']);
+
+		if($query and $passCoincide) { // Si devuelve true, se registra el usuario, se crea la sesion y se carga la vista correspondiente		
 			$this->register_model->agregar_usuario($datos);
 			$idUsuario = $this->register_model->obtenerIdUsuario($datos['email']); // Retorna el id del usuario, como el id es un autoincremental no lo sabemos ya que la BD lo genera por su cuenta, entonces lo obtenemos mediante una consulta
 			$user = array('email' => $datos['email'],
 				'nombre' => $datos['nombre'],
-				'apellido' => $datos['apellido'],
+				'apellido' => $datos['apellido'],	
 				'idUsuario' => $idUsuario,
 				'login' => true);
 			$this->session->set_userdata($user);
-			$this->load->view('index_view');
+				
+			$subastas = $this->listar_subastas_model->obtenerSubastas();
+			$datos ['subastas'] = $subastas;  
+			$this->load->view('index_view', $datos); //ACA ESTÁN SE PASAN LAS SUBASTAS PARA LA PAGINA PRINCIPAL
 		}
-		else
-			echo 'El email ya se encuentra registrado';
-	}
+		else {
+				if(!$passCoincide){
+					$error['datos_error']='Las contraseñas no coinciden';
+					$this->load->view('register_view', $error);	
+				}
+				else{
+					$error['datos_error']='El email o el DNI ya se encuentra registrado';
+					$this->load->view('register_view', $error);
+				}	
+			}	
+	}	
 }
-
 ?>

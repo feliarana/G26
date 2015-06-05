@@ -18,35 +18,47 @@
 		<?php
 			$DNI = array('name' => 'DNI',
 	 			'placeholder' => 'D.N.I',
-	 			'required' => 'required'
+	 			'required' => 'required',
+	 			'pattern' => '[0-9]{8}',
+	 			'title' => 'Por favor, ingrese un DNI válido.'
 	 			);
 			
 			$nombre = array('name' => 'nombre',
 	 		'placeholder' => 'Nombre',
-	 		'required' => 'required'
+	 		'required' => 'required',
+	 		'pattern' => '[A-Za-z]{2,20}',
+	 		'title' => 'Por favor, ingrese un mínimo de 2 LETRAS. Maximo 20.'
 	 		);
 
  	 		$apellido = array('name' => 'apellido',
 	 			'placeholder' => 'Apellido',
-	 			'required' => 'required'
+	 			'required' => 'required',
+	 			'pattern' => '[A-Za-z]{2,20}',
+	 			'title' => 'Por favor, ingrese un mínimo de 2 LETRAS. Maximo 20.'
 	 			);
 	 	
 	 		$email = array('name' => 'email',
 	 			'type' => 'email',
 		 		'placeholder' => 'E-mail',
-		 		'required' => 'required'
+		 		'required' => 'required',
+		 		'pattern' => '.{3,40}',
+	 			'title' => 'Por favor, ingrese un mínimo de 3 caracteres. Maximo 30.'
 		 		);
 
 	 		$password = array('name' => 'password',
 	 			'placeholder' => 'Contraseña',
 	 			'type' => 'password',
-	 			'required' => 'required'
+	 			'required' => 'required',
+	 			'pattern' => '.{6,15}',
+	 			'title' => 'Por favor, ingrese un mínimo de 6 caracteres. Maximo 15.'
 	 			);
 
 	 		$password2 = array('name' => 'password2',
 	 			'placeholder' => 'Repetir Contraseña',
 	 			'type' => 'password',
-	 			'required' => 'required'
+	 			'required' => 'required',
+	 			'pattern' => '.{6,15}',
+	 			'title' => 'Por favor, ingrese un mínimo de 6 caracteres. Maximo 15.'
 	 			);
 
      		$direccion = array('name' => 'direccion',
@@ -54,7 +66,9 @@
 	 			);
  	 
  	 		$telefono = array('name' => 'telefono',
-	 			'placeholder' => 'Telefono'
+	 			'placeholder' => 'Telefono',
+	 			'pattern' => '[0-9]{8,15}',
+	 			'title' => 'Por favor, ingrese un mínimo de 8 NUMEROS'
 	 			);
 		?>
 		<p align="center">
@@ -76,7 +90,7 @@
 				<?=	form_input($email) ?>
 				</div>
 				<div class="form-group">	
-				<?=	form_input($password) ?>
+				<?=	form_password($password) ?>
 				</div>
 				<div class="form-group">	
 				<?=	form_input($password2) ?>
@@ -91,7 +105,17 @@
 				<p align="left">
 					<?=	form_submit('submit_reg', 'Registrarse') ?>
 				</p>
-			
+				<?php
+					if(isset($datos_error)) { 
+				?>
+					<h4>
+						<p align="center">
+						<font color="red"> <?= $datos_error ?> </font>
+						</p>
+					</h4>
+				<?php
+					}
+				?>
 			 </div>
 		</div>
 		</p>
