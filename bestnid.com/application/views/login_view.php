@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<p align="center">
-			<a href="<?= base_url('/index.php/index') ?>">
+			<a href="<?= base_url(index_page().'/index') ?>">
 				<img src="<?= base_url('images/logo.png') ?>">
 			</a>
 		</p>
@@ -67,6 +67,9 @@
 			<?= form_submit('', 'Iniciar Sesión', "class='btn btn-darkest'") ?>
 		</p>
 		<?= form_close() ?>
+		<h5 align="center">
+			Si no tienes una cuenta <a href="<?= base_url(index_page().'/register') ?>">registrate</a>
+		</h5>
 		<!-- JQuery cargado de forma local (sin conexion a internet) -->
     	<script src="<?= base_url('js/jquery.js') ?>"></script>
     	<!-- Se cargan las funciones javascript de Bootstrap -->

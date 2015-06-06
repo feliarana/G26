@@ -5,6 +5,7 @@ class Index extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->helper('url');
+		$this->load->library('session');
 		$this->load->model('listar_subastas_model');
 	}
 

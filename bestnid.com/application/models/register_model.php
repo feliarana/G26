@@ -3,21 +3,21 @@
 class Register_model extends CI_Model {
 	
 	function __construct() {
-		parent::__construct(); // Seria como el super new
+		parent::__construct();
 		$this->load->database(); // Se carga la base de datos configurada en el archivo config/database.php
 	}
 
-	function verificar_datos($email, $DNI) {
-		$this->db->where('email', $email); // Query de la BD de mysql (primero el where y despues el from)
+	function verificarDatos($email, $DNI) {
+		$this->db->where('email', $email);
 		$this->db->or_where('DNI', $DNI);
 		$query = $this->db->get('usuario');
-		if($query->num_rows > 0) // Si obtiene algun resultado significa que el email ya existe en la BD
-			return (false);
+		if($query->num_rows == 0) // Si obtiene algun resultado significa que el email ya existe en la BD
+			return (true);
 		else
-			return (true); // Si no retorna nada la consulta, el email es valido y el usuario podra ser registrado en el sistema
+			return (false);
 	}
 
-	function agregar_usuario($usuario) {
+	function agregarUsuario($usuario) {
 		$this->db->insert('usuario', $usuario); 
 	}
 

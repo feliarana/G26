@@ -34,8 +34,7 @@ class Login extends CI_Controller {
 					'id' => $usuario[0]->idUsuario,
 					'login' => true);
 				$this->session->set_userdata($user);
-				$datos['subastas'] = $this->listar_subastas_model->obtenerSubastas();
-				$this->load->view('index_view', $datos);
+				redirect(base_url(index_page().'/index'));
 			}
 			else {
 				$mensaje['datos_error'] = 'Los datos ingresados son incorrectos';

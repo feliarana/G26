@@ -9,12 +9,23 @@
 	</head>
 	<body>
 		<p align="center">
-			<a href="<?= base_url('/index.php/index') ?>">
+			<a href="<?= base_url(index_page().'/index') ?>">
 				<img src="<?= base_url('images/logo.png') ?>">
 			</a>
 		</p>
 		<h1 align="center">¡Bienvenido a Bestnid!</h1>
 		<h2 align="center">Por favor, ingrese sus datos</h2>
+		<br>
+		<?php
+			if(isset($datos_error)) { ?>
+				<h4>
+					<p align="center">
+						<font color="red"> <?= $datos_error ?> </font>
+					</p>
+				</h4>
+		<?php
+			}
+		?>
 		<br>
 		<?= form_open('register/verificarDatos') ?>
 		<?php
@@ -24,7 +35,7 @@
 	 			'required' => 'required',
 	 			'pattern' => '[0-9]{8}',
 	 			'title' => 'Por favor, ingrese un DNI válido.'
-	 			);
+	 		);
 			
 			$nombre = array('name' => 'nombre',
 			'class' => 'form-control',
@@ -40,7 +51,7 @@
 	 			'required' => 'required',
 	 			'pattern' => '[A-Za-z]{2,20}',
 	 			'title' => 'Por favor, ingrese un mínimo de 2 LETRAS. Maximo 20.'
-	 			);
+	 		);
 	 	
 	 		$email = array('name' => 'email',
 	 			'class' => 'form-control',
@@ -49,7 +60,7 @@
 		 		'required' => 'required',
 		 		'pattern' => '.{3,40}',
 	 			'title' => 'Por favor, ingrese un mínimo de 3 caracteres. Maximo 30.'
-		 		);
+		 	);
 
 	 		$password = array('name' => 'password',
 	 			'class' => 'form-control',
@@ -58,7 +69,7 @@
 	 			'required' => 'required',
 	 			'pattern' => '.{6,15}',
 	 			'title' => 'Por favor, ingrese un mínimo de 6 caracteres. Maximo 15.'
-	 			);
+	 		);
 
 	 		$password2 = array('name' => 'password2',
 	 			'class' => 'form-control',
@@ -67,7 +78,7 @@
 	 			'required' => 'required',
 	 			'pattern' => '.{6,15}',
 	 			'title' => 'Por favor, ingrese un mínimo de 6 caracteres. Maximo 15.'
-	 			);
+	 		);
 
      		$direccion = array('name' => 'direccion',
      			'class' => 'form-control',
@@ -75,29 +86,20 @@
 	 			'required' => 'required',
 	 			'pattern' => '.{1,30}',
 	 			'title' => 'Por favor, ingrese un mínimo de 1 caracteres. Maximo 30.'
-	 			);
+	 		);
  	 
  	 		$telefono = array('name' => 'telefono',
  	 			'class' => 'form-control',
 	 			'placeholder' => 'Telefono',
 	 			'pattern' => '[0-9]{8,15}',
 	 			'title' => 'Por favor, ingrese un mínimo de 8 NUMEROS'
-	 			);
+	 		);
 		?>
-		<p align="center">
+		<p>
 			<div class="row">
 				<div class="col-md-5">
 				</div>
 				<div class="col-md-2">
-					<div class="form-group">	
-						<?=	form_input($DNI) ?>
-					</div>
-					<div class="form-group">	
-						<?=	form_input($nombre) ?>
-					</div>
-					<div class="form-group">	
-						<?=	form_input($apellido) ?>
-					</div>
 					<div class="form-group">	
 						<?=	form_input($email) ?>
 					</div>
@@ -108,6 +110,15 @@
 						<?=	form_input($password2) ?>
 					</div>
 					<div class="form-group">	
+						<?=	form_input($DNI) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($nombre) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($apellido) ?>
+					</div>
+					<div class="form-group">	
 						<?=	form_input($direccion) ?>
 					</div>
 					<div class="form-group">	
@@ -116,16 +127,6 @@
 					<p align="center">
 						<?=	form_submit('submit_reg', 'Registrarse', "class='btn btn-darkest'") ?>
 					</p>
-					<?php
-						if(isset($datos_error)) { ?>
-							<h4>
-								<p align="center">
-									<font color="red"> <?= $datos_error ?> </font>
-								</p>
-							</h4>
-					<?php
-						}
-					?>
 				</div>
 				<div class="col-md-5">
 				</div>

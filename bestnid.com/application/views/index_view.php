@@ -28,18 +28,14 @@
 					<img src="<?= base_url('images/logo.png') ?>">
 				</p>
 			</div>
-			<div class="col-md-1"> <!-- Se ubica en columna 8 -->
-				<a href="<?= base_url('/index.php/register') ?>">Registrarse</a>
-			</div>
 			<?php
 				if(isset($this->session->userdata['login'])) { ?>
 					<div class="col-md-2"> <!-- Se ubica en columna 9 -->
 						<a href="<?= base_url('/index.php/logout') ?>">Cerrar Sesión</a>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-3">
 						<p align="center">
-							<span class="glyphicon glyphicon-user"> 
-								<br>
+							<span class="glyphicon glyphicon-user">
 								<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?> 
 							</span>
 						</p>
@@ -47,6 +43,9 @@
 			<?php
 				}
 				else { ?>
+					<div class="col-md-1"> <!-- Se ubica en columna 8 -->
+						<a href="<?= base_url('/index.php/register') ?>">Registrarse</a>
+					</div>
 					<div class="col-md-2"> <!-- Se ubica en columna 9 -->
 						<a href="<?= base_url('/index.php/login') ?>">Iniciar Sesión</a>
 					</div>
@@ -87,7 +86,7 @@
 						foreach($subastas->result() as $subasta) { ?>
 							<tr class="gradeX">
 								<td>
-									<center> <img src="<?= base_url('images/'.$subasta->nombreImagen); ?>" width="50px" height="50" > </center>
+									<center> <img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px"> </center>
 								</td>
 								<td>
 									<center> <?= $subasta->nombre ?> </center>
@@ -110,6 +109,7 @@
 			$(document).ready(function() {
 				$('#tablaSubastas').dataTable( {
 					"aaSorting":[],
+					"aoColumnDefs":[ { 'bSortable': false, 'aTargets': [0, 2] } ],
         			"language": {
         				"search": "Buscar",
             			"lengthMenu": "Mostrar _MENU_ subastas por página",
