@@ -30,6 +30,7 @@
 		<?= form_open('register/verificarDatos') ?>
 		<?php
 			$DNI = array('name' => 'DNI',
+				'value' => @set_value('DNI'),
 				'class' => 'form-control',
 	 			'placeholder' => 'D.N.I',
 	 			'required' => 'required',
@@ -38,6 +39,7 @@
 	 		);
 			
 			$nombre = array('name' => 'nombre',
+			'value' => @set_value('nombre'),
 			'class' => 'form-control',
 	 		'placeholder' => 'Nombre',
 	 		'required' => 'required',
@@ -46,6 +48,7 @@
 	 		);
 
  	 		$apellido = array('name' => 'apellido',
+ 	 			'value' => @set_value('apellido'),
  	 			'class' => 'form-control',
 	 			'placeholder' => 'Apellido',
 	 			'required' => 'required',
@@ -54,8 +57,9 @@
 	 		);
 	 	
 	 		$email = array('name' => 'email',
-	 			'class' => 'form-control',
 	 			'type' => 'email',
+	 			'value' => @set_value('email'),
+	 			'class' => 'form-control',
 		 		'placeholder' => 'E-mail',
 		 		'required' => 'required',
 		 		'pattern' => '.{3,40}',
@@ -63,24 +67,25 @@
 		 	);
 
 	 		$password = array('name' => 'password',
+	 			'type' => 'password',
 	 			'class' => 'form-control',
 	 			'placeholder' => 'Contraseña',
-	 			'type' => 'password',
 	 			'required' => 'required',
 	 			'pattern' => '.{6,15}',
 	 			'title' => 'Por favor, ingrese un mínimo de 6 caracteres. Maximo 15.'
 	 		);
 
 	 		$password2 = array('name' => 'password2',
+	 			'type' => 'password',
 	 			'class' => 'form-control',
 	 			'placeholder' => 'Repetir Contraseña',
-	 			'type' => 'password',
 	 			'required' => 'required',
 	 			'pattern' => '.{6,15}',
 	 			'title' => 'Por favor, ingrese un mínimo de 6 caracteres. Maximo 15.'
 	 		);
 
      		$direccion = array('name' => 'direccion',
+     			'value' => @set_value('direccion'),
      			'class' => 'form-control',
 	 			'placeholder' => 'Direccion',
 	 			'required' => 'required',
@@ -89,6 +94,7 @@
 	 		);
  	 
  	 		$telefono = array('name' => 'telefono',
+ 	 			'value' => @set_value('telefono'),
  	 			'class' => 'form-control',
 	 			'placeholder' => 'Telefono',
 	 			'pattern' => '[0-9]{8,15}',

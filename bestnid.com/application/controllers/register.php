@@ -29,8 +29,9 @@ class Register extends CI_Controller {
 		);
 		$pass2 = $this->input->post('password2');
 		$passCoincide = ($datos['password'] == $pass2);
-		$query = $this->register_model->verificarDatos($datos['email'], $datos['DNI']);
-		if($query and $passCoincide) { // Si devuelve true, se registra el usuario, se crea la sesion y se carga la vista correspondiente		
+		$email = $this->register_model->verificarEmail($datos['email']); 
+		$DNI = $this->register_model->verificarDNI($datos['DNI']);
+		if($email and $DNI and $passCoincide) { // Si devuelve true, se registra el usuario, se crea la sesion y se carga la vista correspondiente		
 			$this->register_model->agregarUsuario($datos);
 			$idUsuario = $this->register_model->obtenerIdUsuario($datos['email']); // Retorna el id del usuario, como el id es un autoincremental no lo sabemos ya que la BD lo genera por su cuenta, entonces lo obtenemos mediante una consulta
 			$user = array('email' => $datos['email'],
@@ -47,8 +48,14 @@ class Register extends CI_Controller {
 				$this->load->view('register_view', $error);
 			}
 			else {
-				$error['datos_error'] = 'El email o el DNI ya se encuentra registrado';
-				$this->load->view('register_view', $error);
+				if(!$email) {
+					$error['datos_error'] = 'El Email ya se encuentra registrado';
+					$this->load->view('register_view', $error);
+				}
+				else {
+					$error['datos_error'] = 'El DNI ya se encuentra registrado';
+					$this->load->view('register_view', $error);
+				}
 			}
 		}
 	}

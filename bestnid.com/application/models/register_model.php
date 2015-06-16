@@ -7,11 +7,19 @@ class Register_model extends CI_Model {
 		$this->load->database(); // Se carga la base de datos configurada en el archivo config/database.php
 	}
 
-	function verificarDatos($email, $DNI) {
+	function verificarEmail($email) {
 		$this->db->where('email', $email);
-		$this->db->or_where('DNI', $DNI);
 		$query = $this->db->get('usuario');
-		if($query->num_rows == 0) // Si obtiene algun resultado significa que el email ya existe en la BD
+		if($query->num_rows == 0) // Si no obtiene ningun resultado significa que el Email no esta registrado
+			return (true);
+		else
+			return (false);
+	}
+
+	function verificarDNI($DNI) {
+		$this->db->where('DNI', $DNI);
+		$query = $this->db->get('usuario');
+		if($query->num_rows == 0) // Si no obtiene ningun resultado significa que el DNI no esta registrado
 			return (true);
 		else
 			return (false);
