@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-06-2015 a las 00:34:59
--- Versión del servidor: 5.6.24
--- Versión de PHP: 5.6.8
+-- Tiempo de generación: 20-06-2015 a las 07:15:05
+-- Versión del servidor: 5.6.21
+-- Versión de PHP: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,16 +28,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `categoria` (
 `idCategoria` int(10) unsigned NOT NULL,
-  `nombre` varchar(50) NOT NULL
+  `nombreCategoria` varchar(50) NOT NULL,
+  `nombreImagen` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categoria` (`idCategoria`, `nombre`) VALUES
-(1, 'Autos'),
-(2, 'Electrodomesticos');
+INSERT INTO `categoria` (`idCategoria`, `nombreCategoria`, `nombreImagen`) VALUES
+(1, 'Autos', 'categoria_autos.jpg'),
+(2, 'Electrodomesticos', 'categoria_electrodomesticos.jpg');
 
 -- --------------------------------------------------------
 
@@ -77,21 +78,21 @@ CREATE TABLE IF NOT EXISTS `oferta` (
 
 CREATE TABLE IF NOT EXISTS `subasta` (
 `idSubasta` int(10) unsigned NOT NULL,
-  `nombre` varchar(30) NOT NULL,
+  `nombreSubasta` varchar(30) NOT NULL,
   `descripcion` varchar(256) NOT NULL,
   `idUsuario` int(10) unsigned NOT NULL,
   `idCategoria` int(10) unsigned DEFAULT NULL,
   `fechaInicio` date NOT NULL,
   `fechaFin` date NOT NULL,
   `ganador` int(10) unsigned DEFAULT NULL,
-  `nombreImagen` varchar(30) DEFAULT NULL
+  `nombreImagen` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `subasta`
 --
 
-INSERT INTO `subasta` (`idSubasta`, `nombre`, `descripcion`, `idUsuario`, `idCategoria`, `fechaInicio`, `fechaFin`, `ganador`, `nombreImagen`) VALUES
+INSERT INTO `subasta` (`idSubasta`, `nombreSubasta`, `descripcion`, `idUsuario`, `idCategoria`, `fechaInicio`, `fechaFin`, `ganador`, `nombreImagen`) VALUES
 (19, 'Kriptonita', '200 gramos de Kriptonita', 1, NULL, '2015-06-01', '2015-06-30', NULL, 'kriptonita.jpg'),
 (20, 'Espejo', 'Espejo sin marco. Medidas: 0.8m x 1.2m', 5, NULL, '2015-06-01', '2015-06-29', NULL, 'espejo.jpg'),
 (21, 'Silla', 'Silla donde se sentó Freddie Mercury una vez', 6, NULL, '2015-06-03', '2015-06-07', NULL, 'silla.jpg'),
@@ -100,7 +101,7 @@ INSERT INTO `subasta` (`idSubasta`, `nombre`, `descripcion`, `idUsuario`, `idCat
 (26, 'Guante ', 'Guante de malla de acero inox. tejido, anticorte, marca *manulatex* de industria francesa', 10, NULL, '2015-06-03', '2015-07-01', NULL, 'guante.jpg'),
 (27, 'Casa con faro', 'Bonita casa con vista al mar y un faro muy luminoso para orientar barquitos', 12, NULL, '2015-06-04', '2015-06-30', NULL, 'faro.jpg'),
 (28, 'Cama', 'Cama de roble. Dos plazas.', 6, NULL, '2015-06-03', '2015-06-30', NULL, 'cama.jpg'),
-(29, 'Citroen 3CV', 'Modelo 79. Está como nuevo.', 1, NULL, '2015-05-07', '2015-06-01', NULL, 'citroen.jpg'),
+(29, 'Citroen 3CV', 'Modelo 79. Está como nuevo.', 1, 1, '2015-05-07', '2015-06-01', NULL, 'citroen.jpg'),
 (34, 'Mochila de tela', 'Marca Mochilona. Medidas 60x40x30.', 8, NULL, '2015-05-28', '2015-06-15', NULL, 'mochila.jpg'),
 (35, 'Llave', 'Llave de aleación. Me la encontré en la vereda.', 12, NULL, '2015-05-24', '2015-06-21', NULL, 'llave.jpg'),
 (36, 'Varita mágica', 'Hecha de madera de sauco con alma de pluma de fénix. Perteneció a Albus Dumbledore.', 8, NULL, '2015-06-01', '2015-06-15', NULL, 'varita.jpg'),
