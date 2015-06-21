@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-06-2015 a las 07:15:05
+-- Tiempo de generación: 21-06-2015 a las 21:51:32
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -30,15 +30,25 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 `idCategoria` int(10) unsigned NOT NULL,
   `nombreCategoria` varchar(50) NOT NULL,
   `nombreImagen` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
 INSERT INTO `categoria` (`idCategoria`, `nombreCategoria`, `nombreImagen`) VALUES
-(1, 'Autos', 'categoria_autos.jpg'),
-(2, 'Electrodomesticos', 'categoria_electrodomesticos.jpg');
+(1, 'Vehículos', 'categoria_vehiculos.jpg'),
+(2, 'Electrodomésticos', 'categoria_electrodomesticos.jpg'),
+(3, 'Computación', 'categoria_computacion.jpg'),
+(4, 'Teléfonos', 'categoria_telefonos.jpg'),
+(5, 'Ropa, Moda y Belleza', 'categoria_ropa_moda_y_belleza.jpg'),
+(6, 'Deportes', 'categoria_deporte.jpg'),
+(7, 'Libros', 'categoria_libros.jpg'),
+(8, 'Entretenimiento', 'categoria_entretenimiento.jpg'),
+(9, 'Inmuebles', 'categoria_inmuebles.jpg'),
+(10, 'Animales', 'categoria_animales.jpg'),
+(11, 'Servicios', 'categoria_servicios.jpg'),
+(12, 'Hogar', 'categoria_hogar.jpg');
 
 -- --------------------------------------------------------
 
@@ -93,19 +103,17 @@ CREATE TABLE IF NOT EXISTS `subasta` (
 --
 
 INSERT INTO `subasta` (`idSubasta`, `nombreSubasta`, `descripcion`, `idUsuario`, `idCategoria`, `fechaInicio`, `fechaFin`, `ganador`, `nombreImagen`) VALUES
-(19, 'Kriptonita', '200 gramos de Kriptonita', 1, NULL, '2015-06-01', '2015-06-30', NULL, 'kriptonita.jpg'),
-(20, 'Espejo', 'Espejo sin marco. Medidas: 0.8m x 1.2m', 5, NULL, '2015-06-01', '2015-06-29', NULL, 'espejo.jpg'),
-(21, 'Silla', 'Silla donde se sentó Freddie Mercury una vez', 6, NULL, '2015-06-03', '2015-06-07', NULL, 'silla.jpg'),
-(22, 'Aceite y vinagre', '200ml de aceite y 300ml de vinagre. No incluye fascos', 8, NULL, '2015-06-05', '2015-06-15', NULL, 'aceitevinagre.jpg'),
-(25, 'Llama ', 'Llama adulta oriunda de Tilcara. Es mansita', 10, NULL, '2015-06-04', '2015-07-03', NULL, 'llama.jpg'),
-(26, 'Guante ', 'Guante de malla de acero inox. tejido, anticorte, marca *manulatex* de industria francesa', 10, NULL, '2015-06-03', '2015-07-01', NULL, 'guante.jpg'),
-(27, 'Casa con faro', 'Bonita casa con vista al mar y un faro muy luminoso para orientar barquitos', 12, NULL, '2015-06-04', '2015-06-30', NULL, 'faro.jpg'),
-(28, 'Cama', 'Cama de roble. Dos plazas.', 6, NULL, '2015-06-03', '2015-06-30', NULL, 'cama.jpg'),
+(20, 'Espejo', 'Espejo sin marco. Medidas: 0.8m x 1.2m', 5, 12, '2015-06-01', '2015-06-29', NULL, 'espejo.jpg'),
+(21, 'Silla', 'Silla donde se sentó Freddie Mercury una vez', 6, 12, '2015-06-03', '2015-06-07', NULL, 'silla.jpg'),
+(22, 'Aceite y vinagre', '200ml de aceite y 300ml de vinagre. No incluye fascos', 8, 12, '2015-06-05', '2015-06-15', NULL, 'aceitevinagre.jpg'),
+(25, 'Llama ', 'Llama adulta oriunda de Tilcara. Es mansita', 10, 10, '2015-06-04', '2015-07-03', NULL, 'llama.jpg'),
+(26, 'Guante ', 'Guante de malla de acero inox. tejido, anticorte, marca *manulatex* de industria francesa', 10, 5, '2015-06-03', '2015-07-01', NULL, 'guante.jpg'),
+(27, 'Casa con faro', 'Bonita casa con vista al mar y un faro muy luminoso para orientar barquitos', 12, 9, '2015-06-04', '2015-06-30', NULL, 'faro.jpg'),
+(28, 'Cama', 'Cama de roble. Dos plazas.', 6, 12, '2015-06-03', '2015-06-30', NULL, 'cama.jpg'),
 (29, 'Citroen 3CV', 'Modelo 79. Está como nuevo.', 1, 1, '2015-05-07', '2015-06-01', NULL, 'citroen.jpg'),
-(34, 'Mochila de tela', 'Marca Mochilona. Medidas 60x40x30.', 8, NULL, '2015-05-28', '2015-06-15', NULL, 'mochila.jpg'),
-(35, 'Llave', 'Llave de aleación. Me la encontré en la vereda.', 12, NULL, '2015-05-24', '2015-06-21', NULL, 'llave.jpg'),
-(36, 'Varita mágica', 'Hecha de madera de sauco con alma de pluma de fénix. Perteneció a Albus Dumbledore.', 8, NULL, '2015-06-01', '2015-06-15', NULL, 'varita.jpg'),
-(37, 'Libro raro', 'No tiene nombre en la tapa. No entiendo que dicen los textos. Parece viejo.', 5, NULL, '2015-05-17', '2015-06-08', NULL, 'libro.jpg');
+(34, 'Mochila de tela', 'Marca Mochilona. Medidas 60x40x30.', 8, 12, '2015-05-28', '2015-06-15', NULL, 'mochila.jpg'),
+(35, 'Llave', 'Llave de aleación. Me la encontré en la vereda.', 12, 12, '2015-05-24', '2015-06-21', NULL, 'llave.jpg'),
+(37, 'Libro raro', 'No tiene nombre en la tapa. No entiendo que dicen los textos. Parece viejo.', 5, 7, '2015-05-17', '2015-06-08', NULL, 'libro.jpg');
 
 -- --------------------------------------------------------
 
@@ -180,7 +188,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-MODIFY `idCategoria` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `idCategoria` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `comentario`
 --
