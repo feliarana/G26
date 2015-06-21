@@ -86,10 +86,10 @@
 						foreach($subastas->result() as $subasta) { ?>
 							<tr class="gradeX">
 								<td>
-									<center> <img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px"> </center>
+									<center> <a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>"> <img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px"> </a></center>
 								</td>
 								<td>
-									<center> <?= $subasta->nombreSubasta ?> </center>
+									<center> <a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>"> <?= $subasta->nombreSubasta ?> </a></center>
 								</td>
 								<td> 
 									<center> <?= $subasta->descripcion ?> </center>
