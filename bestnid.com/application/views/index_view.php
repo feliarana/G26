@@ -36,6 +36,7 @@
 					<div class="col-md-3">
 						<p align="center">
 							<span class="glyphicon glyphicon-user">
+								<br>
 								<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?> 
 							</span>
 						</p>
@@ -86,10 +87,18 @@
 						foreach($subastas->result() as $subasta) { ?>
 							<tr class="gradeX">
 								<td>
-									<center> <a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>"> <img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px"> </a></center>
+									<center>
+										<a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>">
+											<img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px">
+										</a>
+									</center>
 								</td>
 								<td>
-									<center> <a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>"> <?= $subasta->nombreSubasta ?> </a></center>
+									<center>
+										<a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>">
+											<?= $subasta->nombreSubasta ?>
+										</a>
+									</center>
 								</td>
 								<td> 
 									<center> <?= $subasta->descripcion ?> </center>
