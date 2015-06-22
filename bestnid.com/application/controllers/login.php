@@ -31,7 +31,7 @@ class Login extends CI_Controller {
 				$user = array('email' => $usuario[0]->email,
 					'nombre' => $usuario[0]->nombre,
 					'apellido' => $usuario[0]->apellido,
-					'id' => $usuario[0]->idUsuario,
+					'idUsuario' => $usuario[0]->idUsuario,
 					'login' => true);
 				$this->session->set_userdata($user);
 				redirect(base_url(index_page().'/index'));

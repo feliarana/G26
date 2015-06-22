@@ -18,19 +18,10 @@ class Subasta_model extends CI_Model {
 		}
 	}
 
-	function obtenerSubastasCategoria($idCategoria) {
-		$this->db->from('categoria');
-		$this->db->join('subasta', 'subasta.idCategoria = categoria.idCategoria');
-		$this->db->where('subasta.idCategoria', $idCategoria);
-		$query = $this->db->get();
-		if($query->num_rows > 0) {
-			return ($query);
-		}
-		else {
-			return (false);
-		}
+	function agregarOferta($datos) {
+		$this->db->insert('oferta', $datos);
 	}
-
+	
 }
 
 ?>
