@@ -21,7 +21,6 @@
         	Categoria <?= $subastas->result()[0]->nombreCategoria ?>
         </h2>
         <br>
-		<!-- Estos archivos deben cargarse si o si antes de definir la tabla, sino no los toma -->
 		<!-- Se carga jquery -->
     	<script src="<?= base_url('js/jquery.js') ?>" type="text/javascript" charset="utf8"></script>
 		<!-- Se carga la libreria dataTables -->
