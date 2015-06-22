@@ -13,7 +13,7 @@ class Register extends CI_Controller {
 	}
 
 	function index () {
-		$this->load->view('register_view');
+		$this->load->view("register_view");
 	}
 
 	function verificarDatos() {

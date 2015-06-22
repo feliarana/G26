@@ -18,10 +18,33 @@ class Subasta_model extends CI_Model {
 		}
 	}
 
+	function obtenerComentarios()  {
+		$this->db->from('comentario');
+		$this->db->join('subasta', 'subasta.idSubasta = comentario.idSubasta');
+		$query = $this->db->get();
+		if($query->num_rows > 0) {
+			return ($query);
+		}
+		else {
+			return (false);
+		}
+	}
+
 	function agregarOferta($datos) {
 		$this->db->insert('oferta', $datos);
 	}
 	
+
+	function agregarPregunta($pregunta)  {
+		$this->db->insert('comentario', $pregunta); 
+	}	
+
+
+	function agregarRespuesta($respuesta)  {
+		
+	}	
+
+
 }
 
 ?>

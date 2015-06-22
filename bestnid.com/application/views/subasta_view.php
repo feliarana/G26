@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+  <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-		  <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- Se cargan los estilos de bootstrap -->
       <link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet" media="screen">
-	</head>
+  </head>
     <body>
         <p align="center">
             <a href="<?= base_url(index_page().'/index') ?>">
@@ -21,7 +21,7 @@
         </center>
         <br>
         <br>
-        <div class="container">
+         <div class="container">
             <!-- Trigger the modal with a button -->
             <p align="center">
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> Ofertar </button>
@@ -69,6 +69,52 @@
                 </div>
             </div> 
         </div>
+
+    <?php $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
+        <?= form_open("subasta/pregunta?idSubasta=".$subasta[0]->idSubasta, $atributos) ?>
+           <?php
+              $pregunta = array(
+              'name' => 'pregunta',
+              'class' => 'form-control',
+              'type' => 'text',
+              'placeholder' => 'Realize su pregunta',
+              ); 
+        ?> 
+
+  <div class="row">
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-2">
+              <?= form_input($pregunta) ?>
+              <br>
+              <?= form_submit('', 'Preguntar', "class='btn btn-primary'") ?>
+        </div>
+  </div>
+      <?= form_close() ?>
+        
+
+<?php
+    if($comentarios) { ?> 
+              Preguntas realizadas 
+              <?php foreach($comentarios->result() as $comentario) {  ?> 
+                    <br>
+                      <table border="1" style="background-color:#FFFFCC;border-collapse:collapse;border:1px solid #FFCC00;color:#000000;width:100%" cellpadding="3" cellspacing="0">
+                        <tr>
+                        <td>Pregunta: <label type="text" for="pwd" > <?=$comentario->texto?></td>
+                        </tr>
+                        <tr>
+                        <td>Respuesta: <?=$comentario->respuesta?></td>
+                        </tr>
+                      </table>
+                    <br>
+              <?php 
+              }
+  }
+    else{ ?> 
+    <br>
+        No existen preguntas todavia.
+      
+  <?php } ?>
         <!-- Se carga jquery -->
         <script src="<?= base_url('js/jquery.js') ?>" type="text/javascript" charset="utf8"></script>
         <!-- Se cargan las funciones javascript de Bootstrap -->
