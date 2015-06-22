@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 21-06-2015 a las 21:51:32
+-- Tiempo de generación: 22-06-2015 a las 07:12:21
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -74,11 +74,18 @@ CREATE TABLE IF NOT EXISTS `comentario` (
 
 CREATE TABLE IF NOT EXISTS `oferta` (
 `idOferta` int(10) unsigned NOT NULL,
-  `Argumento` varchar(256) NOT NULL,
+  `argumento` varchar(140) NOT NULL,
   `idUsuario` int(11) unsigned NOT NULL,
   `idSubasta` int(11) unsigned NOT NULL,
-  `monto` double unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `monto` bigint(20) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `oferta`
+--
+
+INSERT INTO `oferta` (`idOferta`, `argumento`, `idUsuario`, `idSubasta`, `monto`) VALUES
+(7, 'Necesito para cabalgarla desde Los Andes hasta Mexico', 1, 25, 2);
 
 -- --------------------------------------------------------
 
@@ -198,7 +205,7 @@ MODIFY `idComentario` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `oferta`
 --
 ALTER TABLE `oferta`
-MODIFY `idOferta` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `idOferta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `subasta`
 --
