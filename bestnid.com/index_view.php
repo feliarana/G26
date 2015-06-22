@@ -12,15 +12,34 @@
     	<link href="<?= base_url('css/dataTables.bootstrap.css') ?>" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<p align="center">
-        	<a href="<?= base_url(index_page().'/index') ?>">
-            	<img src="<?= base_url('images/logo.png') ?>">
-            </a>
-        </p>
-        <h2 align="center">
-        	Categoria <?= $subastas->result()[0]->nombreCategoria ?>
-        </h2>
-        <br>
+		<!-- En total la tabla debe sumar 12 columnas -->
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-1">
+  				<a href="<?=base_url('images/enConstruccion.jpg') ?>" />Categorías</a> <!-- Se ubica en columna 4 -->
+  			</div>
+  			<div class="col-md-1">
+				<a href="<?=base_url('images/enConstruccion.jpg') ?>">Ayuda</a> <!-- Se ubica en columna 5 -->
+			</div>
+			<div class="col-md-2">
+				<!-- Se ubica en columna 6 -->
+				<p align="center">
+					<img src="<?= base_url('images/logo.png') ?>">
+				</p>
+			</div>
+			<div class="col-md-1"> <!-- Se ubica en columna 8 -->
+				<a href="<?= base_url('/index.php/register') ?>">Registrarse</a>
+			</div>
+			<div class="col-md-2"> <!-- Se ubica en columna 9 -->
+				<a href="<?= base_url('/index.php/login') ?>">Iniciar Sesión</a>
+			</div>
+			<div class="col-md-2">
+			</div>
+		</div>
+		<h1 align="center">Bestnid</h1>
+		<h2 align="center">Elegí con el corazón</h2>
+		<br>
 		<!-- Estos archivos deben cargarse si o si antes de definir la tabla, sino no los toma -->
 		<!-- Se carga jquery -->
     	<script src="<?= base_url('js/jquery.js') ?>" type="text/javascript" charset="utf8"></script>
@@ -31,7 +50,7 @@
 				<tr>
 					<th>Imagen</th>
 					<th>Nombre</th>
-					<th>Descripcion</th>
+					<th>Descripción</th>
 					<th>Fecha de Finalización</th>
 				</tr>
 			</thead>
@@ -41,10 +60,10 @@
 						foreach($subastas->result() as $subasta) { ?>
 							<tr class="gradeX">
 								<td>
-									<center> <img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px"> </center>
+									<center> <img src="<?= base_url('images/'.$subasta->nombreImagen); ?>" width="50px" height="50" > </center>
 								</td>
 								<td>
-									<center> <?= $subasta->nombreSubasta ?> </center>
+									<center> <?= $subasta->nombre ?> </center>
 								</td>
 								<td> 
 									<center> <?= $subasta->descripcion ?> </center>
@@ -64,7 +83,6 @@
 			$(document).ready(function() {
 				$('#tablaSubastas').dataTable( {
 					"aaSorting":[],
-					"aoColumnDefs":[ { 'bSortable': false, 'aTargets': [0, 2] } ],
         			"language": {
         				"search": "Buscar",
             			"lengthMenu": "Mostrar _MENU_ subastas por página",
