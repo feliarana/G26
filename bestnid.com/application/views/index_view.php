@@ -17,7 +17,7 @@
 			<div class="col-md-3">
 			</div>
 			<div class="col-md-1">
-  				<a href="<?= base_url('images/enConstruccion.jpg') ?>">Categorías</a> <!-- Se ubica en columna 4 -->
+  				<a href="<?= base_url(index_page().'/categorias') ?>">Categorías</a> <!-- Se ubica en columna 4 -->
   			</div>
   			<div class="col-md-1">
 				<a href="<?= base_url('images/enConstruccion.jpg') ?>">Ayuda</a> <!-- Se ubica en columna 5 -->
@@ -55,8 +55,8 @@
 				}
 			?>
 		</div>
-		<h1 align="center">Bestnid</h1>
-		<h2 align="center">Elegí con el corazón</h2>
+		<h1 align="center"> Bestnid </h1>
+		<h2 align="center"> Elegí con el corazón </h2>
 		<br>
 		<?php
 			if(isset($this->session->userdata['login'])) { ?>
@@ -86,10 +86,18 @@
 						foreach($subastas->result() as $subasta) { ?>
 							<tr class="gradeX">
 								<td>
-									<center> <img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px"> </center>
+									<center>
+										<a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>">
+											<img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px">
+										</a>
+									</center>
 								</td>
 								<td>
-									<center> <?= $subasta->nombre ?> </center>
+									<center>
+										<a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>">
+											<?= $subasta->nombreSubasta ?>
+										</a>
+									</center>
 								</td>
 								<td> 
 									<center> <?= $subasta->descripcion ?> </center>
