@@ -7,8 +7,8 @@ class CrearSubasta extends CI_Controller {
         $this->load->helper('form');
         $this->load->helper('url');
         $this->load->helper('date');
-        $this->load->model('crear_subasta_model');
         $this->load->library('session');
+        $this->load->model('crear_subasta_model');
     }
 
     function index() {
@@ -16,50 +16,47 @@ class CrearSubasta extends CI_Controller {
     }
 
     function recibirDatos() {
-    	$formato = "%Y-%m-%d";
-    	$cantDias = $this->input->post('cantDias');
+    	$formato = '%Y-%m-%d';
     	$fechaActual = mdate($formato);
-    	$fechaFin = $fechaActual;
-    	$fechaFin = date('Y-m-d',strtotime('+'.$cantDias.' days'));
+    	$cantDias = $this->input->post('cantDias');
+    	$nuevafecha = strtotime ('+'.$cantDias.' day', strtotime($fechaActual));
+    	$fechaFin = date('Y-m-d', $nuevafecha);
+    	echo $fechaFin.' ';
 
     	$subasta = array(
-		'idUsuario' => $this->session->userdata('idUsuario'),
 		'nombreSubasta' => $this->input->post('nombreSubasta'),
 		'descripcion' => $this->input->post('descripcion'),
+		'idUsuario' => $this->session->userdata('idUsuario'),
 		'idCategoria' => $this->input->post('categoria'),
 		'fechaInicio' => $fechaActual,
 		'fechaFin' => $fechaFin,
 		'nombreImagen' => $this->input->post('userfile')
 		);
+    	echo $subasta['nombreImagen'].' ';
+    	// Hasta aca va bien, menos con el nombre de la imagen que no lo toma
 
-    	//Esto será el nombre final de la imagen. Es para que dos imágenes no posean el mismo nombre
-		$horaActual = date('dmYHis').'.jpg';
-
-		$config['upload_path'] = 'C:\xampp\htdocs\bestnid.com\images';
-		$config['allowed_types'] = 'jpg';
-		$config['max_size']	= '5000000';
+		$config['upload_path'] = '/images';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']	= 3*1024;
 		$config['max_width']  = '1024';
-		$config['max_height']  = '768';
-		$config['file_name']  = $horaActual;
-
+		$config['max_height']  = '1024';
+		$config['file_name']  = 'Arte.jpg';
 		
-        $this->load->library('upload', $config);
+		$this->load->library('upload', $config);
 
-		if ( ! $this->upload->do_upload())
-		{
-			$error = array('error' => $this->upload->display_errors());			
-		}	
-		else
-		{	
-			//Esto es para que dos imagenes cargadas no tengan el mismo nombre
-			$subasta['nombreImagen'] = $horaActual;
+		if(!$this->upload->do_upload()) {
+			echo 'No se subio';
+			$error = array('error' => $this->upload->display_errors());
+			return ($error);
+		}
+		else {
+			// Esto es para que dos imagenes cargadas no tengan el mismo nombre
+			$subasta['nombreImagen'] = 'Arte.jpg';
 			$this->crear_subasta_model->crearSubasta($subasta);
-			$data = array('upload_data' => $this->upload->data());
-
-			//Una vez cargada, vuelve a la página de inicio
     		redirect(base_url(index_page().'/index'));
 		}
-
-		}
 	}
+
+}
+
 ?>

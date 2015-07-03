@@ -37,7 +37,7 @@
 						<p align="center">
 							<span class="glyphicon glyphicon-user">
 								<br>
-								<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?> 
+								<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?>
 							</span>
 						</p>
 					</div>
@@ -62,7 +62,9 @@
 		<?php
 			if(isset($this->session->userdata['login'])) { ?>
 				<center>
-					<button type="button" class="btn btn-darkest">Publicar una subasta</button>
+					<a href="<?= base_url(index_page().'/crearSubasta') ?>">
+						<button type="button" class="btn btn-darkest">Publicar una subasta</button>
+					</a>
 				</center>
 		<?php
 			}
@@ -88,14 +90,14 @@
 							<tr class="gradeX">
 								<td>
 									<center>
-										<a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>">
+										<a href="<?= base_url(index_page().'/subasta?idSubasta='.$subasta->idSubasta) ?>">
 											<img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px">
 										</a>
 									</center>
 								</td>
 								<td>
 									<center>
-										<a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>">
+										<a href="<?= base_url(index_page().'/subasta?idSubasta='.$subasta->idSubasta) ?>">
 											<?= $subasta->nombreSubasta ?>
 										</a>
 									</center>

@@ -18,7 +18,19 @@
             </a>
         </p>
         <h2 align="center">
-        	Categoria <?= $subastas->result()[0]->nombreCategoria ?>
+        	<?php
+        		if($subastas) { ?>
+        			Categoria <?= $categoria[0]->nombreCategoria ?>
+        	<?php
+        		}
+        		else { ?>
+        			<center>
+                        Categoria <?= $categoria[0]->nombreCategoria ?>
+        				<h1> No hay subastas disponibles </h1>
+        			</center>
+        	<?php
+        		}
+        	?>
         </h2>
         <br>
 		<!-- Estos archivos deben cargarse si o si antes de definir la tabla, sino no los toma -->
