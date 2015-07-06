@@ -35,7 +35,7 @@ class CrearSubasta extends CI_Controller {
     	echo $subasta['nombreImagen'].' ';
     	// Hasta aca va bien, menos con el nombre de la imagen que no lo toma
 
-		$config['upload_path'] = '/images';
+		$config['upload_path'] = FCPATH.'images';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size']	= 3*1024;
 		$config['max_width']  = '1024';
@@ -45,8 +45,8 @@ class CrearSubasta extends CI_Controller {
 		$this->load->library('upload', $config);
 
 		if(!$this->upload->do_upload()) {
-			echo 'No se subio';
 			$error = array('error' => $this->upload->display_errors());
+			var_dump($error);
 			return ($error);
 		}
 		else {
