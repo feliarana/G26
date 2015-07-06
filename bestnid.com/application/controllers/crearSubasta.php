@@ -35,12 +35,13 @@ class CrearSubasta extends CI_Controller {
     	echo $subasta['nombreImagen'].' ';
     	// Hasta aca va bien, menos con el nombre de la imagen que no lo toma
 
+    	$nombreImagen = date('dmYHis').'.jpg';
 		$config['upload_path'] = FCPATH.'images';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size']	= 3*1024;
 		$config['max_width']  = '1024';
 		$config['max_height']  = '1024';
-		$config['file_name']  = 'Arte.jpg';
+		$config['file_name']  = $nombreImagen;
 		
 		$this->load->library('upload', $config);
 
@@ -51,7 +52,7 @@ class CrearSubasta extends CI_Controller {
 		}
 		else {
 			// Esto es para que dos imagenes cargadas no tengan el mismo nombre
-			$subasta['nombreImagen'] = 'Arte.jpg';
+			$subasta['nombreImagen'] = $nombreImagen;
 			$this->crear_subasta_model->crearSubasta($subasta);
     		redirect(base_url(index_page().'/index'));
 		}
