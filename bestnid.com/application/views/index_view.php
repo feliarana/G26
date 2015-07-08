@@ -19,27 +19,25 @@
 
 <!-- FUENTE DE LA navBar https://www.youtube.com/watch?v=qpWlaOeGZ_4 -->
 	<div class = "navbar navbar-inverse navbar-static-top"> <!-- Otra buena es navbar-fixed-top, la cual se mantiene en la pantalla si scrolleas -->
-		<div class="container">
+		<div class="container-fluid">  <!--Esto hace que el texto esté en los extremos de la pagina-->
 			<button class="navbar-toggle" data-toggle"collapse" data-target= "navHeaderCollapse"> <!--Esto es si se achica la pantalla, hace tres chirimbolos-->
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
 
-			<div class= "collapse navbar-collapse navHeaderCollapse"> 
+			<div class= "navbar-collapse navHeaderCollapse"> 
 				<a href="<?= base_url(index_page().'/categorias') ?>" class="navbar-brand">Categorías</a> 
 				<a href="<?= base_url('images/enConstruccion.jpg') ?>" class="navbar-brand">Ayuda</a> 
 				
 				<ul class="nav navbar-nav navbar-right"> 													
 								<?php
 									if(isset($this->session->userdata['login'])) { ?>
-											<a href="<?= base_url('/index.php/logout') ?>" class="navbar-brand">Cerrar Sesión</a>
-												
+											<a href="<?= base_url('/index.php/logout') ?>" class="navbar-brand" >Cerrar Sesión</a>
 												<li class = "dropdown"> 
-													<li>
+
 															<a href="#" class = "dropdown-toggle" data-toggle = "dropdown"> 
-																Perfil 
-																<br>
+																<b class="caret"> Perfil </b> 
 																<?= $this->session->userdata['nombre']?> <?= $this->session->userdata['apellido'] ?> 
 															</a>
 															<ul class = "dropdown-menu">
@@ -66,9 +64,8 @@
 
 																			<!-- Fin Elegant Accordion Menu -->
 
-
 															</ul>
-													</li>
+
 												</li>
 											</a>											
 								<?php
