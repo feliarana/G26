@@ -18,7 +18,20 @@ class Subasta_model extends CI_Model {
 		}
 	}
 
-	function obtenerComentarios($idSubasta)  {
+	function obtenerNombreCategoriaPorId($idSubasta) {
+		$this->db->from('categoria');
+		$this->db->join('subasta', 'subasta.idCategoria = categoria.idCategoria');
+		$this->db->where('subasta.idSubasta', $idSubasta);
+		$query = $this->db->get();
+		if($query->num_rows() > 0) {
+			return ($query->result());
+		}
+		else {
+			return (false);
+		}
+	}
+
+	function obtenerComentarios($idSubasta) {
 		$this->db->from('comentario');
 		$this->db->join('subasta', 'subasta.idSubasta = comentario.idSubasta');
 		$this->db->where('subasta.idSubasta', $idSubasta);

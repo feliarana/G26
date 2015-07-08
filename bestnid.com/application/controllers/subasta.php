@@ -15,6 +15,7 @@ class Subasta extends CI_Controller {
 		$idSubasta = $this->input->get('idSubasta');
 		$datos['subasta'] = $this->subasta_model->obtenerSubastaPorId($idSubasta);
 		$datos['comentarios'] = $this->subasta_model->obtenerComentarios($idSubasta);
+		$datos['categoria'] = $this->subasta_model->obtenerNombreCategoriaPorId($idSubasta);
 		$this->load->view('subasta_view', $datos);
 	}
 	

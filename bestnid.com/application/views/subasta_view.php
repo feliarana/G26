@@ -13,14 +13,28 @@
                 <img src="<?= base_url('images/logo.png') ?>">
             </a>
         </p>
+        <!-- Se carga y muestra en pantalla el nombre de la subasta -->
         <h1 align="center">
             <?= $subasta[0]->nombreSubasta ?>
         </h1>
+        <!-- Se carga y muestra en pantalla la imagen de la subasta -->
         <center>
             <img src="<?= base_url('images/'.$subasta[0]->nombreImagen) ?>" class="img-rounded" width="300" height="200" />
         </center>
+        <!-- Se carga y muestra en pantalla la descripcion de la subasta -->
+        <h4 align="center">
+            <?= "Descripción: ".$subasta[0]->descripcion ?>
+        </h4>
+        <!-- Se carga y muestra en pantalla la categoria de la subasta -->
+        <h4 align="center">
+            <?= "Categoría: ".$categoria[0]->nombreCategoria ?>
+        </h4>
+        <!-- Se carga y muestra en pantalla la categoria de la subasta -->
+        <h4 align="center">
+            <?= "Fecha de finalización: ".$subasta[0]->fechaFin ?>
+        </h4>
         <br>
-        <br>
+
         <?php
             if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] != $subasta[0]->idUsuario)) { ?>
                 <div class="container">
