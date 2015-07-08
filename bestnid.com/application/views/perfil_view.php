@@ -10,6 +10,9 @@
     	<link href="<?= base_url('css/jquery.dataTables.min.css') ?>" rel="stylesheet" type="text/css">
     	<!-- Se cargan los estilos con bootstrap de la libreria dataTables -->
     	<link href="<?= base_url('css/dataTables.bootstrap.css') ?>" rel="stylesheet" type="text/css">
+    	<!-- Se cargan los estilos del Responsive Menu ==> http://cssmenumaker.com/blog/free-css-sidebar-menu-navigations -->
+    	<link href="<?= base_url('css/elegantAccordionMenu.css') ?>" rel="stylesheet" type="text/css">
+
 	</head>
 	<body>
 		<!-- En total la tabla debe sumar 12 columnas -->
@@ -35,12 +38,10 @@
 					</div>
 					<div class="col-md-3">
 						<p align="center">
-							<a href="<?= base_url('/index.php/perfil') ?>"> 
-								<span class="glyphicon glyphicon-user">
-									<br>
-									<?= $this->session->userdata['nombre']?> <?= $this->session->userdata['apellido'] ?> 
-								</span>
-							</a>
+							<span class="glyphicon glyphicon-user">
+								<br>
+								<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?>
+							</span>
 						</p>
 					</div>
 			<?php
@@ -61,21 +62,37 @@
 		<h1 align="center"> Bestnid </h1>
 		<h2 align="center"> Elegí con el corazón </h2>
 		<br>
-		<?php
-			if(isset($this->session->userdata['login'])) { ?>
-				<center>
-					<a href="<?= base_url(index_page().'/crearSubasta') ?>">
-						<button type="button" class="btn btn-darkest">Publicar una subasta</button>
-					</a>
-				</center>
-		<?php
-			}
-		?>
+	
+		<!-- Elegant Accordion Menu -->
+
+		<div id='cssmenu'>
+		<ul>
+		   <li class='active'><a href='#'><span>Inicio</span></a></li>
+		   <li class='has-sub'><a href='#'><span>Subastas</span></a>
+		      <ul>
+		         <li><a href='#'><span>Publicadas</span></a></li>
+		         <li><a href='#'><span>Ofertadas</span></a></li>
+		      </ul>
+		   </li>
+		   <li class='has-sub'><a href='#'><span>Cuenta</span></a>
+		      <ul>
+		         <li class='last'><a href='#'><span>Dar de baja</span></a></li>
+		      </ul>
+		   </li>
+		   <li><a href='#'><span>Información personal</span></a>
+		</ul>
+		</div>
+
+
+
+
 		<!-- Estos archivos deben cargarse si o si antes de definir la tabla, sino no los toma -->
-		<!-- Se carga jquery -->
-    	<script src="<?= base_url('js/jquery.js') ?>" type="text/javascript" charset="utf8"></script>
+		<!-- Se carga jquery --> 
+    	<script src="<?= base_url('js/jquery.js') ?>" type="text/javascript" charset="utf8"></script> 
 		<!-- Se carga la libreria dataTables -->
     	<script src="<?= base_url('js/jquery.dataTables.min.js') ?>" type="text/javascript" charset="utf8"></script>
+
+<!-- MODIFICAR DESDE ACÁ 
 		<table cellpadding="0" cellspacing="0" border="0" class="display" id="tablaSubastas">
 			<thead>
 				<tr>
@@ -117,6 +134,8 @@
 				?>
 			</tbody>
 		</table>
+
+//MODIFICAR HASTA ACA		--> 
 		<!-- Configuracion de la dataTable -->
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
@@ -151,5 +170,7 @@
     	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
     	<!-- Este archivo le da estilo introduciendole bootstrap a la libreria dataTables mediante javascript -->
     	<script src="<?= base_url('js/dataTables.bootstrap.min.js') ?>" type="text/javascript" charset="utf8"></script>
+    	<!-- Este archivo hace que se pueda desplegar submenú al sidebar -->
+  		<script src="<?= base_url('js/elegantAccordionMenu.js') ?>"></script>
 	</body>
 </html>
