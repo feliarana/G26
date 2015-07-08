@@ -13,22 +13,15 @@ class Categorias extends CI_Controller {
 		if($datos['categorias']) {
 			$this->load->view('categorias_view', $datos);
 		}
-		else {
-			echo 'No hay categorias disponibles';
-		}
 	}
 
 	function listado() {
 		$idCategoria = $this->input->get('id');
+		$datos['categoria'] = $this->categorias_model->obtenerCategoriaPorId($idCategoria);
 		$datos['subastas'] = $this->categorias_model->obtenerSubastasCategoria($idCategoria);
-		if($datos['subastas']) {
-			$this->load->view('listado_categoria_view', $datos);	
-		}
-		else {
-			echo 'No hay subastas disponibles para esta categoria';
-		}
+		$this->load->view('listado_categoria_view', $datos);	
 	}
-
+	
 }
 
 ?>

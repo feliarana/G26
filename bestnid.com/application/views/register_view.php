@@ -35,7 +35,7 @@
 	 			'placeholder' => 'D.N.I',
 	 			'required' => 'required',
 	 			'pattern' => '[0-9]{8}',
-	 			'title' => 'Por favor, ingrese un DNI válido.'
+	 			'title' => 'Por favor, ingrese un DNI válido. Sin puntos.'
 	 		);
 			
 			$nombre = array('name' => 'nombre',

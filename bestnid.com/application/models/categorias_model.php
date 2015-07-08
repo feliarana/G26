@@ -35,6 +35,12 @@ class Categorias_model extends CI_Model {
 		}
 	}
 
+	function obtenerCategoriaPorId($idCategoria) {
+		$this->db->where('idCategoria', $idCategoria);
+		$query = $this->db->get('categoria');
+		return ($query->result());
+	}
+
 }
 
 ?>

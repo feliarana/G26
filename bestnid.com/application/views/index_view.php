@@ -10,58 +10,100 @@
     	<link href="<?= base_url('css/jquery.dataTables.min.css') ?>" rel="stylesheet" type="text/css">
     	<!-- Se cargan los estilos con bootstrap de la libreria dataTables -->
     	<link href="<?= base_url('css/dataTables.bootstrap.css') ?>" rel="stylesheet" type="text/css">
-	</head>
+    	<!-- Se cargan los estilos del Responsive Menu ==> http://cssmenumaker.com/blog/free-css-sidebar-menu-navigations -->
+    	<link href="<?= base_url('css/elegantAccordionMenu.css') ?>" rel="stylesheet" type="text/css">
+
+	</head> 
 	<body>
-		<!-- En total la tabla debe sumar 12 columnas -->
-		<div class="row">
-			<div class="col-md-3">
+
+
+<!-- FUENTE DE LA navBar https://www.youtube.com/watch?v=qpWlaOeGZ_4 -->
+	<div class = "navbar navbar-inverse navbar-static-top"> <!-- Otra buena es navbar-fixed-top, la cual se mantiene en la pantalla si scrolleas -->
+		<div class="container">
+			<button class="navbar-toggle" data-toggle"collapse" data-target= "navHeaderCollapse"> <!--Esto es si se achica la pantalla, hace tres chirimbolos-->
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+			<div class= "collapse navbar-collapse navHeaderCollapse"> 
+				<a href="<?= base_url(index_page().'/categorias') ?>" class="navbar-brand">Categorías</a> 
+				<a href="<?= base_url('images/enConstruccion.jpg') ?>" class="navbar-brand">Ayuda</a> 
+				
+				<ul class="nav navbar-nav navbar-right"> 													
+								<?php
+									if(isset($this->session->userdata['login'])) { ?>
+											<a href="<?= base_url('/index.php/logout') ?>" class="navbar-brand">Cerrar Sesión</a>
+												
+												<li class = "dropdown"> 
+													<li>
+															<a href="#" class = "dropdown-toggle" data-toggle = "dropdown"> 
+																Perfil 
+																<br>
+																<?= $this->session->userdata['nombre']?> <?= $this->session->userdata['apellido'] ?> 
+															</a>
+															<ul class = "dropdown-menu">
+																 
+																			<!-- Elegant Accordion Menu -->
+
+																			<div id='cssmenu'>
+																				<ul>
+																				   <li class='active'><a href='#'><span>Inicio</span></a></li>
+																				   <li class='has-sub'><a href='#'><span>Subastas</span></a>
+																				      <ul>
+																				         <li><a href='#'><span>Publicadas</span></a></li>
+																				         <li><a href='#'><span>Ofertadas</span></a></li>
+																				      </ul>
+																				   </li>
+																				   <li class='has-sub'><a href='#'><span>Cuenta</span></a>
+																				      <ul>
+																				         <li class='last'><a href='#'><span>Dar de baja</span></a></li>
+																				      </ul>
+																				   </li>
+																				   <li><a href='#'><span>Información personal</span></a>
+																				</ul>
+																			</div>
+
+																			<!-- Fin Elegant Accordion Menu -->
+
+
+															</ul>
+													</li>
+												</li>
+											</a>											
+								<?php
+									}
+									else { ?>
+											<a href="<?= base_url('/index.php/register') ?>" class="navbar-brand">Registrarse</a>
+											<a href="<?= base_url('/index.php/login') ?>" class="navbar-brand">Iniciar Sesión</a>
+								<?php
+									}
+								?>
+				</ul>
 			</div>
-			<div class="col-md-1">
-  				<a href="<?= base_url(index_page().'/categorias') ?>">Categorías</a> <!-- Se ubica en columna 4 -->
-  			</div>
-  			<div class="col-md-1">
-				<a href="<?= base_url('images/enConstruccion.jpg') ?>">Ayuda</a> <!-- Se ubica en columna 5 -->
-			</div>
-			<div class="col-md-2">
-				<!-- Se ubica en columna 6 -->
-				<p align="center">
-					<img src="<?= base_url('images/logo.png') ?>">
-				</p>
-			</div>
-			<?php
-				if(isset($this->session->userdata['login'])) { ?>
-					<div class="col-md-2"> <!-- Se ubica en columna 9 -->
-						<a href="<?= base_url('/index.php/logout') ?>">Cerrar Sesión</a>
-					</div>
-					<div class="col-md-3">
-						<p align="center">
-							<span class="glyphicon glyphicon-user">
-								<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?> 
-							</span>
-						</p>
-					</div>
-			<?php
-				}
-				else { ?>
-					<div class="col-md-1"> <!-- Se ubica en columna 8 -->
-						<a href="<?= base_url('/index.php/register') ?>">Registrarse</a>
-					</div>
-					<div class="col-md-2"> <!-- Se ubica en columna 9 -->
-						<a href="<?= base_url('/index.php/login') ?>">Iniciar Sesión</a>
-					</div>
-					<div class="col-md-2">
-					</div>
-			<?php
-				}
-			?>
+
 		</div>
+	</div>
+
+			<p align="center">
+				<img src="<?= base_url('images/logo.png') ?>">
+			</p>
+			
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
 		<h1 align="center"> Bestnid </h1>
 		<h2 align="center"> Elegí con el corazón </h2>
 		<br>
 		<?php
 			if(isset($this->session->userdata['login'])) { ?>
 				<center>
-					<button type="button" class="btn btn-darkest">Publicar una subasta</button>
+					<a href="<?= base_url(index_page().'/crearSubasta') ?>">
+						<button type="button" class="btn btn-darkest">Publicar una subasta</button>
+					</a>
 				</center>
 		<?php
 			}
@@ -86,10 +128,18 @@
 						foreach($subastas->result() as $subasta) { ?>
 							<tr class="gradeX">
 								<td>
-									<center> <a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>"> <img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px"> </a></center>
+									<center>
+										<a href="<?= base_url(index_page().'/subasta?idSubasta='.$subasta->idSubasta) ?>">
+											<img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px">
+										</a>
+									</center>
 								</td>
 								<td>
-									<center> <a href="<?= base_url(index_page().'/subasta?id='.$subasta->idSubasta) ?>"> <?= $subasta->nombreSubasta ?> </a></center>
+									<center>
+										<a href="<?= base_url(index_page().'/subasta?idSubasta='.$subasta->idSubasta) ?>">
+											<?= $subasta->nombreSubasta ?>
+										</a>
+									</center>
 								</td>
 								<td> 
 									<center> <?= $subasta->descripcion ?> </center>
@@ -104,6 +154,7 @@
 				?>
 			</tbody>
 		</table>
+
 		<!-- Configuracion de la dataTable -->
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
@@ -138,5 +189,7 @@
     	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
     	<!-- Este archivo le da estilo introduciendole bootstrap a la libreria dataTables mediante javascript -->
     	<script src="<?= base_url('js/dataTables.bootstrap.min.js') ?>" type="text/javascript" charset="utf8"></script>
+    	<!-- Este archivo hace que se pueda desplegar submenú al sidebar -->
+  		<script src="<?= base_url('js/elegantAccordionMenu.js') ?>"></script>
 	</body>
 </html>
