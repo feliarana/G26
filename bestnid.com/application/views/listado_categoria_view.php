@@ -62,7 +62,7 @@
 									<center> <?= $subasta->descripcion ?> </center>
 								</td>
 								<td>
-									<center> <?= $subasta->fechaFin ?> </center>
+									<center> <?= date('d-m-Y', strtotime($subasta->fechaFin)) ?> </center>
 								</td>
 							</tr>
 				<?php

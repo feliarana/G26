@@ -15,17 +15,38 @@ class Subasta extends CI_Controller {
 		$idSubasta = $this->input->get('idSubasta');
 		$datos['subasta'] = $this->subasta_model->obtenerSubastaPorId($idSubasta);
 		$datos['comentarios'] = $this->subasta_model->obtenerComentarios($idSubasta);
+		$datos['ofertas'] = $this->subasta_model->obtenerOfertas($idSubasta);
+		if(isset($this->session->userdata['login'])) {
+			$datos['ofertaDelUsuario'] = $this->subasta_model->obtenerOfertaDelUsuario($this->session->userdata('idUsuario'), $idSubasta);
+			if($datos['ofertaDelUsuario']) {
+				$datos['oferto'] = true;
+			}
+			else {
+				$datos['oferto'] = false;
+			}
+		}
 		$this->load->view('subasta_view', $datos);
 	}
 	
-	function oferta() {
+	function agregarOferta() {
 		$datos = array(
 			'argumento' => $this->input->post('argumento'),
 			'monto' => $this->input->post('monto'),
 			'idUsuario' => $this->session->userdata('idUsuario'),
 			'idSubasta' => $this->input->get('idSubasta')
-		);
+			);
 		$this->subasta_model->agregarOferta($datos);
+		redirect(base_url(index_page().'/subasta?idSubasta='.$datos['idSubasta']));
+	}
+
+	function modificarOferta() {
+		$datos = array(
+			'argumento' => $this->input->post('argumento'),
+			'monto' => $this->input->post('monto'),
+			'idUsuario' => $this->session->userdata('idUsuario'),
+			'idSubasta' => $this->input->get('idSubasta')
+			);
+		$this->subasta_model->modificarOferta($datos);
 		redirect(base_url(index_page().'/subasta?idSubasta='.$datos['idSubasta']));
 	}
 
@@ -47,6 +68,17 @@ class Subasta extends CI_Controller {
 		$datos['respuesta'] = $this->input->post('respuesta'.$datos['idComentario']);
 		$this->subasta_model->agregarRespuesta($datos['respuesta'], $datos['idComentario']); 
 		redirect(base_url(index_page().'/subasta?idSubasta='.$datos['idSubasta']));
+	}
+
+	function eliminarSubasta() {
+		$idSubasta = $this->input->get('idSubasta');
+		// Por ahi faltaria mostrar un mensaje que diga "Subasta eliminada"
+		$this->subasta_model->eliminarSubasta($idSubasta);
+		redirect(base_url(index_page().'/index'));
+	}
+
+	function eliminarComentario() {
+		
 	}
 
 }

@@ -18,8 +18,10 @@ class Login extends CI_Controller {
 
 	function recibirDatos() {
 		// Obtengo los datos ingresados en los inputs mediante el metodo post
-		$datos = array('email' => $this->input->post('email'),
-			'password' => $this->input->post('password'));
+		$datos = array(
+			'email' => $this->input->post('email'),
+			'password' => $this->input->post('password')
+			);
 		/* Se realiza un llamado a una funcion del model para obtener la consulta,
 		solo con el email es suficiente para conseguir los datos del usuario ya que
 		este campo es unico y no puede repetirse */

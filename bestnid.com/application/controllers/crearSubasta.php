@@ -24,35 +24,35 @@ class CrearSubasta extends CI_Controller {
     	echo $fechaFin.' ';
 
     	$subasta = array(
-		'nombreSubasta' => $this->input->post('nombreSubasta'),
-		'descripcion' => $this->input->post('descripcion'),
-		'idUsuario' => $this->session->userdata('idUsuario'),
-		'idCategoria' => $this->input->post('categoria'),
-		'fechaInicio' => $fechaActual,
-		'fechaFin' => $fechaFin,
-		'nombreImagen' => $this->input->post('userfile')
-		);
+			'nombreSubasta' => $this->input->post('nombreSubasta'),
+			'descripcion' => $this->input->post('descripcion'),
+			'idUsuario' => $this->session->userdata('idUsuario'),
+			'idCategoria' => $this->input->post('categoria'),
+			'fechaInicio' => $fechaActual,
+			'fechaFin' => $fechaFin,
+			'nombreImagen' => $this->input->post('userfile')
+			);
     	echo $subasta['nombreImagen'].' ';
     	// Hasta aca va bien, menos con el nombre de la imagen que no lo toma
 
-    	$nombreImagen = date('dmYHis').'.jpg';
-		$config['upload_path'] = FCPATH.'images';
+    	$image_path = realpath(APPPATH.'..images');
+		$config['upload_path'] = '/images';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
-		$config['max_size']	= 10*1024;
-		$config['max_width']  = '5000';
-		$config['max_height']  = '5000';
-		$config['file_name']  = $nombreImagen;
+		$config['max_size']	= 3*1024;
+		$config['max_width']  = '1024';
+		$config['max_height']  = '1024';
+		$config['file_name']  = 'Arte.jpg';
 		
 		$this->load->library('upload', $config);
 
 		if(!$this->upload->do_upload()) {
+			echo 'No se subio';
 			$error = array('error' => $this->upload->display_errors());
-			var_dump($error);
 			return ($error);
 		}
 		else {
 			// Esto es para que dos imagenes cargadas no tengan el mismo nombre
-			$subasta['nombreImagen'] = $nombreImagen;
+			$subasta['nombreImagen'] = 'Arte.jpg';
 			$this->crear_subasta_model->crearSubasta($subasta);
     		redirect(base_url(index_page().'/index'));
 		}

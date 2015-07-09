@@ -174,7 +174,7 @@
 	</body>
 	<script type="text/javascript">
 		function validar() {
-			var archivo= document.getElementById('upload').value;
+			var archivo = document.getElementById('upload').value;
 			if(archivo == null || archivo == "") {
 				alert('No ha elegido ningun archivo para la subasta');
 				return false;
