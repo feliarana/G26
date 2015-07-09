@@ -33,7 +33,21 @@
         <h4 align="center">
             <?= "Fecha de finalización: ".$subasta[0]->fechaFin ?>
         </h4>
-        <br>
+
+        <?php
+            if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] == $subasta[0]->idUsuario)) { ?>
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                        <a href="<?= base_url(index_page().'/subasta/editarSubasta?idSubasta='.$subasta[0]->idSubasta) ?>">
+                            <center><button type="button" class='btn btn-darkest'>Editar subasta</button></center>
+                        </a>
+                    </div>
+                </div>
+        <?php 
+            } 
+        ?>
 
         <?php
             if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] != $subasta[0]->idUsuario)) { ?>
