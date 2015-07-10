@@ -6,6 +6,7 @@ class Categorias extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->helper('date');
+		$this->load->library('session');
 		$this->load->model('categorias_model');
 	}
 
