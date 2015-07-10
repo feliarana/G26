@@ -161,6 +161,7 @@
 				<div class="form-group">
 					<p align="center">
 						<!-- Boton submit -->
+						<br>
 						<?= form_submit('', 'Publicar subasta', "class='btn btn-darkest'") ?>
 					</p>
 				</div>

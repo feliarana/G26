@@ -15,8 +15,8 @@ class Subasta extends CI_Controller {
 		$idSubasta = $this->input->get('idSubasta');
 		$datos['subasta'] = $this->subasta_model->obtenerSubastaPorId($idSubasta);
 		$datos['comentarios'] = $this->subasta_model->obtenerComentarios($idSubasta);
-
 		$datos['ofertas'] = $this->subasta_model->obtenerOfertas($idSubasta);
+		$datos['categoria'] = $this->subasta_model->obtenerCategoriaPorId($idSubasta);
 		if(isset($this->session->userdata['login'])) {
 			$datos['ofertaDelUsuario'] = $this->subasta_model->obtenerOfertaDelUsuario($this->session->userdata('idUsuario'), $idSubasta);
 			if($datos['ofertaDelUsuario']) {
@@ -26,9 +26,6 @@ class Subasta extends CI_Controller {
 				$datos['oferto'] = false;
 			}
 		}
-
-		$datos['categoria'] = $this->subasta_model->obtenerNombreCategoriaPorId($idSubasta);
-
 		$this->load->view('subasta_view', $datos);
 	}
 	
@@ -74,19 +71,52 @@ class Subasta extends CI_Controller {
 		redirect(base_url(index_page().'/subasta?idSubasta='.$datos['idSubasta']));
 	}
 
+	function modificarSubasta() {
+		$idSubasta = $this->input->get('idSubasta');
+		$datos['subasta'] = $this->subasta_model->obtenerSubastaPorId($idSubasta);
+		$this->load->view('modificar_subasta_view', $datos);
+	}
+
+	function actualizarDatosSubasta() {
+    	$subasta = array(
+    		'idSubasta' => $this->input->get('idSubasta'),
+			'nombreSubasta' => $this->input->post('nombreSubasta'),
+			'descripcion' => $this->input->post('descripcion'),
+			'idCategoria' => $this->input->post('categoria'),
+			'nombreImagen' => $this->input->post('userfile')
+			);
+    	$nombreImagen = date('dmYHis').'.jpg';
+		$config['upload_path'] = FCPATH.'images';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']	= 10*1024;
+		$config['max_width']  = '5000';
+		$config['max_height']  = '5000';
+		$config['file_name']  = $nombreImagen;
+		$this->load->library('upload', $config);
+		if($this->upload->do_upload()) {
+			// Esto es para que dos imagenes cargadas no tengan el mismo nombre
+			$subasta['nombreImagen'] = $nombreImagen;
+			$this->subasta_model->modificarSubasta($subasta);
+    		redirect(base_url(index_page().'/index'));
+		}
+		else {
+			$error = array('error' => $this->upload->display_errors());
+			var_dump($error);
+			return ($error);
+		}
+	}
 
 	function eliminarSubasta() {
 		$idSubasta = $this->input->get('idSubasta');
-		// Por ahi faltaria mostrar un mensaje que diga "Subasta eliminada"
 		$this->subasta_model->eliminarSubasta($idSubasta);
 		redirect(base_url(index_page().'/index'));
 	}
 
-
-	function editarSubasta() {
+	function eliminarComentario() {
 		$idSubasta = $this->input->get('idSubasta');
-		$datos['subasta'] = $this->subasta_model->obtenerSubastaPorId($idSubasta);
-		$this->load->view('editar_subasta_view', $datos);
+		$idComentario = $this->input->get('idComentario');
+		$this->subasta_model->eliminarComentario($idComentario);
+		redirect(base_url(index_page().'/subasta?idSubasta='.$idSubasta));
 	}
 
 }

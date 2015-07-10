@@ -21,7 +21,6 @@ class CrearSubasta extends CI_Controller {
     	$cantDias = $this->input->post('cantDias');
     	$nuevafecha = strtotime ('+'.$cantDias.' day', strtotime($fechaActual));
     	$fechaFin = date('Y-m-d', $nuevafecha);
-
     	$subasta = array(
 			'nombreSubasta' => $this->input->post('nombreSubasta'),
 			'descripcion' => $this->input->post('descripcion'),
@@ -31,7 +30,6 @@ class CrearSubasta extends CI_Controller {
 			'fechaFin' => $fechaFin,
 			'nombreImagen' => $this->input->post('userfile')
 			);
-
     	$nombreImagen = date('dmYHis').'.jpg';
 		$config['upload_path'] = FCPATH.'images';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -42,16 +40,15 @@ class CrearSubasta extends CI_Controller {
 		
 		$this->load->library('upload', $config);
 
-		if(!$this->upload->do_upload()) {
-			echo 'No se subio';
-			$error = array('error' => $this->upload->display_errors());
-			return ($error);
-		}
-		else {
+		if($this->upload->do_upload()) {
 			// Esto es para que dos imagenes cargadas no tengan el mismo nombre
 			$subasta['nombreImagen'] = $nombreImagen;
 			$this->crear_subasta_model->crearSubasta($subasta);
     		redirect(base_url(index_page().'/index'));
+		}
+		else {
+			$error = array('error' => $this->upload->display_errors());
+			return ($error);
 		}
 	}
 

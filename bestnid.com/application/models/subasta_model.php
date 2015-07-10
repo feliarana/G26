@@ -18,6 +18,11 @@ class Subasta_model extends CI_Model {
 		}
 	}
 
+	function modificarSubasta($subasta) {
+		$this->db->where('idSubasta', $subasta['idSubasta']);
+		$this->db->update('subasta', array('nombreSubasta' => $subasta['nombreSubasta'], 'descripcion' => $subasta['descripcion'], 'idCategoria' => $subasta['idCategoria'], 'nombreImagen' => $subasta['nombreImagen']));
+	}
+
 	function agregarOferta($oferta) {
 		$this->db->insert('oferta', $oferta);
 	}
@@ -32,13 +37,6 @@ class Subasta_model extends CI_Model {
 		$this->db->where('idUsuario', $idUsuario);
 		$this->db->where('idSubasta', $idSubasta);
 		$query = $this->db->get('oferta');
-	}
-
-	function obtenerNombreCategoriaPorId($idSubasta) {
-		$this->db->from('categoria');
-		$this->db->join('subasta', 'subasta.idCategoria = categoria.idCategoria');
-		$this->db->where('subasta.idSubasta', $idSubasta);
-		$query = $this->db->get();		
 		if($query->num_rows() > 0) {
 			return ($query->result());
 		}
@@ -56,7 +54,8 @@ class Subasta_model extends CI_Model {
 		$this->db->update('comentario', array('respuesta' => $respuesta)); 
 	}
 
-	function obtenerComentarios($idSubasta) {
+	function obtenerComentarios($idSubasta)  {
+		$this->db->select('idComentario, texto, respuesta, comentario.idUsuario, comentario.idSubasta, fecha, hora');
 		$this->db->from('comentario');
 		$this->db->join('subasta', 'subasta.idSubasta = comentario.idSubasta');
 		$this->db->where('subasta.idSubasta', $idSubasta);
@@ -69,6 +68,11 @@ class Subasta_model extends CI_Model {
 		}
 	}
 
+	function eliminarComentario($idComentario) {
+		$this->db->where('idComentario', $idComentario);
+		$this->db->delete('comentario');
+	}
+
 	function eliminarSubasta($idSubasta) {
 		$this->db->where('idSubasta', $idSubasta);
 		$this->db->delete('subasta');
@@ -78,6 +82,19 @@ class Subasta_model extends CI_Model {
 		$this->db->from('subasta');
 		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
 		$this->db->where('subasta.idSubasta', $idSubasta);
+		$query = $this->db->get();
+		if($query->num_rows() > 0) {
+			return ($query->result());
+		}
+		else {
+			return (false);
+		}
+	}
+
+	function obtenerCategoriaPorId($idSubasta) {
+		$this->db->from('categoria');
+		$this->db->join('subasta', 'categoria.idCategoria = subasta.idCategoria');
+		$this->db->where('idSubasta', $idSubasta);
 		$query = $this->db->get();
 		if($query->num_rows() > 0) {
 			return ($query->result());

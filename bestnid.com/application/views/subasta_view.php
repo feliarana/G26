@@ -13,58 +13,65 @@
                 <img src="<?= base_url('images/logo.png') ?>">
             </a>
         </p>
-        <!-- Se carga y muestra en pantalla el nombre de la subasta -->
         <h1 align="center">
             <?= $subasta[0]->nombreSubasta ?>
         </h1>
-        <!-- Se carga y muestra en pantalla la imagen de la subasta -->
-
+        <br>
         <center>
             <img src="<?= base_url('images/'.$subasta[0]->nombreImagen) ?>" class="img-rounded" width="300" height="200" />
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <h4>
+                        <br>
+                        <?= 'Descripción: '.$subasta[0]->descripcion ?>
+                        <br>
+                        <br>
+                        <?= 'Categoría: '.$categoria[0]->nombreCategoria ?>
+                        <br>
+                        <br>
+                        <?= 'La subasta finaliza el día: '.date('d-m-Y', strtotime($subasta[0]->fechaFin)) ?>
+                    </h4>
+                </div>
+            </div>
         </center>
-        <!-- Se carga y muestra en pantalla la descripcion de la subasta -->
-        <h4 align="center">
-            <?= "Descripción: ".$subasta[0]->descripcion ?>
-        </h4>
-        <!-- Se carga y muestra en pantalla la categoria de la subasta -->
-        <h4 align="center">
-            <?= "Categoría: ".$categoria[0]->nombreCategoria ?>
-        </h4>
-        <!-- Se carga y muestra en pantalla la fecha de finalización de la subasta -->
-        <h4 align="center">
-            <?= "La subasta finaliza el día: ".date('d-m-Y', strtotime($subasta[0]->fechaFin)) ?>
-        </h4>
-
         <br>
-
-        <!-- Boton para editar subasta !-->
         <?php
-            if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] == $subasta[0]->idUsuario)) { ?>
-                <div class="row">
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-4">
-                        <a href="<?= base_url(index_page().'/subasta/editarSubasta?idSubasta='.$subasta[0]->idSubasta) ?>">
+            if(isset($this->session->userdata['login'])) {
+                if($this->session->userdata['idUsuario'] == $subasta[0]->idUsuario) { ?> <!-- Si la subasta le pertenece, el usuario puede modificarla o eliminarla en caso de que no tenga ofertas -->
+                    <center>
+                        <a href="<?= base_url(index_page().'/subasta/modificarSubasta?idSubasta='.$subasta[0]->idSubasta) ?>">
                             <?php
-                                if($ofertas) { ?>  <!-- Si tiene ofertas, no puede editar la subasta -->
-                                    <center>
-                                        <button type="button" class="btn btn-darkest" onClick="return(alerta_editar_subasta());">Editar subasta </button>
-                                    </center>
+                                if($ofertas) { ?>  <!-- Si tiene ofertas, no puede modificar la subasta -->  
+                                    <button type="button" class="btn btn-darkest btn-lg" onClick="return(alerta_modificar_subasta());"> Modificar Subasta </button>
+                            <?php
+                                }
+                                else { ?> <!-- En caso de que no tenga ofertas, puede modificarla -->
+                                    <button type="button" class="btn btn-darkest btn-lg"> Modificar Subasta </button>
                             <?php
                                 }
                             ?>
                         </a>
-                    </div>
-                </div>
-        <?php 
-            } 
-        ?>
-
-        <br>
-
-        <?php
-            if(isset($this->session->userdata['login'])) { // Si el usuario esta logueado
-                if($this->session->userdata['idUsuario'] != $subasta[0]->idUsuario) { ?>  <!-- Si la subasta no le pertenece, el usuario puede ofertar -->
+                    </center> 
+                    <br>
+                    <center>
+                        <a href="<?= base_url(index_page().'/subasta/eliminarSubasta?idSubasta='.$subasta[0]->idSubasta) ?>">
+                            <?php
+                                if($ofertas) { ?>  <!-- Si tiene ofertas, no puede eliminar la subasta -->
+                                    <button type="button" class="btn btn-danger btn-lg" onClick="return(alerta_eliminar_subasta());"> Eliminar Subasta </button>
+                            <?php
+                                }
+                                else { ?> <!-- En caso de que no tenga ofertas, puede eliminarla -->
+                                    <button type="button" class="btn btn-danger btn-lg" onClick="return(eliminar_subasta());"> Eliminar Subasta </button>  
+                            <?php    
+                                }
+                            ?>
+                        </a>
+                    </center>
+            <?php
+                }
+                else { ?> <!-- Si la subasta no le pertenece, el usuario puede ofertar o modificar su oferta -->
                     <div class="container">
                         <!-- Trigger the modal with a button -->
                         <p align="center">
@@ -77,7 +84,7 @@
                                     <button type="button" class="btn btn-darkest btn-lg" data-toggle="modal" data-target="#myModal"> Modificar Oferta </button>
                             <?php
                                 }
-                            ?>    
+                            ?>
                         </p>
                         <!-- Modal -->
                         <div class="modal fade" id="myModal" role="dialog">
@@ -151,25 +158,8 @@
                             </div>
                         </div> 
                     </div>  
-            <?php
-                }
-                else { ?> <!-- Si la subasta le pertenece, el usuario puede eliminarla en caso de que no tenga ofertas -->
-                    <center>
-                        <a href="<?= base_url(index_page().'/subasta/eliminarSubasta?idSubasta='.$subasta[0]->idSubasta) ?>">
-                            <?php
-                                if($ofertas) { ?>  <!-- Si tiene ofertas, no puede eliminar la subasta -->
-                                    <button type="button" class="btn btn-danger" onClick="return(alerta_eliminar_subasta());"> Eliminar Subasta </button>
-                            <?php
-                                }
-                                else { ?> <!-- En caso de que no tenga ofertas, puede eliminarla -->
-                                    <button type="button" class="btn btn-danger" onClick="return(eliminar_subasta());"> Eliminar Subasta </button>  
-                            <?php    
-                                }
-                            ?>
-                        </a>
-                    </center>
-            <?php
-                }
+        <?php
+                }  
             }
         ?>
         <?php $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
@@ -183,7 +173,7 @@
             ); 
         ?>
         <?php
-            if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] != $subasta[0]->idUsuario)) { ?>
+            if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] != $subasta[0]->idUsuario)) { ?> <!-- Si el usuario esta logueado y no es el dueño de la subasta puede comentar -->
                 <div class="row">
                     <div class="col-md-4">
                     </div>
@@ -203,7 +193,7 @@
         <?php
             if($comentarios) { ?>
                 <br>
-                <center> Preguntas realizadas </center>
+                <h4 align="center"> Preguntas realizadas </h4>
                 <?php 
                     foreach($comentarios->result() as $comentario) {  ?>
                         <br>
@@ -221,22 +211,33 @@
                                         <td>
                                             Respuesta: <br> <label type="text"> <?= $comentario->respuesta ?> </label>
                                         <?php
-                                            if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] == $subasta[0]->idUsuario)) { ?>   
-                                                <?= form_open("subasta/respuesta?idSubasta=".$subasta[0]->idSubasta."&idComentario=".$comentario->idComentario, $atributos); ?>
-                                                <?php
-                                                    $respuesta = array(
-                                                        'name' => 'respuesta'.$comentario->idComentario,
-                                                        'class' => 'form-control',
-                                                        'type' => 'text',
-                                                        'placeholder' => 'Realice su respuesta',
-                                                    ); 
-                                                ?>
-                                                <?= form_input($respuesta); ?>  
-                                                <?= form_submit('', 'Responder', "class='btn btn-darkest'"); ?>
-                                                <?= form_close() ?> 
-                                        <?php
+                                            if(isset($this->session->userdata['login'])) {
+                                                if($this->session->userdata['idUsuario'] == $subasta[0]->idUsuario) { ?> <!-- Si el usuario es el dueño de la subasta puede responder comentarios -->
+                                                    <?= form_open("subasta/respuesta?idSubasta=".$subasta[0]->idSubasta."&idComentario=".$comentario->idComentario); ?>
+                                                    <?php
+                                                        $respuesta = array(
+                                                            'name' => 'respuesta'.$comentario->idComentario,
+                                                            'class' => 'form-control',
+                                                            'type' => 'text',
+                                                            'placeholder' => 'Realice su respuesta',
+                                                        ); 
+                                                    ?>
+                                                    <?= form_input($respuesta); ?>  
+                                                    <?= form_submit('', 'Responder', "class='btn btn-darkest'"); ?>
+                                                    <?= form_close() ?>
+                                            <?php
+                                                }
+                                                else { // Caso contrario, si el usuario no es el dueño de la subasta puede eliminar sus propios comentarios
+                                                    if($this->session->userdata['idUsuario'] == $comentario->idUsuario && !$comentario->respuesta) { ?> <!-- Si el comentario le pertenece al usuario actualmente logueado y no tiene respuesta puede eliminarlo -->
+                                                        <?php $atributos = array('onSubmit' => 'return(eliminar_comentario());'); ?>
+                                                        <?= form_open("/subasta/eliminarComentario?idSubasta=".$subasta[0]->idSubasta."&idComentario=".$comentario->idComentario, $atributos); ?>
+                                                        <?= form_submit('', 'Eliminar Comentario', "class='btn btn-danger btn-xs'"); ?>
+                                                        <?= form_close() ?>
+                                            <?php
+                                                    }
+                                                }
                                             }
-                                        ?> 
+                                            ?>
                                         </td>
                                     </tr>
                                 </table>
@@ -246,14 +247,14 @@
             <?php 
                     }      
             }  
-            else { 
+            else {
             ?>
                 <h3>
                     <center> No existen preguntas todavia </center>
                 </h3>
                 <br>
         <?php 
-            } 
+            }
         ?>
 
         <!-- Se carga jquery -->
@@ -287,8 +288,18 @@
             return (false);
         }
 
-        function alerta_editar_subasta() {
-            alert('La subasta no puede editarse debido a que tiene ofertas');
+        function eliminar_comentario() {
+            if(confirm('¿Esta seguro que desea eliminar el comentario?') == true) {
+                alert('¡Comentario eliminado exitosamente!');
+                return (true);
+            }
+            else {
+                return (false);
+            }
+        }
+
+        function alerta_modificar_subasta() {
+            alert('La subasta no puede modificarse debido a que tiene ofertas');
             return (false);
         }
     </script>

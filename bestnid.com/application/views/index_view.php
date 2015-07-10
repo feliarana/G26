@@ -35,10 +35,12 @@
 					</div>
 					<div class="col-md-3">
 						<p align="center">
-							<span class="glyphicon glyphicon-user">
-								<br>
-								<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?>
-							</span>
+							<a href="<?= base_url(index_page().'/perfil') ?>">
+								<span class="glyphicon glyphicon-user">
+									<br>
+									<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?>
+								</span>
+							</a>
 						</p>
 					</div>
 			<?php
