@@ -62,7 +62,11 @@
 									<center> <?= $subasta->descripcion ?> </center>
 								</td>
 								<td>
+<<<<<<< HEAD
 									<center> <?= date('d-m-Y', strtotime($subasta->fechaFin)) ?> </center>
+=======
+									<center> <?= $subasta->fechaFin ?> </center>
+>>>>>>> feliBranch
 								</td>
 							</tr>
 				<?php

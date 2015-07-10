@@ -161,7 +161,10 @@
 				<div class="form-group">
 					<p align="center">
 						<!-- Boton submit -->
+<<<<<<< HEAD
 						<br>
+=======
+>>>>>>> feliBranch
 						<?= form_submit('', 'Publicar subasta', "class='btn btn-darkest'") ?>
 					</p>
 				</div>
@@ -175,7 +178,11 @@
 	</body>
 	<script type="text/javascript">
 		function validar() {
+<<<<<<< HEAD
 			var archivo = document.getElementById('upload').value;
+=======
+			var archivo= document.getElementById('upload').value;
+>>>>>>> feliBranch
 			if(archivo == null || archivo == "") {
 				alert('No ha elegido ningun archivo para la subasta');
 				return false;

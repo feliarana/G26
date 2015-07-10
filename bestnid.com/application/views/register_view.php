@@ -35,7 +35,11 @@
 	 			'placeholder' => 'D.N.I',
 	 			'required' => 'required',
 	 			'pattern' => '[0-9]{8}',
+<<<<<<< HEAD
 	 			'title' => 'Por favor, ingrese un DNI válido.'
+=======
+	 			'title' => 'Por favor, ingrese un DNI válido. Sin puntos.'
+>>>>>>> feliBranch
 	 		);
 			
 			$nombre = array('name' => 'nombre',

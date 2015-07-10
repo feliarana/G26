@@ -18,6 +18,7 @@ class Subasta_model extends CI_Model {
 		}
 	}
 
+<<<<<<< HEAD
 	function modificarSubasta($subasta) {
 		$this->db->where('idSubasta', $subasta['idSubasta']);
 		$this->db->update('subasta', array('nombreSubasta' => $subasta['nombreSubasta'], 'descripcion' => $subasta['descripcion'], 'idCategoria' => $subasta['idCategoria'], 'nombreImagen' => $subasta['nombreImagen']));
@@ -37,6 +38,13 @@ class Subasta_model extends CI_Model {
 		$this->db->where('idUsuario', $idUsuario);
 		$this->db->where('idSubasta', $idSubasta);
 		$query = $this->db->get('oferta');
+=======
+	function obtenerNombreCategoriaPorId($idSubasta) {
+		$this->db->from('categoria');
+		$this->db->join('subasta', 'subasta.idCategoria = categoria.idCategoria');
+		$this->db->where('subasta.idSubasta', $idSubasta);
+		$query = $this->db->get();
+>>>>>>> feliBranch
 		if($query->num_rows() > 0) {
 			return ($query->result());
 		}
@@ -44,6 +52,7 @@ class Subasta_model extends CI_Model {
 			return (false);
 		}
 	}
+<<<<<<< HEAD
 	
 	function agregarComentario($datos) {
 		$this->db->insert('comentario', $datos); 
@@ -56,6 +65,10 @@ class Subasta_model extends CI_Model {
 
 	function obtenerComentarios($idSubasta)  {
 		$this->db->select('idComentario, texto, respuesta, comentario.idUsuario, comentario.idSubasta, fecha, hora');
+=======
+
+	function obtenerComentarios($idSubasta) {
+>>>>>>> feliBranch
 		$this->db->from('comentario');
 		$this->db->join('subasta', 'subasta.idSubasta = comentario.idSubasta');
 		$this->db->where('subasta.idSubasta', $idSubasta);
@@ -72,6 +85,7 @@ class Subasta_model extends CI_Model {
 		$this->db->where('idComentario', $idComentario);
 		$this->db->delete('comentario');
 	}
+<<<<<<< HEAD
 
 	function eliminarSubasta($idSubasta) {
 		$this->db->where('idSubasta', $idSubasta);
@@ -102,6 +116,16 @@ class Subasta_model extends CI_Model {
 		else {
 			return (false);
 		}
+=======
+	
+	function agregarComentario($datos) {
+		$this->db->insert('comentario', $datos); 
+	}
+
+	function agregarRespuesta($respuesta, $idComentario) {
+		$this->db->where('idComentario', $idComentario);
+		$this->db->update('comentario', array('respuesta' => $respuesta)); 
+>>>>>>> feliBranch
 	}
 
 }

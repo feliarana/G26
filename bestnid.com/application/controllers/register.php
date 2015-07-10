@@ -18,6 +18,7 @@ class Register extends CI_Controller {
 
 	function verificarDatos() {
 		$datos = array(
+<<<<<<< HEAD
 			'DNI' => $this->input->post('DNI'),
 			'nombre' => $this->input->post('nombre'),
 			'apellido' => $this->input->post('apellido'),
@@ -27,6 +28,17 @@ class Register extends CI_Controller {
 			'telefono' => $this->input->post('telefono'),
 			'userAdmin' => false
 			);
+=======
+		'DNI' => $this->input->post('DNI'),
+		'nombre' => $this->input->post('nombre'),
+		'apellido' => $this->input->post('apellido'),
+		'email' => $this->input->post('email'),
+		'password' => $this->input->post('password'),
+		'direccion' => $this->input->post('direccion'),
+		'telefono' => $this->input->post('telefono'),
+		'userAdmin' => false
+		);
+>>>>>>> feliBranch
 		$pass2 = $this->input->post('password2');
 		$passCoincide = ($datos['password'] == $pass2);
 		$email = $this->register_model->verificarEmail($datos['email']); 
@@ -59,7 +71,10 @@ class Register extends CI_Controller {
 			}
 		}
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> feliBranch
 }
 
 ?>

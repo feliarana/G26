@@ -15,6 +15,7 @@ class Subasta extends CI_Controller {
 		$idSubasta = $this->input->get('idSubasta');
 		$datos['subasta'] = $this->subasta_model->obtenerSubastaPorId($idSubasta);
 		$datos['comentarios'] = $this->subasta_model->obtenerComentarios($idSubasta);
+<<<<<<< HEAD
 		$datos['ofertas'] = $this->subasta_model->obtenerOfertas($idSubasta);
 		$datos['categoria'] = $this->subasta_model->obtenerCategoriaPorId($idSubasta);
 		if(isset($this->session->userdata['login'])) {
@@ -26,6 +27,9 @@ class Subasta extends CI_Controller {
 				$datos['oferto'] = false;
 			}
 		}
+=======
+		$datos['categoria'] = $this->subasta_model->obtenerNombreCategoriaPorId($idSubasta);
+>>>>>>> feliBranch
 		$this->load->view('subasta_view', $datos);
 	}
 	
@@ -38,6 +42,7 @@ class Subasta extends CI_Controller {
 			);
 		$this->subasta_model->agregarOferta($datos);
 		redirect(base_url(index_page().'/subasta?idSubasta='.$datos['idSubasta']));
+<<<<<<< HEAD
 	}
 
 	function modificarOferta() {
@@ -49,6 +54,8 @@ class Subasta extends CI_Controller {
 			);
 		$this->subasta_model->modificarOferta($datos);
 		redirect(base_url(index_page().'/subasta?idSubasta='.$datos['idSubasta']));
+=======
+>>>>>>> feliBranch
 	}
 
 	function comentario() {
@@ -69,6 +76,7 @@ class Subasta extends CI_Controller {
 		$datos['respuesta'] = $this->input->post('respuesta'.$datos['idComentario']);
 		$this->subasta_model->agregarRespuesta($datos['respuesta'], $datos['idComentario']); 
 		redirect(base_url(index_page().'/subasta?idSubasta='.$datos['idSubasta']));
+<<<<<<< HEAD
 	}
 
 	function modificarSubasta() {
@@ -117,6 +125,8 @@ class Subasta extends CI_Controller {
 		$idComentario = $this->input->get('idComentario');
 		$this->subasta_model->eliminarComentario($idComentario);
 		redirect(base_url(index_page().'/subasta?idSubasta='.$idSubasta));
+=======
+>>>>>>> feliBranch
 	}
 
 }

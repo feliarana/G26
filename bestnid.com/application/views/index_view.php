@@ -12,6 +12,7 @@
     	<link href="<?= base_url('css/dataTables.bootstrap.css') ?>" rel="stylesheet" type="text/css">
 	</head>
 	<body>
+<<<<<<< HEAD
 		<!-- En total la tabla debe sumar 12 columnas -->
 		<div class="row">
 			<div class="col-md-3">
@@ -58,6 +59,70 @@
 				}
 			?>
 		</div>
+=======
+	
+<!-- FUENTE DE LA navBar https://www.youtube.com/watch?v=qpWlaOeGZ_4 -->
+	<div class = "navbar navbar-inverse navbar-static-top"> <!-- Otra buena es navbar-fixed-top, la cual se mantiene en la pantalla si scrolleas -->
+		<div class="container-fluid">  <!--Esto hace que el texto esté en los extremos de la pagina-->
+			<button class="navbar-toggle" data-toggle"collapse" data-target= "navHeaderCollapse"> <!--Esto es si se achica la pantalla, hace tres chirimbolos-->
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+			<div class= "navbar-collapse navHeaderCollapse"> 
+				<a href="<?= base_url(index_page().'/categorias') ?>" class="navbar-brand">Categorías</a> 
+				<a href="<?= base_url('images/enConstruccion.jpg') ?>" class="navbar-brand">Ayuda</a> 
+				
+				<ul class="nav navbar-nav navbar-right"> 													
+								<?php
+									if(isset($this->session->userdata['login'])) { ?>
+											
+												<li class = "dropdown"> 
+
+															<a href="#" class = "dropdown-toggle" data-toggle = "dropdown"> 
+																<b class="caret"> Perfil </b> 
+																<font size="4" color="red"> <?= $this->session->userdata['nombre']?> <?= $this->session->userdata['apellido'] ?> </font>
+															</a>
+															<ul class = "dropdown-menu">
+																 
+																			<!-- MENU PERFIL -->
+
+																			<div>
+																				<ul>
+																				   <li class='active'><a href='<?= base_url('/index.php/miPerfil') ?>'><span>Ver Perfil</span></a></li>
+																				   <li class='active'><a href="<?= base_url('/index.php/logout') ?>">Cerrar Sesión</a></li>
+																			</div>
+
+																			<!-- FIN MENU PERIFL -->
+
+															</ul>
+
+												</li>
+											</a>											
+								<?php
+									}
+									else { ?>
+											<a href="<?= base_url('/index.php/register') ?>" class="navbar-brand">Registrarse</a>
+											<a href="<?= base_url('/index.php/login') ?>" class="navbar-brand">Iniciar Sesión</a>
+								<?php
+									}
+								?>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+<!-- FIN NavBar -->
+
+		<p align="center">
+			<a href="<?= base_url(index_page().'/index') ?>">
+				<img src="<?= base_url('images/logo.png') ?>">
+			</a>
+		</p>
+
+
+>>>>>>> feliBranch
 		<h1 align="center"> Bestnid </h1>
 		<h2 align="center"> Elegí con el corazón </h2>
 		<br>
@@ -108,7 +173,11 @@
 									<center> <?= $subasta->descripcion ?> </center>
 								</td>
 								<td>
+<<<<<<< HEAD
 									<center> <?= date('d-m-Y', strtotime($subasta->fechaFin)) ?> </center>
+=======
+									<center> <?= $subasta->fechaFin ?> </center>
+>>>>>>> feliBranch
 								</td>
 							</tr>
 				<?php

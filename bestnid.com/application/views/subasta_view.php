@@ -13,10 +13,18 @@
                 <img src="<?= base_url('images/logo.png') ?>">
             </a>
         </p>
+<<<<<<< HEAD
         <h1 align="center">
             <?= $subasta[0]->nombreSubasta ?>
         </h1>
         <br>
+=======
+        <!-- Se carga y muestra en pantalla el nombre de la subasta -->
+        <h1 align="center">
+            <?= $subasta[0]->nombreSubasta ?>
+        </h1>
+        <!-- Se carga y muestra en pantalla la imagen de la subasta -->
+>>>>>>> feliBranch
         <center>
             <img src="<?= base_url('images/'.$subasta[0]->nombreImagen) ?>" class="img-rounded" width="300" height="200" />
             <div class="row">
@@ -36,7 +44,20 @@
                 </div>
             </div>
         </center>
+        <!-- Se carga y muestra en pantalla la descripcion de la subasta -->
+        <h4 align="center">
+            <?= "Descripción: ".$subasta[0]->descripcion ?>
+        </h4>
+        <!-- Se carga y muestra en pantalla la categoria de la subasta -->
+        <h4 align="center">
+            <?= "Categoría: ".$categoria[0]->nombreCategoria ?>
+        </h4>
+        <!-- Se carga y muestra en pantalla la categoria de la subasta -->
+        <h4 align="center">
+            <?= "Fecha de finalización: ".$subasta[0]->fechaFin ?>
+        </h4>
         <br>
+<<<<<<< HEAD
         <?php
             if(isset($this->session->userdata['login'])) {
                 if($this->session->userdata['idUsuario'] == $subasta[0]->idUsuario) { ?> <!-- Si la subasta le pertenece, el usuario puede modificarla o eliminarla en caso de que no tenga ofertas -->
@@ -160,6 +181,62 @@
                     </div>  
         <?php
                 }  
+=======
+
+        <?php
+            if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] != $subasta[0]->idUsuario)) { ?>
+                <div class="container">
+                    <!-- Trigger the modal with a button -->
+                    <p align="center">
+                        <button type="button" class="btn btn-darkest btn-lg" data-toggle="modal" data-target="#myModal"> Ofertar </button>
+                    </p>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title"> Ofertar </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <?php $atributos = array('class' => 'form-horizontal', 'role' => 'form', 'onSubmit' => 'return(enviar_oferta());'); ?>
+                                    <?= form_open("/subasta/oferta?idSubasta=".$subasta[0]->idSubasta, $atributos) ?>
+                                    <?php
+                                        $argumento = array(
+                                            'name' => 'argumento',
+                                            'class' => 'form-control',
+                                            'rows' => '2',
+                                            'maxlength' => '140',
+                                            'required' => 'required',
+                                            'placeholder' => 'Ingrese necesidad...'
+                                        );
+                                        $monto = array(
+                                            'name' => 'monto',
+                                            'class' => 'form-control',
+                                            'type' => 'number',
+                                            'min' => '1',
+                                            'max' => '1000000000000',
+                                            'required' => 'required',
+                                            'placeholder' => 'Ingrese un monto',
+                                        )
+                                    ?>
+                                    <?= form_textarea($argumento) ?>
+                                    <br>
+                                    <?= form_input($monto) ?>
+                                    <br>
+                                    <?= form_submit('', 'Enviar', "class='btn btn-darkest' ") ?>
+                                    <?= form_close() ?>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"> Cerrar </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+        <?php
+>>>>>>> feliBranch
             }
         ?>
         <?php $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
@@ -173,7 +250,11 @@
             ); 
         ?>
         <?php
+<<<<<<< HEAD
             if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] != $subasta[0]->idUsuario)) { ?> <!-- Si el usuario esta logueado y no es el dueño de la subasta puede comentar -->
+=======
+            if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] != $subasta[0]->idUsuario)) { ?>
+>>>>>>> feliBranch
                 <div class="row">
                     <div class="col-md-4">
                     </div>
@@ -193,11 +274,16 @@
         <?php
             if($comentarios) { ?>
                 <br>
+<<<<<<< HEAD
                 <h4 align="center"> Preguntas realizadas </h4>
+=======
+                <center> Preguntas realizadas </center>
+>>>>>>> feliBranch
                 <?php 
                     foreach($comentarios->result() as $comentario) {  ?>
                         <br>
                         <div class="row">
+<<<<<<< HEAD
                             <div class="col-md-4">
                             </div>
                             <div class="col-md-4">
@@ -242,19 +328,60 @@
                                     </tr>
                                 </table>
                             </div>
+=======
+                            <div class="col-md-5">
+                            </div>
+                            <table border="1" style="background-color:#FFFFCC;border-collapse:collapse;border:1px solid #FFCC00;color:#000000" cellpadding="3" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        Pregunta: <label type="text"> <?= $comentario->texto ?> </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Respuesta: <label type="text"> <?= $comentario->respuesta ?> </label>
+                                    <?php
+                                        if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] == $subasta[0]->idUsuario)) { ?>   
+                                            <?= form_open("subasta/respuesta?idSubasta=".$subasta[0]->idSubasta."&idComentario=".$comentario->idComentario, $atributos); ?>
+                                            <?php
+                                                $respuesta = array(
+                                                    'name' => 'respuesta'.$comentario->idComentario,
+                                                    'class' => 'form-control',
+                                                    'type' => 'text',
+                                                    'placeholder' => 'Realice su respuesta',
+                                                ); 
+                                            ?>
+                                            <?= form_input($respuesta); ?>  
+                                            <?= form_submit('', 'Responder', "class='btn btn-darkest'"); ?>
+                                            <?= form_close() ?> 
+                                    <?php
+                                        }
+                                    ?> 
+                                    </td>
+                                </tr>
+                            </table>
+>>>>>>> feliBranch
                         </div>
                         <br>
             <?php 
                     }      
             }  
+<<<<<<< HEAD
             else {
+=======
+            else { 
+>>>>>>> feliBranch
             ?>
                 <h3>
                     <center> No existen preguntas todavia </center>
                 </h3>
                 <br>
         <?php 
+<<<<<<< HEAD
             }
+=======
+            } 
+>>>>>>> feliBranch
         ?>
 
         <!-- Se carga jquery -->
@@ -264,6 +391,7 @@
     </body>
     <script type="text/javascript">
         function enviar_oferta() {
+<<<<<<< HEAD
             if(confirm('¿Confirma los datos ingresados?') == true) {
                 alert('¡Oferta creada exitosamente!');
                 return (true);
@@ -300,6 +428,12 @@
 
         function alerta_modificar_subasta() {
             alert('La subasta no puede modificarse debido a que tiene ofertas');
+=======
+            if (confirm('¿Confirma los datos ingresados?') == true) {
+                alert('Oferta creada exitosamente!');
+                return (true);
+            };
+>>>>>>> feliBranch
             return (false);
         }
     </script>
