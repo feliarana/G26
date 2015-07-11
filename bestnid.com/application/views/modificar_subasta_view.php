@@ -125,7 +125,7 @@
 					<p align="center">
 						<!-- Boton submit -->
 						<br>
-						<?= form_submit('', 'Editar subasta', "class='btn btn-darkest'") ?>
+						<?= form_submit('', 'Aceptar', "class='btn btn-darkest'") ?>
 					</p>
 				</div>
 			</div>

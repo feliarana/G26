@@ -12,45 +12,38 @@
     	<link href="<?= base_url('css/dataTables.bootstrap.css') ?>" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		
-<!-- FUENTE DE LA navBar https://www.youtube.com/watch?v=qpWlaOeGZ_4 -->
-	<div class = "navbar navbar-inverse navbar-static-top"> <!-- Otra buena es navbar-fixed-top, la cual se mantiene en la pantalla si scrolleas -->
-		<div class="container-fluid">  <!--Esto hace que el texto esté en los extremos de la pagina-->
-			<button class="navbar-toggle" data-toggle"collapse" data-target= "navHeaderCollapse"> <!--Esto es si se achica la pantalla, hace tres chirimbolos-->
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-
-			<div class= "navbar-collapse navHeaderCollapse"> 
-				<a href="<?= base_url(index_page().'/categorias') ?>" class="navbar-brand">Categorías</a> 
-				<a href="<?= base_url('images/enConstruccion.jpg') ?>" class="navbar-brand">Ayuda</a> 
-				
-				<ul class="nav navbar-nav navbar-right"> 													
-								<?php
-									if(isset($this->session->userdata['login'])) { ?>
-											<a href="<?= base_url(index_page().'/miPerfil') ?>" class="navbar-brand"> <?= $this->session->userdata['nombre']?> <?= $this->session->userdata['apellido'] ?></a> 
-											<a href="<?= base_url(index_page().'/logout') ?>" class="navbar-brand">Cerrar Sesión</a> 
-									<font size="5"  </font>
-								<?php
-									}
-									else { ?>
-											<a href="<?= base_url('/index.php/register') ?>" class="navbar-brand">Registrarse</a>
-											<a href="<?= base_url('/index.php/login') ?>" class="navbar-brand">Iniciar Sesión</a>
-								<?php
-									}
-								?>
-				</ul>
+		<div class = "navbar navbar-inverse navbar-static-top"> <!-- Otra buena es navbar-fixed-top, la cual se mantiene en la pantalla si scrolleas -->
+			<div class="container-fluid">  <!-- Esto hace que el texto esté en los extremos de la pagina -->
+				<button class="navbar-toggle" data-toggle"collapse" data-target= "navHeaderCollapse"> <!-- Esto es si se achica la pantalla, hace un cuadradito con 3 lineas -->
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class= "navbar-collapse navHeaderCollapse"> 
+					<a href="<?= base_url(index_page().'/categorias') ?>" class="navbar-brand"> Categorías </a> 
+					<a href="<?= base_url('images/enConstruccion.jpg') ?>" class="navbar-brand"> Ayuda </a>
+					<ul class="nav navbar-nav navbar-right">
+						<?php
+							if(isset($this->session->userdata['login'])) { ?>
+								<a href="<?= base_url(index_page().'/miPerfil') ?>" class="navbar-brand">
+									<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?>
+								</a>
+								<a href="<?= base_url(index_page().'/logout') ?>" class="navbar-brand"> Cerrar Sesión </a>
+						<?php
+							}
+							else { ?>
+								<a href="<?= base_url(index_page().'/register') ?>" class="navbar-brand"> Registrarse </a>
+								<a href="<?= base_url(index_page().'/login') ?>" class="navbar-brand"> Iniciar Sesión </a>
+						<?php
+							}
+						?>
+					</ul>
+				</div>
 			</div>
-
 		</div>
-	</div>
-<!-- FIN NavBar -->
-
 		<p align="center">
-				<img src="<?= base_url('images/logo.png') ?>">
+			<img src="<?= base_url('images/logo.png') ?>">
 		</p>
-
 		<h1 align="center"> Bestnid </h1>
 		<h2 align="center"> Elegí con el corazón </h2>
 		<br>
@@ -58,7 +51,7 @@
 			if(isset($this->session->userdata['login'])) { ?>
 				<center>
 					<a href="<?= base_url(index_page().'/crearSubasta') ?>">
-						<button type="button" class="btn btn-darkest">Publicar una subasta</button>
+						<button type="button" class="btn btn-darkest"> Publicar una subasta </button>
 					</a>
 				</center>
 		<?php

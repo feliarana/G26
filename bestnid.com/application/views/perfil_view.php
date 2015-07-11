@@ -30,7 +30,7 @@
 						<a href="<?= base_url(index_page().'/categorias') ?>" class="navbar-brand">Categorías</a> 
 						<a href="<?= base_url('images/enConstruccion.jpg') ?>" class="navbar-brand">Ayuda</a> 
 						
-						<ul class="nav navbar-nav navbar-right"> 													
+						<ul class="nav navbar-nav navbar-right">
 								<?php
 									if(isset($this->session->userdata['login'])) { ?>
 											<a href="<?= base_url(index_page().'/miPerfil') ?>" class="navbar-brand"> <?= $this->session->userdata['nombre']?> <?= $this->session->userdata['apellido'] ?></a> 
