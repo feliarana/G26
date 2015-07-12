@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-07-2015 a las 03:39:38
+-- Tiempo de generación: 12-07-2015 a las 07:23:39
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `comentario` (
   `idSubasta` int(10) unsigned NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `comentario`
@@ -81,7 +81,8 @@ INSERT INTO `comentario` (`idComentario`, `texto`, `respuesta`, `idUsuario`, `id
 (35, 'Hola', '', 1, 37, '2015-07-10', '838:59:59'),
 (36, 'Deh', '', 5, 21, '2015-07-10', '838:59:59'),
 (37, '¿Donde queda?', '', 5, 27, '2015-07-10', '838:59:59'),
-(38, 'Deh', 'Dah', 5, 26, '2015-07-10', '838:59:59');
+(38, 'Deh', 'Dah', 5, 26, '2015-07-10', '838:59:59'),
+(39, '¿Y el bit implicito?', '', 15, 43, '2015-07-12', '838:59:59');
 
 -- --------------------------------------------------------
 
@@ -158,22 +159,24 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `password` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `direccion` varchar(50) NOT NULL,
   `telefono` int(20) unsigned NOT NULL,
+  `fechaRegistro` date NOT NULL,
   `userAdmin` tinyint(1) NOT NULL,
   `activo` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `password`, `direccion`, `telefono`, `userAdmin`, `activo`) VALUES
-(1, 36546888, 'Emiliano', 'Retamar', 'ejemplo@hotmail.com', 'hola', 'Calle Falsa 123', 4222244, 0, 1),
-(5, 4567788, 'Emi', 'Retamar', 'hola@hotmail.com', '123456', 'sakdjkld', 12314, 0, 1),
-(6, 2132133, 'deh', 'dah', 'di@hotmail.com', '123', 'kasjdkla', 123, 0, 1),
-(10, 34994585, 'Deh', 'Dah', 'askld|@gmail.com', '123', 'fuck', 14677, 0, 1),
-(12, 33333333, 'fa', 'fa', 'f@f', '123456', 'fa', 0, 0, 1),
-(13, 11111111, 'aa', 'aa', 'a@a.com', '123456', 'a', 12345678, 0, 1),
-(14, 82828282, 'toadtoadtoadtoadtoad', 'toadtoadtoadtoad', 'toad@hotmail.com', '123456', 'calle deh', 828288282, 0, 1);
+INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `password`, `direccion`, `telefono`, `fechaRegistro`, `userAdmin`, `activo`) VALUES
+(1, 36546888, 'Emiliano', 'Retamar', 'ejemplo@hotmail.com', 'hola', 'Calle Falsa 123', 4222244, '0000-00-00', 0, 1),
+(5, 4567788, 'Emi', 'Retamar', 'hola@hotmail.com', '123456', 'sakdjkld', 12314, '0000-00-00', 0, 1),
+(6, 2132133, 'deh', 'dah', 'di@hotmail.com', '123', 'kasjdkla', 123, '0000-00-00', 0, 1),
+(10, 34994585, 'Deh', 'Dah', 'askld|@gmail.com', '123', 'fuck', 14677, '0000-00-00', 0, 1),
+(12, 33333333, 'fa', 'fa', 'f@f', '123456', 'fa', 0, '0000-00-00', 0, 1),
+(13, 11111111, 'aa', 'aa', 'a@a.com', '123456', 'a', 12345678, '0000-00-00', 0, 1),
+(14, 82828282, 'toadtoadtoadtoadtoad', 'toadtoadtoadtoad', 'toad@hotmail.com', '123456', 'calle deh', 828288282, '0000-00-00', 0, 1),
+(15, 40293040, 'Rayado', 'Rayado', 'rayado@hotmail.com', '123456', 'calle 50 y 120', 394588585, '0000-00-00', 0, 1);
 
 --
 -- Índices para tablas volcadas
@@ -222,7 +225,7 @@ MODIFY `idCategoria` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-MODIFY `idComentario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
+MODIFY `idComentario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT de la tabla `oferta`
 --
@@ -237,7 +240,7 @@ MODIFY `idSubasta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-MODIFY `idUsuario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `idUsuario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- Restricciones para tablas volcadas
 --
@@ -260,7 +263,7 @@ ADD CONSTRAINT `usuario_oferta` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (
 -- Filtros para la tabla `subasta`
 --
 ALTER TABLE `subasta`
-ADD CONSTRAINT `categoria_subasta` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE SET NULL ON UPDATE NO ACTION,
+ADD CONSTRAINT `categoria_subasta` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`) ON DELETE CASCADE ON UPDATE NO ACTION,
 ADD CONSTRAINT `usuario_subasta` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
