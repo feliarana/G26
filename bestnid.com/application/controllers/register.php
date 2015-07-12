@@ -25,7 +25,8 @@ class Register extends CI_Controller {
 			'password' => $this->input->post('password'),
 			'direccion' => $this->input->post('direccion'),
 			'telefono' => $this->input->post('telefono'),
-			'userAdmin' => false
+			'userAdmin' => false,
+			'activo' => true
 			);
 		$pass2 = $this->input->post('password2');
 		$passCoincide = ($datos['password'] == $pass2);
