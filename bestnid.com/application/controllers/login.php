@@ -29,17 +29,23 @@ class Login extends CI_Controller {
 		if($query) {
 			/* Obtengo la tupla correspondiente al email del usuario en cuestion (como el email no puede repetirse, la consulta solo retorna una sola tupla) */
 			$usuario = $query->result(); // result() es una funcion del objeto query que devuelve un arreglo de tuplas (en este caso devuelve una sola tupla)
-			if($usuario[0]->password == $datos['password']) { // $usuario[0] accede a la primera tupla del arreglo y ->password accede al valor que se encuentra en el campo password
-				$user = array('email' => $usuario[0]->email,
-					'nombre' => $usuario[0]->nombre,
-					'apellido' => $usuario[0]->apellido,
-					'idUsuario' => $usuario[0]->idUsuario,
-					'login' => true);
-				$this->session->set_userdata($user);
-				redirect(base_url(index_page().'/index'));
+			if($usuario[0]->activo == true) {
+				if($usuario[0]->password == $datos['password']) { // $usuario[0] accede a la primera tupla del arreglo y ->password accede al valor que se encuentra en el campo password
+					$user = array('email' => $usuario[0]->email,
+						'nombre' => $usuario[0]->nombre,
+						'apellido' => $usuario[0]->apellido,
+						'idUsuario' => $usuario[0]->idUsuario,
+						'login' => true);
+					$this->session->set_userdata($user);
+					redirect(base_url(index_page().'/index'));
+				}
+				else {
+					$mensaje['datos_error'] = 'Los datos ingresados son incorrectos';
+					$this->load->view('login_view', $mensaje);
+				}
 			}
 			else {
-				$mensaje['datos_error'] = 'Los datos ingresados son incorrectos';
+				$mensaje['cuenta_desactivada'] = 'No se pudo iniciar sesión debido a que su cuenta se encuentra desactivada';
 				$this->load->view('login_view', $mensaje);
 			}
 		}

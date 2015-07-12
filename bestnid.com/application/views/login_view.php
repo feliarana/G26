@@ -17,14 +17,23 @@
 		<h2 align="center">Elegí con el corazón</h2>
 		<br>
 		<?php
-			if(isset($datos_error)) { 
-		?>
+			if(isset($cuenta_desactivada)) { ?>
 				<h4>
 					<p align="center">
-						<font color="red"> <?= $datos_error ?> </font>
+						<font color="blue"> <?= $cuenta_desactivada ?> </font>
 					</p>
 				</h4>
 		<?php
+			}
+			else {
+				if(isset($datos_error)) { ?>
+					<h4>
+						<p align="center">
+							<font color="red"> <?= $datos_error ?> </font>
+						</p>
+					</h4>
+		<?php
+				}
 			}
 		?>
 		<br>
