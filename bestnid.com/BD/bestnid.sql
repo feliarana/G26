@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-07-2015 a las 22:01:02
+-- Tiempo de generación: 12-07-2015 a las 03:39:38
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `subasta` (
   `fechaFin` date NOT NULL,
   `ganador` int(10) unsigned DEFAULT NULL,
   `nombreImagen` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `subasta`
@@ -140,7 +140,8 @@ INSERT INTO `subasta` (`idSubasta`, `nombreSubasta`, `descripcion`, `idUsuario`,
 (35, 'Llave', 'Llave de aleación. Me la encontré en la vereda.', 12, 12, '2015-05-24', '2015-07-21', NULL, 'llave.jpg'),
 (37, 'Libro raro', 'No tiene nombre en la tapa. No entiendo que dicen los textos. Parece viejo.', 5, 7, '2015-05-17', '2015-07-30', NULL, 'libro.jpg'),
 (41, 'Soy Puto', 'Me gusta el arrrrrrte', 1, 10, '2015-07-10', '2015-08-04', NULL, '10072015082948.jpg'),
-(42, 'Taza de café', 'Taza de café con tetera', 1, 12, '2015-07-11', '2015-08-02', NULL, '11072015070450.jpg');
+(42, 'Taza de café', 'Taza de café con tetera', 1, 12, '2015-07-11', '2015-08-02', NULL, '11072015070450.jpg'),
+(43, 'Resumen de Org', 'Resumen Org', 1, 7, '2015-07-11', '2015-08-01', NULL, '11072015231153.jpg');
 
 -- --------------------------------------------------------
 
@@ -157,21 +158,22 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `password` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `direccion` varchar(50) NOT NULL,
   `telefono` int(20) unsigned NOT NULL,
-  `userAdmin` tinyint(1) NOT NULL
+  `userAdmin` tinyint(1) NOT NULL,
+  `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `password`, `direccion`, `telefono`, `userAdmin`) VALUES
-(1, 36546888, 'Emiliano', 'Retamar', 'ejemplo@hotmail.com', 'hola', 'Calle Falsa 123', 4222244, 0),
-(5, 4567788, 'Emi', 'Retamar', 'hola@hotmail.com', '123456', 'sakdjkld', 12314, 0),
-(6, 2132133, 'deh', 'dah', 'di@hotmail.com', '123', 'kasjdkla', 123, 0),
-(10, 34994585, 'Deh', 'Dah', 'askld|@gmail.com', '123', 'fuck', 14677, 0),
-(12, 33333333, 'fa', 'fa', 'f@f', '123456', 'fa', 0, 0),
-(13, 11111111, 'aa', 'aa', 'a@a.com', '123456', 'a', 12345678, 0),
-(14, 82828282, 'toadtoadtoadtoadtoad', 'toadtoadtoadtoad', 'toad@hotmail.com', '123456', 'calle deh', 828288282, 0);
+INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `password`, `direccion`, `telefono`, `userAdmin`, `activo`) VALUES
+(1, 36546888, 'Emiliano', 'Retamar', 'ejemplo@hotmail.com', 'hola', 'Calle Falsa 123', 4222244, 0, 1),
+(5, 4567788, 'Emi', 'Retamar', 'hola@hotmail.com', '123456', 'sakdjkld', 12314, 0, 1),
+(6, 2132133, 'deh', 'dah', 'di@hotmail.com', '123', 'kasjdkla', 123, 0, 1),
+(10, 34994585, 'Deh', 'Dah', 'askld|@gmail.com', '123', 'fuck', 14677, 0, 1),
+(12, 33333333, 'fa', 'fa', 'f@f', '123456', 'fa', 0, 0, 1),
+(13, 11111111, 'aa', 'aa', 'a@a.com', '123456', 'a', 12345678, 0, 1),
+(14, 82828282, 'toadtoadtoadtoadtoad', 'toadtoadtoadtoad', 'toad@hotmail.com', '123456', 'calle deh', 828288282, 0, 1);
 
 --
 -- Índices para tablas volcadas
@@ -230,7 +232,7 @@ MODIFY `idOferta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT de la tabla `subasta`
 --
 ALTER TABLE `subasta`
-MODIFY `idSubasta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
+MODIFY `idSubasta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
