@@ -7,6 +7,7 @@ class Register extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('html');
 		$this->load->helper('url');
+		$this->load->helper('date');
 		$this->load->library('session');
 		$this->load->model('register_model');
 		$this->load->model('listar_subastas_model');
@@ -25,6 +26,7 @@ class Register extends CI_Controller {
 			'password' => $this->input->post('password'),
 			'direccion' => $this->input->post('direccion'),
 			'telefono' => $this->input->post('telefono'),
+			'fechaRegistro' => mdate('%Y-%m-%d'),
 			'userAdmin' => false,
 			'activo' => true
 			);
