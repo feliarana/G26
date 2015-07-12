@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class perfil_subastas_publicadas_model extends CI_Model {
+class perfil_model extends CI_Model {
 
 	function __construct() {
 		parent::__construct();

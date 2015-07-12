@@ -25,7 +25,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<?php
 							if(isset($this->session->userdata['login'])) { ?>
-								<a href="<?= base_url(index_page().'/miPerfil') ?>" class="navbar-brand">
+								<a href="<?= base_url(index_page().'/perfil') ?>" class="navbar-brand">
 									<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?>
 								</a>
 								<a href="<?= base_url(index_page().'/logout') ?>" class="navbar-brand"> Cerrar Sesión </a>
