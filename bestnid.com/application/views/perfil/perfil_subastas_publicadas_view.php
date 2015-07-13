@@ -36,8 +36,8 @@
                                 <td>
                                     <center>
                                         <?= anchor_popup('subasta?idSubasta='.$subasta->idSubasta) ?> <!-- VER BIEN EL TEMA DEL LINK, ARREGLARRRRRRRRRRR-->
-                                            <img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px">
-                                        </a>
+                                            <img src="<?= base_url('/images/'.$subasta->nombreImagen) ?>" width="50px" height="50px">
+                                        <!--</a>-->
                                     </center>
                                 </td>
                                 <td>

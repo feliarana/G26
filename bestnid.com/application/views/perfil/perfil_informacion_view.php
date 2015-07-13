@@ -22,7 +22,7 @@
 		        <dt>Nombre</dt>
 		        <dd>An HTML user agent is any device that interprets HTML documents.</dd>
 		        <dt>Apellido</dt>
-		        <dd>Client-side scripting generally refers to the category of computer programs on the web that are executed client-side i.e. by the user's web browser.</dd>
+		        <dd>Client-side scripting generally refers to the category</dd>
 		        <dt>Email</dt>
 		        <dd>The tree of elements encoded in the source document.</dd>
 		        <dt>Direccion</dt>

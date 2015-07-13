@@ -54,23 +54,25 @@
 		  			<!-- INICIO Elegant Accordion Menu -->
 					<div id='cssmenu'>
 						<ul>
-				   			<li class='active'><a href="<?= base_url(index_page().'/perfil?opcion=informacion') ?>"><span>Información</span></a></li>
-				   			<li class='has-sub'><a href='#'><span>Subastas</span></a>
+				   			<li class='active'>
+				   				<a href="<?= base_url(index_page().'/perfil?opcion=informacion') ?>"><span> Información </span></a>
+				   			</li>
+				   			<li class='has-sub'><a href='#'><span> Subastas </span></a>
 				      			<ul>
-				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=subastas_publicadas') ?>'><span>--> Publicadas</span></a></li>
-				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=ofertadas_publicadas') ?>'><span>--> Ofertadas</span></a></li>
+				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=subastas_publicadas') ?>'><span> --> Publicadas </span></a></li>
+				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=ofertadas_publicadas') ?>'><span> --> Ofertadas </span></a></li>
 				      			</ul>
 				   			</li>
-				   			<li class='has-sub'><a href='#'><span>Cuenta</span></a>
+				   			<li class='has-sub'><a href='#'><span> Cuenta </span></a>
 				      			<ul>
-				         			<li class='last'><a href='<?= base_url(index_page().'/perfil/modificarDatosPersonales') ?>'><span>--> Modificar mis datos</span></a></li>
+				         			<li class='last'><a href='<?= base_url(index_page().'/perfil/modificarDatosPersonales') ?>'><span> --> Modificar mis datos </span></a></li>
 				         			<?php
 				         				if($subastasPublicadas || $subastasOfertadas) { ?>
-				         					<li class='last'><a href='<?= base_url(index_page().'/perfil/desactivarCuenta') ?>' onClick="return(alerta_desactivar_cuenta());"><span>--> Desactivar cuenta</span></a></li>
+				         					<li class='last'><a href='<?= base_url(index_page().'/perfil/desactivarCuenta') ?>' onClick="return(alerta_desactivar_cuenta());"><span> --> Desactivar cuenta </span></a></li>
 				      				<?php
 				      					}
 				      					else { ?>
-				      						<li class='last'><a href='<?= base_url(index_page().'/perfil/desactivarCuenta') ?>' onClick="return(desactivar_cuenta());"><span>--> Desactivar cuenta</span></a></li>	
+				      						<li class='last'><a href='<?= base_url(index_page().'/perfil/desactivarCuenta') ?>' onClick="return(desactivar_cuenta());"><span> --> Desactivar cuenta </span></a></li>	
 				      				<?php
 				      					}
 				      				?>
@@ -87,16 +89,20 @@
 						switch ($accion) {
 		 					case 'subastas_publicadas':
 		 			?>
+		 						<div class="row">
+		 						<div class="col-md-8">
+		 						</div>
 			 					<iframe src="<?= base_url(index_page().'/perfil/subastasPublicadas') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
 									<p> Su navegador no soporta iframes </p>
 								</iframe>
+								</div>
 			 		<?php
 		 						break;
 		 					case 'ofertadas':
 		 			?>
-		 						<!-- Informacion -->
+		 						<!-- Código -->
 			 		<?php
-		 						break;		 	
+		 						break;
 		 					default:
 		 			?>
 			 					<iframe src="<?= base_url(index_page().'/perfil/informacion') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
