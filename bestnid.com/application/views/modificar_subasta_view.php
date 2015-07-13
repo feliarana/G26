@@ -144,7 +144,7 @@
 				return false;
 			}
 			else {
-				alert('Su subasta ha sido modificada con éxito');
+				alert('¡Subasta modificada exitosamente!');
 				return true;
 			}
 		}
