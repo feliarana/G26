@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-07-2015 a las 07:23:39
+-- Tiempo de generación: 13-07-2015 a las 03:43:23
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `fechaRegistro` date NOT NULL,
   `userAdmin` tinyint(1) NOT NULL,
   `activo` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -176,7 +176,8 @@ INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `passw
 (12, 33333333, 'fa', 'fa', 'f@f', '123456', 'fa', 0, '0000-00-00', 0, 1),
 (13, 11111111, 'aa', 'aa', 'a@a.com', '123456', 'a', 12345678, '0000-00-00', 0, 1),
 (14, 82828282, 'toadtoadtoadtoadtoad', 'toadtoadtoadtoad', 'toad@hotmail.com', '123456', 'calle deh', 828288282, '0000-00-00', 0, 1),
-(15, 40293040, 'Rayado', 'Rayado', 'rayado@hotmail.com', '123456', 'calle 50 y 120', 394588585, '0000-00-00', 0, 1);
+(15, 40293040, 'Rayado', 'Rayado', 'rayado@hotmail.com', '123456', 'calle 50 y 120', 394588585, '0000-00-00', 0, 1),
+(16, 37984506, 'Leandro', 'Prata', 'lean@hotmail.com', '123456', 'A.Korn', 393485960, '2015-07-12', 0, 0);
 
 --
 -- Índices para tablas volcadas
@@ -240,7 +241,7 @@ MODIFY `idSubasta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-MODIFY `idUsuario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+MODIFY `idUsuario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- Restricciones para tablas volcadas
 --
