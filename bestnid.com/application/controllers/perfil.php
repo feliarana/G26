@@ -12,7 +12,10 @@ class Perfil extends CI_Controller {
     }
 
     function index() { 
-        $this->load->view('perfil_view');
+        $idUsuario = $this->session->userdata('idUsuario');
+        $datos['subastasPublicadas'] = $this->perfil_model->obtenerSubastasPublicadas($idUsuario); // Retorna las subastas publicadas vigentes del usuario actualmente logueado
+        $datos['subastasOfertadas'] =  $this->perfil_model->obtenerSubastasOfertadas($idUsuario); // Retorna las subastas vigentes con la oferta correspondiente del usuario actualmente logueado
+        $this->load->view('perfil_view', $datos);
     }
 
     function informacion() { 
@@ -20,10 +23,8 @@ class Perfil extends CI_Controller {
     }
 
     function subastasPublicadas() { 
-        $idUsuario= $this->session->userdata('idUsuario');
-        $subastas= $this->perfil_model->misSubastas($idUsuario);
-        $datos = array(
-        'subastas' => $subastas);
+        $idUsuario = $this->session->userdata('idUsuario');
+        $datos['subastas'] = $this->perfil_model->obtenerSubastasPublicadas($idUsuario);
         $this->load->view('perfil/perfil_subastas_publicadas_view', $datos);
     }
 
@@ -32,7 +33,9 @@ class Perfil extends CI_Controller {
     }
 
     function desactivarCuenta() {
-
+        $idUsuario = $this->session->userdata('idUsuario');
+        $this->perfil_model->desactivarCuenta($idUsuario);
+        redirect(base_url(index_page().'/logout'));
     }
 
 }

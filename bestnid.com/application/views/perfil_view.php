@@ -64,7 +64,16 @@
 				   			<li class='has-sub'><a href='#'><span>Cuenta</span></a>
 				      			<ul>
 				         			<li class='last'><a href='<?= base_url(index_page().'/perfil/modificarDatosPersonales') ?>'><span>--> Modificar mis datos</span></a></li>
-				         			<li class='last'><a href='<?= base_url(index_page().'/perfil/desactivarCuenta') ?>' onClick="return(desactivar_cuenta());"><span>--> Desactivar cuenta</span></a></li>
+				         			<?php
+				         				if($subastasPublicadas || $subastasOfertadas) { ?>
+				         					<li class='last'><a href='<?= base_url(index_page().'/perfil/desactivarCuenta') ?>' onClick="return(alerta_desactivar_cuenta());"><span>--> Desactivar cuenta</span></a></li>
+				      				<?php
+				      					}
+				      					else { ?>
+				      						<li class='last'><a href='<?= base_url(index_page().'/perfil/desactivarCuenta') ?>' onClick="return(desactivar_cuenta());"><span>--> Desactivar cuenta</span></a></li>	
+				      				<?php
+				      					}
+				      				?>
 				      			</ul>
 				   			</li>
 						</ul>
@@ -114,7 +123,6 @@
   		function iframeLoaded() {
       		var iFrameID = document.getElementById('idIframe');
       		if(iFrameID) {
-            // here you can make the height, I delete it first, then I make it again
             	iFrameID.height = "";
             	iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
       		}   
@@ -122,12 +130,17 @@
 
   		function desactivar_cuenta() {
             if(confirm('¿Esta seguro que desea desactivar su cuenta?') == true) {
-                alert('¡Cuenta desactivada!');
+                alert('¡Su cuenta ha sido desactivada!');
                 return (true);
             }
             else {
                 return (false);
             }
+        }
+
+        function alerta_desactivar_cuenta() {
+        	alert('La cuenta no pudo ser desactivada debido a que tiene subastas publicadas o subastas ofertadas vigentes');
+        	return (false);
         }
 	</script>  
 </html>
