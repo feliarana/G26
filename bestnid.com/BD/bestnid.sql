@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-07-2015 a las 03:43:23
+-- Tiempo de generación: 14-07-2015 a las 05:37:39
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -29,26 +29,27 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `categoria` (
 `idCategoria` int(10) unsigned NOT NULL,
   `nombreCategoria` varchar(50) NOT NULL,
-  `nombreImagen` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `nombreImagen` varchar(50) DEFAULT NULL,
+  `eliminada` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categoria` (`idCategoria`, `nombreCategoria`, `nombreImagen`) VALUES
-(1, 'Vehículos', 'categoria_vehiculos.jpg'),
-(2, 'Electrodomésticos', 'categoria_electrodomesticos.jpg'),
-(3, 'Computación', 'categoria_computacion.jpg'),
-(4, 'Teléfonos', 'categoria_telefonos.jpg'),
-(5, 'Ropa, Moda y Belleza', 'categoria_ropa_moda_y_belleza.jpg'),
-(6, 'Deportes', 'categoria_deporte.jpg'),
-(7, 'Libros', 'categoria_libros.jpg'),
-(8, 'Entretenimiento', 'categoria_entretenimiento.jpg'),
-(9, 'Inmuebles', 'categoria_inmuebles.jpg'),
-(10, 'Animales', 'categoria_animales.jpg'),
-(11, 'Servicios', 'categoria_servicios.jpg'),
-(12, 'Hogar', 'categoria_hogar.jpg');
+INSERT INTO `categoria` (`idCategoria`, `nombreCategoria`, `nombreImagen`, `eliminada`) VALUES
+(1, 'Vehículos', 'categoria_vehiculos.jpg', 0),
+(2, 'Electrodomésticos', 'categoria_electrodomesticos.jpg', 0),
+(3, 'Computación', 'categoria_computacion.jpg', 0),
+(4, 'Teléfonos', 'categoria_telefonos.jpg', 0),
+(5, 'Ropa, Moda y Belleza', 'categoria_ropa_moda_y_belleza.jpg', 0),
+(6, 'Deportes', 'categoria_deporte.jpg', 0),
+(7, 'Libros', 'categoria_libros.jpg', 0),
+(8, 'Entretenimiento', 'categoria_entretenimiento.jpg', 0),
+(9, 'Inmuebles', 'categoria_inmuebles.jpg', 0),
+(10, 'Animales', 'categoria_animales.jpg', 0),
+(11, 'Servicios', 'categoria_servicios.jpg', 0),
+(12, 'Hogar', 'categoria_hogar.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -71,17 +72,9 @@ CREATE TABLE IF NOT EXISTS `comentario` (
 --
 
 INSERT INTO `comentario` (`idComentario`, `texto`, `respuesta`, `idUsuario`, `idSubasta`, `fecha`, `hora`) VALUES
-(19, 'lñkas', '', 1, 21, '2015-07-03', '838:59:59'),
-(20, 'kjhkhjkhkhjkhkj', '', 1, 21, '2015-07-03', '838:59:59'),
-(21, 'Hola?', '', 1, 21, '2015-07-03', '838:59:59'),
-(23, '¿Es abrigado?', '', 1, 26, '2015-07-03', '838:59:59'),
-(25, 'No me gusta', '', 1, 26, '2015-07-09', '838:59:59'),
-(33, 'Hola', '', 1, 28, '2015-07-10', '838:59:59'),
 (34, '¿Cuantas paginas tiene?', '', 1, 37, '2015-07-10', '838:59:59'),
 (35, 'Hola', '', 1, 37, '2015-07-10', '838:59:59'),
-(36, 'Deh', '', 5, 21, '2015-07-10', '838:59:59'),
 (37, '¿Donde queda?', '', 5, 27, '2015-07-10', '838:59:59'),
-(38, 'Deh', 'Dah', 5, 26, '2015-07-10', '838:59:59'),
 (39, '¿Y el bit implicito?', '', 15, 43, '2015-07-12', '838:59:59');
 
 -- --------------------------------------------------------
@@ -103,10 +96,8 @@ CREATE TABLE IF NOT EXISTS `oferta` (
 --
 
 INSERT INTO `oferta` (`idOferta`, `argumento`, `idUsuario`, `idSubasta`, `monto`) VALUES
-(2, 'La quiero para la compu', 1, 21, 500),
 (3, 'Lo quiero para leerlo', 1, 37, 500),
 (5, 'La quiero para mi auto', 1, 35, 50),
-(7, 'Holaaaaaaaaaaaaa', 1, 25, 10000),
 (8, 'La quiero para vivir', 1, 27, 500000);
 
 -- --------------------------------------------------------
@@ -133,15 +124,10 @@ CREATE TABLE IF NOT EXISTS `subasta` (
 
 INSERT INTO `subasta` (`idSubasta`, `nombreSubasta`, `descripcion`, `idUsuario`, `idCategoria`, `fechaInicio`, `fechaFin`, `ganador`, `nombreImagen`) VALUES
 (20, 'Espejo', 'Espejo sin marco. Medidas: 0.8m x 1.2m', 5, 12, '2015-06-01', '2015-07-29', NULL, 'espejo.jpg'),
-(21, 'Silla', 'Silla donde se sentó Freddie Mercury una vez', 6, 12, '2015-06-03', '2015-07-21', NULL, 'silla.jpg'),
-(25, 'Llama ', 'Llama adulta oriunda de Tilcara. Es mansita', 10, 10, '2015-06-04', '2015-07-15', NULL, 'llama.jpg'),
-(26, 'Guante ', 'Guante de malla de acero inox. tejido, anticorte, marca *manulatex* de industria francesa', 10, 5, '2015-06-03', '2015-07-14', NULL, 'guante.jpg'),
 (27, 'Casa con faro', 'Bonita casa con vista al mar y un faro muy luminoso para orientar barquitos', 12, 9, '2015-06-04', '2015-07-30', NULL, 'faro.jpg'),
-(28, 'Cama', 'Cama de roble. Dos plazas.', 6, 12, '2015-06-03', '2015-07-30', NULL, 'cama.jpg'),
 (35, 'Llave', 'Llave de aleación. Me la encontré en la vereda.', 12, 12, '2015-05-24', '2015-07-21', NULL, 'llave.jpg'),
 (37, 'Libro raro', 'No tiene nombre en la tapa. No entiendo que dicen los textos. Parece viejo.', 5, 7, '2015-05-17', '2015-07-30', NULL, 'libro.jpg'),
-(41, 'Soy Puto', 'Me gusta el arrrrrrte', 1, 10, '2015-07-10', '2015-08-04', NULL, '10072015082948.jpg'),
-(42, 'Taza de café', 'Taza de café con tetera', 1, 12, '2015-07-11', '2015-08-02', NULL, '11072015070450.jpg'),
+(42, 'Taza de café', 'Taza de café con tetera', 1, 12, '2015-07-11', '2015-08-02', NULL, '13072015092955.jpg'),
 (43, 'Resumen de Org', 'Resumen Org', 1, 7, '2015-07-11', '2015-08-01', NULL, '11072015231153.jpg');
 
 -- --------------------------------------------------------
@@ -171,11 +157,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `password`, `direccion`, `telefono`, `fechaRegistro`, `userAdmin`, `activo`) VALUES
 (1, 36546888, 'Emiliano', 'Retamar', 'ejemplo@hotmail.com', 'hola', 'Calle Falsa 123', 4222244, '0000-00-00', 0, 1),
 (5, 4567788, 'Emi', 'Retamar', 'hola@hotmail.com', '123456', 'sakdjkld', 12314, '0000-00-00', 0, 1),
-(6, 2132133, 'deh', 'dah', 'di@hotmail.com', '123', 'kasjdkla', 123, '0000-00-00', 0, 1),
-(10, 34994585, 'Deh', 'Dah', 'askld|@gmail.com', '123', 'fuck', 14677, '0000-00-00', 0, 1),
 (12, 33333333, 'fa', 'fa', 'f@f', '123456', 'fa', 0, '0000-00-00', 0, 1),
 (13, 11111111, 'aa', 'aa', 'a@a.com', '123456', 'a', 12345678, '0000-00-00', 0, 1),
-(14, 82828282, 'toadtoadtoadtoadtoad', 'toadtoadtoadtoad', 'toad@hotmail.com', '123456', 'calle deh', 828288282, '0000-00-00', 0, 1),
 (15, 40293040, 'Rayado', 'Rayado', 'rayado@hotmail.com', '123456', 'calle 50 y 120', 394588585, '0000-00-00', 0, 1),
 (16, 37984506, 'Leandro', 'Prata', 'lean@hotmail.com', '123456', 'A.Korn', 393485960, '2015-07-12', 0, 0);
 
@@ -221,7 +204,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-MODIFY `idCategoria` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `idCategoria` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `comentario`
 --
