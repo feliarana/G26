@@ -7,7 +7,7 @@ class Administrador_model extends CI_Model {
 		$this->load->database();
 	}
 
-	function crearCategoria($categoria) {
+	function agregarCategoria($categoria) {
 		$this->db->insert('categoria', $categoria);
 	}
 

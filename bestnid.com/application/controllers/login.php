@@ -16,7 +16,7 @@ class Login extends CI_Controller {
 		$this->load->view('login_view');
 	}
 
-	function recibirDatos() {
+	function verificar_datos() {
 		// Obtengo los datos ingresados en los inputs mediante el metodo post
 		$datos = array(
 			'email' => $this->input->post('email'),

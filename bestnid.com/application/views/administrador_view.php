@@ -55,7 +55,7 @@
                                     </h2>
                                     <br>
                                     <br>
-                                    <?= form_open_multipart('administrador/insertarDatosCategoria', "onSubmit = 'return crear_categoria();'") ?>
+                                    <?= form_open_multipart('administrador/agregarCategoria', "onSubmit = 'return crear_categoria();'") ?>
                                         <?php
                                             $nombreCategoria = array(
                                                 'name' => 'nombreCategoria',

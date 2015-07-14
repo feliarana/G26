@@ -29,7 +29,7 @@ class Administrador extends CI_Controller {
 		$this->load->view('administrador_view', $datos);
 	}
 
-	function insertarDatosCategoria() {
+	function agregarCategoria() {
 		$datos['nombreCategoria'] = $this->input->post('nombreCategoria');
 		$datos['nombreImagen'] = date('dmYHis').'.jpg';
 		$config['upload_path'] = FCPATH.'images';
@@ -40,7 +40,7 @@ class Administrador extends CI_Controller {
 		$config['file_name']  = $datos['nombreImagen'];
 		$this->load->library('upload', $config);
 		if($this->upload->do_upload()) {
-			$this->administrador_model->crearCategoria($datos);
+			$this->administrador_model->agregarCategoria($datos);
     		redirect(base_url(index_page().'/administrador'));
 		}
 		else {

@@ -38,7 +38,7 @@
 		?>
 		<br>
 		<?php $atributos = array('class' => 'form-horizontal', 'role' => 'form'); ?>
-		<?= form_open("/login/recibirDatos", $atributos) ?>
+		<?= form_open("/login/verificar_datos", $atributos) ?>
 		<?php
 			$email = array(
 				'name' => 'email',

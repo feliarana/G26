@@ -14,7 +14,7 @@
 			</a>
 		</p>
 		<!-- form_open_multipart es para la carga de archivos -->
-		<?= form_open_multipart('crearSubasta/recibirDatos', "onSubmit='return(crear_subasta());'") ?>
+		<?= form_open_multipart('crear_subasta/agregarSubasta', "onSubmit='return(crear_subasta());'") ?>
 		<?php
 			$nombreSubasta = array(
 				'name' => 'nombreSubasta',

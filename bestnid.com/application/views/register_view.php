@@ -27,7 +27,7 @@
 			}
 		?>
 		<br>
-		<?= form_open('register/verificarDatos') ?>
+		<?= form_open('register/verificar_datos') ?>
 		<?php
 			$DNI = array('name' => 'DNI',
 				'value' => @set_value('DNI'),

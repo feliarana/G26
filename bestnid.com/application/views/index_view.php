@@ -50,7 +50,7 @@
 		<?php
 			if(isset($this->session->userdata['login'])) { ?>
 				<center>
-					<a href="<?= base_url(index_page().'/crearSubasta') ?>">
+					<a href="<?= base_url(index_page().'/crear_subasta') ?>">
 						<button type="button" class="btn btn-darkest"> Publicar una subasta </button>
 					</a>
 				</center>

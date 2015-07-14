@@ -18,6 +18,10 @@ class Subasta_model extends CI_Model {
 		}
 	}
 
+	function agregarSubasta($subasta) {
+		$this->db->insert('subasta', $subasta);
+	}
+
 	function modificarSubasta($subasta) {
 		$this->db->where('idSubasta', $subasta['idSubasta']);
 		$this->db->update('subasta', array('nombreSubasta' => $subasta['nombreSubasta'], 'descripcion' => $subasta['descripcion'], 'idCategoria' => $subasta['idCategoria'], 'nombreImagen' => $subasta['nombreImagen']));

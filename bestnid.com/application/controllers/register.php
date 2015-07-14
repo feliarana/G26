@@ -17,7 +17,7 @@ class Register extends CI_Controller {
 		$this->load->view('register_view');
 	}
 
-	function verificarDatos() {
+	function verificar_datos() {
 		$datos = array(
 			'DNI' => $this->input->post('DNI'),
 			'nombre' => $this->input->post('nombre'),
