@@ -43,7 +43,7 @@
         </div>
 		<p align="center">
         	<a href="<?= base_url(index_page().'/index') ?>">
-            	<img src="<?= base_url('images/logo.png') ?>">
+            	<img src="<?= base_url('images/logo.png') ?>" title="Volver al inicio de Bestnid">
             </a>
         </p>
         <h2 align="center">

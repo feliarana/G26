@@ -10,7 +10,7 @@
 	<body>
 		<p align="center">
 			<a href="<?= base_url(index_page().'/index') ?>">
-				<img src="<?= base_url('images/logo.png') ?>">
+				<img src="<?= base_url('images/logo.png') ?>" title="Volver al inicio de Bestnid">
 			</a>
 		</p>
 		<!-- form_open_multipart es para la carga de archivos -->
