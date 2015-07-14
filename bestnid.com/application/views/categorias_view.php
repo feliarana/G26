@@ -6,7 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
     	<!-- Se cargan los estilos de bootstrap -->
         <link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet" media="screen">
-	</head>
+	    <title> Categorías </title>
+    </head>
     <body>
        <p align="center">
             <a href="<?= base_url(index_page().'/index') ?>">

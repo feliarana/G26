@@ -10,7 +10,8 @@
     	<link href="<?= base_url('css/jquery.dataTables.min.css') ?>" rel="stylesheet" type="text/css">
     	<!-- Se cargan los estilos con bootstrap de la libreria dataTables -->
     	<link href="<?= base_url('css/dataTables.bootstrap.css') ?>" rel="stylesheet" type="text/css">
-	</head>
+	    <title> Listado de una Categoría </title>
+    </head>
 	<body>
         <div class = "navbar navbar-inverse navbar-static-top"> <!-- Otra buena es navbar-fixed-top, la cual se mantiene en la pantalla si scrolleas -->
             <div class="container-fluid">  <!-- Esto hace que el texto esté en los extremos de la pagina -->

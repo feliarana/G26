@@ -8,7 +8,8 @@
     	<link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet" media="screen">
     	<!-- Se cargan los estilos para la sidebar -->
     	<link href="<?= base_url('css/simple-sidebar.css') ?>" rel="stylesheet" media="screen">
-	</head>
+        <title> Administrador </title>   
+    </head>
 	<body>
 		<div id="wrapper">
             <!-- Sidebar -->
