@@ -60,7 +60,7 @@
 				   			<li class='has-sub'><a href='#'><span> Subastas </span></a>
 				      			<ul>
 				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=subastas_publicadas') ?>'><span> --> Publicadas </span></a></li>
-				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=ofertadas_publicadas') ?>'><span> --> Ofertadas </span></a></li>
+				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=subastas_ofertadas') ?>'><span> --> Ofertadas </span></a></li>
 				      			</ul>
 				   			</li>
 				   			<li class='has-sub'><a href='#'><span> Cuenta </span></a>
@@ -98,7 +98,7 @@
 								</div>
 			 		<?php
 		 						break;
-		 					case 'ofertadas':
+		 					case 'subastas_ofertadas':
 		 			?>
 		 						<!-- Código -->
 			 		<?php

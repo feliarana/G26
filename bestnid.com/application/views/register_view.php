@@ -39,12 +39,12 @@
 	 		);
 			
 			$nombre = array('name' => 'nombre',
-			'value' => @set_value('nombre'),
-			'class' => 'form-control',
-	 		'placeholder' => 'Nombre',
-	 		'required' => 'required',
-	 		'pattern' => '[A-Za-z]{2,20}',
-	 		'title' => 'Por favor, ingrese un mínimo de 2 LETRAS. Maximo 20.'
+				'value' => @set_value('nombre'),
+				'class' => 'form-control',
+	 			'placeholder' => 'Nombre',
+	 			'required' => 'required',
+	 			'pattern' => '[A-Za-z]{2,20}',
+	 			'title' => 'Por favor, ingrese un mínimo de 2 LETRAS. Maximo 20.'
 	 		);
 
  	 		$apellido = array('name' => 'apellido',

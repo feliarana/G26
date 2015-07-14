@@ -24,10 +24,10 @@
                         <a href="<?= base_url(index_page().'/administrador/consultar_subastas') ?>"> Consultar subastas vendidas </a>
                     </li>
                     <li>
-                        <a href="<?= base_url(index_page().'/administrador/crearCategoria') ?>"> Crear una categoria </a>
+                        <a href="<?= base_url(index_page().'/administrador/crear_categoria') ?>"> Crear una categoria </a>
                     </li>
                     <li>
-                        <a href="<?= base_url(index_page().'/administrador/eliminarCategoria') ?>"> Eliminar una categoria </a>
+                        <a href="<?= base_url(index_page().'/administrador/eliminar_categoria') ?>"> Eliminar una categoria </a>
                     </li>
                 </ul>
             </div>
@@ -48,14 +48,95 @@
                                     Como
                     <?php
                                     break;
-                                case 'value': 
+                                case 'crear_categoria': 
                     ?>
-                                    Andas
+                                    <?= form_open_multipart('administrador/insertarDatosCategoria', "onSubmit = 'return crear_categoria();'") ?>
+                                        <?php
+                                            $nombreCategoria = array(
+                                                'name' => 'nombreCategoria',
+                                                'class' => 'form-control',
+                                                'placeholder' => 'Nombre de la categoría',
+                                                'required' => 'required',
+                                                'pattern' => '.{3,30}$',
+                                                'title' => 'Por favor, ingrese un mínimo de 3 caractéres. Maximo 30.'
+                                            );
+                                        ?>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p align="center">
+                                                    <?= form_label('Ingrese el nombre de la categoría') ?>
+                                                </p>
+                                                <?= form_input($nombreCategoria) ?>
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p align="center">
+                                                    <?= form_label('Seleccione una imagen') ?>
+                                                </p>
+                                                <input type="file" name="userfile" id="upload" size="20" />
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <center>
+                                            <?= form_submit('', 'Crear Categoría', "class='btn btn-darkest'") ?>
+                                            <a href="<?= base_url(index_page().'/administrador') ?>">
+                                                <button type="button" class="btn btn-darkest"> Cancelar </button>
+                                            </a>
+                                        </center>
+                                    <?= form_close() ?>
                     <?php
                                     break;
-                                case 'value': 
+                                case 'eliminar_categoria': 
                     ?>
-                                    Nati
+                                    <h2> Seleccione la categoría que desee eliminar </h2>
+                                    <div table-responsive>
+                                        <table class="table table-condensed">
+                                            <?php
+                                                $i = 0;
+                                                foreach($categorias->result() as $categoria) {
+                                                    if($i == 0) { ?>
+                                                        <tr>
+                                                    <?php
+                                                        $i = 3;
+                                                    }
+                                                    ?>
+                                                    <td>
+                                                        <p align="center"> 
+                                                            <a href="<?= base_url(index_page().'/categorias/listado?id='.$categoria->idCategoria) ?>">
+                                                                <img src="<?= base_url('images/'.$categoria->nombreImagen) ?>" class="img-rounded" width="300" height="200">
+                                                                <p align="center" > 
+                                                                    <label>
+                                                                        <?= $categoria->nombreCategoria ?>
+                                                                    </label>
+                                                                </p>
+                                                            </a>
+                                                        </p>
+                                                    </td>
+                                                <?php
+                                                    $i--;
+                                                    if($i == 0) { ?>
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                ?>
+                                            <?php
+                                                }
+                                            ?>
+                                        </table>
+                                    </div> 
                     <?php
                                     break;
                             }
@@ -90,5 +171,17 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+
+        function crear_categoria() {
+            var archivo = document.getElementById('upload').value;
+            if(archivo == null || archivo == "") {
+                alert('No ha elegido ninguna imagen para la categoría');
+                return false;
+            }
+            else {
+                alert('¡Categoría creada con éxito!');
+                return true;
+            }
+        }
     </script>
 </html>
