@@ -131,6 +131,7 @@
 						<?=	form_input($telefono) ?>
 					</div>
 					<p align="center">
+						<br>
 						<?=	form_submit('submit_reg', 'Registrarse', "class='btn btn-darkest'") ?>
 					</p>
 				</div>

@@ -77,21 +77,10 @@
 			</div>
 		</div>
 		<!-- Contenido del dropdown de categorias -->
-		<?php 
-			$categoria = array(
-                1 => 'Vehículos',
-                2 => 'Electrodomésticos',
-                3 => 'Computación',
-                4 => 'Teléfonos',
-                5 => 'Ropa, Moda y Belleza',
-                6 => 'Deportes',
-                7 => 'Libros',
-                8 => 'Entretenimiento',
-                9 => 'Inmuebles',
-                10 => 'Animales',
-                11 => 'Servicios',
-                12 => 'Hogar'
-            ); 
+		<?php
+			foreach($categorias->result() as $tuplaCategoria) {
+				$categoria[$tuplaCategoria->idCategoria] = $tuplaCategoria->nombreCategoria;
+    		}
     	?>
         <br>
         <div class="row">

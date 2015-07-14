@@ -8,11 +8,13 @@ class CrearSubasta extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper('date');
         $this->load->library('session');
+        $this->load->model('categorias_model');
         $this->load->model('crear_subasta_model');
     }
 
     function index() {
-        $this->load->view('crear_subasta_view');
+    	$datos['categorias'] = $this->categorias_model->obtenerCategorias();
+        $this->load->view('crear_subasta_view', $datos);
     }
 
     function recibirDatos() {
@@ -41,7 +43,6 @@ class CrearSubasta extends CI_Controller {
 		$this->load->library('upload', $config);
 
 		if($this->upload->do_upload()) {
-			// Esto es para que dos imagenes cargadas no tengan el mismo nombre
 			$subasta['nombreImagen'] = $nombreImagen;
 			$this->crear_subasta_model->crearSubasta($subasta);
     		redirect(base_url(index_page().'/index'));

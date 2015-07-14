@@ -8,6 +8,7 @@ class Subasta extends CI_Controller {
 		$this->load->helper('date');
 		$this->load->helper('form');
 		$this->load->library('session');
+		$this->load->model('categorias_model');
 		$this->load->model('subasta_model');
 	}
 
@@ -74,6 +75,7 @@ class Subasta extends CI_Controller {
 	function modificarSubasta() {
 		$idSubasta = $this->input->get('idSubasta');
 		$datos['subasta'] = $this->subasta_model->obtenerSubastaPorId($idSubasta);
+		$datos['categorias'] = $this->categorias_model->obtenerCategorias();
 		$this->load->view('modificar_subasta_view', $datos);
 	}
 
