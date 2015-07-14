@@ -50,6 +50,11 @@
                                     break;
                                 case 'crear_categoria': 
                     ?>
+                                    <h2 align="center">
+                                        Crear una categoría
+                                    </h2>
+                                    <br>
+                                    <br>
                                     <?= form_open_multipart('administrador/insertarDatosCategoria', "onSubmit = 'return crear_categoria();'") ?>
                                         <?php
                                             $nombreCategoria = array(
