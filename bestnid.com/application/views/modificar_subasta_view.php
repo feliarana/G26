@@ -14,13 +14,12 @@
 			</a>
 		</p>
 		<!-- form_open_multipart es para la carga de archivos -->
-		<?= form_open_multipart('subasta/actualizarDatosSubasta?idSubasta='.$subasta[0]->idSubasta, "onSubmit='return(validar());'"); ?>
+		<?= form_open_multipart('subasta/actualizarDatosSubasta?idSubasta='.$subasta[0]->idSubasta, "onSubmit='return(modificar_subasta());'") ?>
 		<?php
-
 			$nombreSubasta = array(
 				'name' => 'nombreSubasta',
 				'class' => 'form-control',
-	 			'placeholder' => 'Inserte el nombre del producto',
+	 			'placeholder' => 'Ingrese el nombre del producto',
 	 			'required' => 'required',
 	 			'pattern' => '.{3,30}$',
 	 			'title' => 'Por favor, ingrese un mínimo de 3 caractéres. Maximo 30.'
@@ -29,13 +28,12 @@
 			$descripcion = array(
 				'name' => 'descripcion',
 				'class' => 'form-control',
-	 			'placeholder' => 'Inserte descripcion',
+	 			'placeholder' => 'Ingrese la descripción del producto',
 	 			'required' => 'required',
 	 			'pattern' => '.{5,250}$',
 	 			'title' => 'Por favor, ingrese un mínimo de 5 caractéres. Maximo 250.'
 				);
 		?>
-		
 		<div class="row">
 			<div class="col-md-4">
 			</div>
@@ -50,7 +48,6 @@
 			<div class="col-md-4">
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-md-4">
 			</div>
@@ -80,7 +77,6 @@
 			<div class="col-md-4">
 			</div>
 		</div>
-
 		<!-- Contenido del dropdown de categorias -->
 		<?php 
 			$categoria = array(
@@ -98,7 +94,6 @@
                 12 => 'Hogar'
             ); 
     	?>
-
         <br>
         <div class="row">
 			<div class="col-md-4">
@@ -106,7 +101,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					<p align="center">
-						<?= form_label('Categoría') ?>
+						<?= form_label('Seleccione una categoría') ?>
 					</p>
 					<p align="center">
 						<?= form_dropdown('categoria', $categoria); ?>
@@ -116,7 +111,6 @@
 			<div class="col-md-4">
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-md-4">
 			</div>
@@ -132,15 +126,13 @@
 			<div class="col-md-4">
 			</div>
 		</div>
-
 		<?= form_close() ?>
-	
 	</body>
 	<script type="text/javascript">
-		function validar() {
+		function modificar_subasta() {
 			var archivo= document.getElementById('upload').value;
 			if(archivo == null || archivo == "") {
-				alert('No ha elegido ningun archivo para la subasta');
+				alert('No ha elegido ninguna imagen para la subasta');
 				return false;
 			}
 			else {

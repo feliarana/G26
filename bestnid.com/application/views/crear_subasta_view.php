@@ -14,7 +14,7 @@
 			</a>
 		</p>
 		<!-- form_open_multipart es para la carga de archivos -->
-		<?= form_open_multipart('crearSubasta/recibirDatos', "onSubmit = 'return validar();'") ?>
+		<?= form_open_multipart('crearSubasta/recibirDatos', "onSubmit='return(crear_subasta());'") ?>
 		<?php
 			$nombreSubasta = array(
 				'name' => 'nombreSubasta',
@@ -164,7 +164,7 @@
 		<?= form_close() ?>
 	</body>
 	<script type="text/javascript">
-		function validar() {
+		function crear_subasta() {
 			var archivo = document.getElementById('upload').value;
 			if(archivo == null || archivo == "") {
 				alert('No ha elegido ninguna imagen para la subasta');
