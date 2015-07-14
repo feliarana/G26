@@ -42,7 +42,7 @@
             if(isset($this->session->userdata['login'])) {
                 if($this->session->userdata['idUsuario'] == $subasta[0]->idUsuario) { ?> <!-- Si la subasta le pertenece, el usuario puede modificarla o eliminarla en caso de que no tenga ofertas -->
                     <center>
-                        <a href="<?= base_url(index_page().'/subasta/modificarSubasta?idSubasta='.$subasta[0]->idSubasta) ?>">
+                        <a href="<?= base_url(index_page().'/subasta/modificar_subasta?idSubasta='.$subasta[0]->idSubasta) ?>">
                             <?php
                                 if($ofertas) { ?>  <!-- Si tiene ofertas, no puede modificar la subasta -->  
                                     <button type="button" class="btn btn-darkest btn-lg" onClick="return(alerta_modificar_subasta());"> Modificar Subasta </button>

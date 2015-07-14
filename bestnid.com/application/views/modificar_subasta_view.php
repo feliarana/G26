@@ -18,6 +18,7 @@
 		<?php
 			$nombreSubasta = array(
 				'name' => 'nombreSubasta',
+				'value' => $subasta[0]->nombreSubasta,
 				'class' => 'form-control',
 	 			'placeholder' => 'Ingrese el nombre del producto',
 	 			'required' => 'required',
@@ -27,6 +28,7 @@
 
 			$descripcion = array(
 				'name' => 'descripcion',
+				'value' => $subasta[0]->descripcion,
 				'class' => 'form-control',
 	 			'placeholder' => 'Ingrese la descripción del producto',
 	 			'required' => 'required',
@@ -83,6 +85,7 @@
 				$categoria[$tuplaCategoria->idCategoria] = $tuplaCategoria->nombreCategoria;
     		}
     	?>
+    	<!-- Tengo que setear selected="selected" en la etiqueta option que corresponda a la categoria de la subasta -->
         <br>
         <div class="row">
 			<div class="col-md-4">
@@ -93,7 +96,7 @@
 						<?= form_label('Seleccione una categoría') ?>
 					</p>
 					<p align="center">
-						<?= form_dropdown('categoria', $categoria); ?>
+						<?= form_dropdown('categoria', $categoria, $subasta[0]->idCategoria); ?>
 					</p>
 				</div>
 			</div>

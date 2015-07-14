@@ -72,7 +72,7 @@ class Subasta extends CI_Controller {
 		redirect(base_url(index_page().'/subasta?idSubasta='.$datos['idSubasta']));
 	}
 
-	function modificarSubasta() {
+	function modificar_subasta() {
 		$idSubasta = $this->input->get('idSubasta');
 		$datos['subasta'] = $this->subasta_model->obtenerSubastaPorId($idSubasta);
 		$datos['categorias'] = $this->categorias_model->obtenerCategorias();
