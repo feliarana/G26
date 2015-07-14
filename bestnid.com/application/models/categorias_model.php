@@ -8,6 +8,7 @@ class Categorias_model extends CI_Model {
 	}
 
 	function obtenerCategorias() {
+		$this->db->where('eliminada', false); // Trae las categorias que no estan eliminadas
 		$query = $this->db->get('categoria');
 		if($query->num_rows() > 0) {
 			return ($query);
