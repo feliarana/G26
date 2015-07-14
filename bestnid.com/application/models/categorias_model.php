@@ -4,7 +4,6 @@ class Categorias_model extends CI_Model {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->helper('date');
 		$this->load->database();
 	}
 

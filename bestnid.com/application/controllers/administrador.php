@@ -8,6 +8,7 @@ class Administrador extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('date');
 		$this->load->library('session');
+		$this->load->model('categorias_model');
 		$this->load->model('administrador_model');
 	}
 
@@ -50,7 +51,16 @@ class Administrador extends CI_Controller {
 
 	function eliminar_categoria() {
 		$datos['opcion'] = 'eliminar_categoria';
-		$this->load->view('administrador_view', $datos);
+		$datos['categorias'] = $this->categorias_model->obtenerCategorias();
+		if($datos['categorias']) {
+			$this->load->view('administrador_view', $datos);
+		}
+	}
+
+	function eliminarDatosCategoria() {
+		$idCategoria = $this->input->get('idCategoria');
+		$this->administrador_model->eliminarCategoria($idCategoria);
+		redirect(base_url(index_page().'/administrador'));
 	}
 
 }

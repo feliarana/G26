@@ -101,7 +101,11 @@
                                     break;
                                 case 'eliminar_categoria': 
                     ?>
-                                    <h2> Seleccione la categoría que desee eliminar </h2>
+                                    <h2 align="center">
+                                        Seleccione la categoría que desee eliminar 
+                                    </h2>
+                                    <br>
+                                    <br>
                                     <div table-responsive>
                                         <table class="table table-condensed">
                                             <?php
@@ -115,8 +119,8 @@
                                                     ?>
                                                     <td>
                                                         <p align="center"> 
-                                                            <a href="<?= base_url(index_page().'/categorias/listado?id='.$categoria->idCategoria) ?>">
-                                                                <img src="<?= base_url('images/'.$categoria->nombreImagen) ?>" class="img-rounded" width="300" height="200">
+                                                            <a href="<?= base_url(index_page().'/administrador/eliminarDatosCategoria?idCategoria='.$categoria->idCategoria) ?>" onClick="return(eliminar_categoria());">
+                                                                <img src="<?= base_url('images/'.$categoria->nombreImagen) ?>" class="img-rounded" width="180" height="100">
                                                                 <p align="center" > 
                                                                     <label>
                                                                         <?= $categoria->nombreCategoria ?>
@@ -134,6 +138,10 @@
                                                 ?>
                                             <?php
                                                 }
+                                                if($i > 0) { ?> <!-- Si i es mayor a 0 significa que salio del foreach sin cerrar la fila (el <tr>) -->
+                                                    </tr>
+                                            <?php
+                                                }
                                             ?>
                                         </table>
                                     </div> 
@@ -145,7 +153,7 @@
                     ?>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h2 align="center"> ¡Bienvenido a la sección de administrador de Bestnid! </h2>
+                                    <h2 align="center"> ¡Bienvenido a la sección administrador de Bestnid! </h2>
                                     <br>
                                     <br>
                                     <center>
@@ -181,6 +189,16 @@
             else {
                 alert('¡Categoría creada con éxito!');
                 return true;
+            }
+        }
+
+        function eliminar_categoria() {
+            if(confirm('¿Esta seguro que desea eliminar la categoría?') == true) {
+                alert('¡Categoría eliminada exitosamente!');
+                return (true);
+            }
+            else {
+                return (false);
             }
         }
     </script>

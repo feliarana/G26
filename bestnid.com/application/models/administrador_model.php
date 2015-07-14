@@ -11,6 +11,11 @@ class Administrador_model extends CI_Model {
 		$this->db->insert('categoria', $categoria);
 	}
 
+	function eliminarCategoria($idCategoria) {
+		$this->db->where('idCategoria', $idCategoria);
+		$this->db->update('categoria', array('eliminada' => true));
+	}
+
 }
 
 ?>

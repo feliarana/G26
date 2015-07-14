@@ -50,6 +50,10 @@
                     ?>
                 <?php
                 }
+                if($i > 0) { ?> <!-- Si i es mayor a 0 significa que salio del foreach sin cerrar la fila (el <tr>) -->
+                    </tr>
+                <?php
+                }
                 ?>
             </table>
         </div> 
