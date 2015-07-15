@@ -54,6 +54,16 @@ class Perfil extends CI_Controller {
         $this->subastasFinalizadas();
     }
 
+    function verificar_tarjeta() { 
+
+        $idSubasta= $this->input->get('idSubasta'); //Se recibe la subasta para saber que subasta esta pagando el usuario.
+        //TODO
+
+        $idUsuario = $this->session->userdata('idUsuario');
+        $datos['ofertas'] = $this->perfil_model->obtenerMisOfertas($idUsuario);
+        $this->load->view('perfil/mis_ofertas_view', $datos); //Una vez realizado el pago, vuelve a las ofertas del usuario.
+    }
+
     function desactivarCuenta() {
         $idUsuario = $this->session->userdata('idUsuario');
         $this->perfil_model->desactivarCuenta($idUsuario);
