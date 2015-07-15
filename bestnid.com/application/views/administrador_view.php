@@ -58,9 +58,9 @@
                                     <?= form_open('/administrador/usuarios_registrados') ?>
                                         <div class="row">
                                             <div class="col-md-4 col-md-offset-4">
-                                                <input type="date" name="fecha1" class="form-control" value="2015-03-01" min="2015-03-01" max="<?= $fechaActual ?>" required="required">
+                                                <input type="date" name="fecha1" class="form-control" value="2015-05-01" min="2015-05-01" max="<?= $fechaActual ?>" required="required">
                                                 <br>
-                                                <input type="date" name="fecha2" class="form-control" value="<?= $fechaActual ?>" min="2015-03-01" max="<?= $fechaActual ?>" required="required">
+                                                <input type="date" name="fecha2" class="form-control" value="<?= $fechaActual ?>" min="2015-05-01" max="<?= $fechaActual ?>" required="required">
                                             </div>
                                         </div>
                                         <br>
@@ -303,6 +303,8 @@
         </div>
 		<!-- Se cargan las funciones javascript de Bootstrap -->
     	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
+        <!-- Este archivo le da estilo introduciendole bootstrap a la libreria dataTables mediante javascript -->
+        <script src="<?= base_url('js/dataTables.bootstrap.min.js') ?>" type="text/javascript" charset="utf8"></script>
 	</body>
 	<script type="text/javascript">
         $("#menu-toggle").click(function(e) {
