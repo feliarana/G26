@@ -7,6 +7,16 @@ class Perfil_model extends CI_Model {
 		$this->load->database();
 	}
 
+	function datosUsuario($idUsuario) {
+		$this->db->from('usuario');
+		$this->db->where('idUsuario', $idUsuario);
+		$query = $this->db->get();
+		if($query->num_rows() > 0)
+			return ($query);
+		else 
+			return (false);
+	}
+
 	function obtenerSubastasVigentes($idUsuario) {
 		$formato = "%Y-%m-%d";
 		$fechaActual = mdate($formato); // mdate retorna la fecha actual con el formato especificado
@@ -80,6 +90,10 @@ class Perfil_model extends CI_Model {
 		$this->db->from('subasta');
 		$this->db->where('subasta.idSubasta', $idSubasta);
 		$this->db->update('subasta',$data);
+	}
+
+	function modificarUsuario($usuario) {
+		$this->db->update('usuario', $usuario); 
 	}
 
 	function desactivarCuenta($idUsuario) {

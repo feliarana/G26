@@ -65,7 +65,7 @@
                                                       <h4 class="modal-title">Pagar subasta</h4>
                                                     </div>
                                                     <div class="modal-body"> 
-                                                        <?= form_open('perfil/verificar_tarjeta') ?> <!--ACA EMPIEZA EL FORM dentor del modal para que verifique los datos  -->
+                                                        <?= form_open("perfil/verificar_tarjeta?idSubasta=".$oferta->idSubasta) ?> <!--ACA EMPIEZA EL FORM dentor del modal para que verifique los datos  -->
                                                             <?php
                                                                 $DNI = array('name' => 'DNI',
                                                                     'value' => @set_value('DNI'),
