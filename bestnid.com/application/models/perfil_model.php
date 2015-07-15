@@ -75,6 +75,13 @@ class Perfil_model extends CI_Model {
 			return (false);
 	}
 
+	function elegirGanador ($idSubasta, $idUsuario){
+		$data = array('ganador' => $idUsuario);
+		$this->db->from('subasta');
+		$this->db->where('subasta.idSubasta', $idSubasta);
+		$this->db->update('subasta',$data);
+	}
+
 	function desactivarCuenta($idUsuario) {
 		$this->db->where('idUsuario', $idUsuario);
 		$this->db->update('usuario', array('activo' => false));

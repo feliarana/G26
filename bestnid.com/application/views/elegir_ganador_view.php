@@ -37,9 +37,11 @@
                                                         </center>
                                                     </td>
                                                     <td>
-                                                        <center>
-                                                            <button type="button" class="btn btn-darkest">Elegir ganador</button>   
-                                                        </center>
+                                                        <a>
+                                                            <center>
+                                                                <button type="button" class="btn btn-darkest" onclick="ganador();">Elegir ganador</button> 
+                                                            </center>
+                                                        </a>
                                                     </td>
                                                    
                                                 </tr>
@@ -47,6 +49,15 @@
                                 </tbody>
                             </table>
 
+
+<script type="text/javascript">
+    function ganador(){
+        //Aca se llama al controlador elegir ganador, enviandole el id de la subasta y el id del usuario elegido como ganador... luego hace un popup y redirecciona
+        window.location.href = "<?php echo base_url(index_page().'/perfil/elegirGanador?idSubasta='.$oferta->idSubasta.'&idUsuario='.$oferta->idUsuario) ?>"; 
+        alert("Ganador elegido con exito!");
+        window.location.href = "<?php echo base_url(index_page().'/perfil/subastasFinalizadas') ?>";
+    }   
+</script>
         <!-- Configuracion de la dataTable -->
         <script type="text/javascript" charset="utf-8">
             $(document).ready(function() {

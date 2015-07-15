@@ -34,16 +34,23 @@ class Perfil extends CI_Controller {
         $this->load->view('perfil/perfil_subastas_finalizadas_view', $datos);
     }
 
+
+    function obtenerOfertas($idSubasta) { //Este es para el elegir ganador
+        $idUsuario = $this->session->userdata('idUsuario');
+        $datos['subastas'] = $this->perfil_model->obtenerSubastasFinalizadas($idUsuario);
+        $this->load->view('perfil/perfil_subastas_finalizadas_view', $datos);
+    }
+
     function misOfertas() { 
         $idUsuario = $this->session->userdata('idUsuario');
         $datos['ofertas'] = $this->perfil_model->obtenerMisOfertas($idUsuario);
         $this->load->view('perfil/mis_ofertas_view', $datos);
     }
 
-    function obtenerOfertas($idSubasta) { // Este es para el elegir ganador
-        $idUsuario = $this->session->userdata('idUsuario');
-        $datos['subastas'] = $this->perfil_model->obtenerSubastasFinalizadas($idUsuario);
-        $this->load->view('perfil/perfil_subastas_finalizadas_view', $datos);
+    function elegirGanador() { 
+        $idUsuario= $this->input->get('idUsuario');
+        $idSubasta= $this->input->get('idSubasta'); 
+        $this->perfil_model->elegirGanador($idSubasta, $idUsuario);
     }
 
     function desactivarCuenta() {
