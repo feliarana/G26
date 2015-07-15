@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-07-2015 a las 11:57:58
+-- Tiempo de generación: 15-07-2015 a las 05:14:15
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `nombreCategoria` varchar(50) NOT NULL,
   `nombreImagen` varchar(50) DEFAULT NULL,
   `eliminada` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -156,11 +156,11 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `password`, `direccion`, `telefono`, `fechaRegistro`, `userAdmin`, `activo`) VALUES
-(1, 36546888, 'Emiliano', 'Retamar', 'ejemplo@hotmail.com', 'hola', 'Calle Falsa 123', 4222244, '0000-00-00', 0, 1),
-(5, 4567788, 'Emi', 'Retamar', 'hola@hotmail.com', '123456', 'sakdjkld', 12314, '0000-00-00', 0, 1),
-(12, 33333333, 'fa', 'fa', 'f@f', '123456', 'fa', 0, '0000-00-00', 0, 1),
-(13, 11111111, 'aa', 'aa', 'a@a.com', '123456', 'a', 12345678, '0000-00-00', 0, 1),
-(15, 40293040, 'Rayado', 'Rayado', 'rayado@hotmail.com', '123456', 'calle 50 y 120', 394588585, '0000-00-00', 0, 1),
+(1, 36546888, 'Emiliano', 'Retamar', 'ejemplo@hotmail.com', 'hola', 'Calle Falsa 123', 3454222244, '2015-05-11', 0, 1),
+(5, 4567788, 'Emi', 'Retamar', 'hola@hotmail.com', '123456', 'sakdjkld', 12345678, '2015-06-01', 0, 1),
+(12, 33333333, 'fa', 'fa', 'f@f', '123456', 'fa', 76543232, '2015-06-10', 0, 1),
+(13, 11111111, 'aa', 'aa', 'a@a.com', '123456', 'a', 12345678, '2015-07-03', 0, 1),
+(15, 40293040, 'Rayado', 'Rayado', 'rayado@hotmail.com', '123456', 'calle 50 y 120', 394588585, '2015-07-10', 0, 1),
 (16, 37984506, 'Leandro', 'Prata', 'lean@hotmail.com', '123456', 'A.Korn', 393485960, '2015-07-12', 0, 0);
 
 --
@@ -205,7 +205,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-MODIFY `idCategoria` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+MODIFY `idCategoria` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `comentario`
 --
