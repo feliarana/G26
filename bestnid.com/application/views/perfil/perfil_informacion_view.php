@@ -15,19 +15,19 @@
 
 	</head>
 <div class="bs-example">
-			<?php foreach($query->result() as $row){}?>
+
 			<h2>Información del usuario</h2>
 		    <dl class="dl-horizontal">
 		        <dt>DNI</dt>
-		        <dd> <? echo $row->DNI; ?> </dd>
+		        <dd> <? echo $query->result()[0]->DNI; ?> </dd>
 		        <dt>Nombre</dt>
-		        <dd> <? echo $row->nombre; ?>  </dd>
+		        <dd> <? echo $query->result()[0]->nombre; ?>  </dd>
 		        <dt>Apellido</dt>
-		        <dd> <? echo $row->apellido; ?>  </dd>
+		        <dd> <? echo $query->result()[0]->apellido; ?>  </dd>
 		        <dt>Email</dt>
-		        <dd> <? echo $row->email; ?>  </dd>
+		        <dd> <? echo $query->result()[0]->email; ?>  </dd>
 		        <dt>Direccion</dt>
-		        <dd> <? echo $row->direccion; ?>  </dd>
+		        <dd> <? echo $query->result()[0]->direccion; ?>  </dd>
 		        <dt>Teléfono</dt>
-		        <dd> <? echo $row->telefono; ?>  </dd>
+		        <dd> <? echo $query->result()[0]->telefono; ?>  </dd>
 </html>
