@@ -96,39 +96,49 @@
 		 						<div class="row">
 		 						<div class="col-md-8">
 		 						</div>
-			 					<iframe src="<?= base_url(index_page().'/perfil/subastasVigentes') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
-									<p> Su navegador no soporta iframes </p>
-								</iframe>
+				 					<iframe src="<?= base_url(index_page().'/perfil/subastasVigentes') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
+									</iframe>
 								</div>
 			 		<?php
 		 						break;
+
 		 					case 'subastas_finalizadas':
 		 			?>
 		 						<div class="row">
 		 						<div class="col-md-8">
 		 						</div>
-			 					<iframe src="<?= base_url(index_page().'/perfil/subastasFinalizadas') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
-									<p> Su navegador no soporta iframes </p>
-								</iframe>
+				 					<iframe src="<?= base_url(index_page().'/perfil/subastasFinalizadas') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
+									</iframe>
 								</div>
 			 		<?php
 		 						break;
+
 		 					case 'misOfertas':
 		 			?>
 		 						<div class="row">
 		 						<div class="col-md-8">
 		 						</div>
-			 					<iframe src="<?= base_url(index_page().'/perfil/misOfertas') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
-									<p> Su navegador no soporta iframes </p>
-								</iframe>
+				 					<iframe src="<?= base_url(index_page().'/perfil/misOfertas') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
+									</iframe>
 								</div>
 			 		<?php
 		 						break;
+
+		 					case 'modificarDatosPersonales':
+		 			?>
+		 						<div class="row">
+		 						<div class="col-md-8">
+		 						</div>
+				 					<iframe src="<?= base_url(index_page().'/perfil/modificarDatosPersonales') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
+									</iframe>
+								</div>
+			 		<?php
+		 						break;
+
 		 					default:
 		 			?>
-			 					<iframe src="<?= base_url(index_page().'/perfil/informacion') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
-									<p> Su navegador no soporta iframes </p>
-								</iframe>
+				 					<iframe src="<?= base_url(index_page().'/perfil/informacion') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
+									</iframe>
 		 			<?php
 		 						break;
 		 				}
