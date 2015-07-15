@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-07-2015 a las 05:14:15
+-- Tiempo de generación: 15-07-2015 a las 06:09:44
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `fechaRegistro` date NOT NULL,
   `userAdmin` tinyint(1) NOT NULL,
   `activo` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -161,7 +161,10 @@ INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `passw
 (12, 33333333, 'fa', 'fa', 'f@f', '123456', 'fa', 76543232, '2015-06-10', 0, 1),
 (13, 11111111, 'aa', 'aa', 'a@a.com', '123456', 'a', 12345678, '2015-07-03', 0, 1),
 (15, 40293040, 'Rayado', 'Rayado', 'rayado@hotmail.com', '123456', 'calle 50 y 120', 394588585, '2015-07-10', 0, 1),
-(16, 37984506, 'Leandro', 'Prata', 'lean@hotmail.com', '123456', 'A.Korn', 393485960, '2015-07-12', 0, 0);
+(16, 37984506, 'Leandro', 'Prata', 'lean@hotmail.com', '123456', 'A.Korn', 393485960, '2015-07-12', 0, 0),
+(17, 30784991, 'Emiliano', 'Retamar', 'emiliano_retamar@hotmail.com', '111111', 'Guernica', 55555555, '2015-05-01', 1, 1),
+(18, 36029348, 'Felipe', 'Arana', 'felipearana10@hotmail.com', '111111', 'La Plata', 93847583, '2015-05-01', 1, 1),
+(19, 32858999, 'Gastón', 'Alvarez', 'gaston_alvarez@hotmail.com', '111111', 'La Plata Calle 60 entre 8 y 9', 82938596, '2015-05-01', 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -225,7 +228,7 @@ MODIFY `idSubasta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-MODIFY `idUsuario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+MODIFY `idUsuario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- Restricciones para tablas volcadas
 --
