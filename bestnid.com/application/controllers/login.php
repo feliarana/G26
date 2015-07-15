@@ -35,6 +35,7 @@ class Login extends CI_Controller {
 						'nombre' => $usuario[0]->nombre,
 						'apellido' => $usuario[0]->apellido,
 						'idUsuario' => $usuario[0]->idUsuario,
+						'userAdmin' => $usuario[0]->userAdmin,
 						'login' => true);
 					$this->session->set_userdata($user);
 					redirect(base_url(index_page().'/index'));

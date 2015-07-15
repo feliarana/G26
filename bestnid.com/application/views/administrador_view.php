@@ -22,7 +22,7 @@
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
-                        <a href""> Administrador </a>
+                        <a href="<?= base_url(index_page().'/administrador') ?>"> Administrador </a>
                     </li>
                     <li>
                         <a href="<?= base_url(index_page().'/administrador/consultar_usuarios') ?>"> Consultar usuarios registrados </a>
@@ -286,11 +286,19 @@
                     ?>
                             <div class="row">
                                 <div class="col-lg-12">
+                                    <p align="center">
+                                        <a href="<?= base_url(index_page().'/index') ?>">
+                                            <img src="<?= base_url('images/logo.png') ?>" title="Volver al inicio de Bestnid">
+                                        </a>
+                                    </p>
                                     <h2 align="center"> ¡Bienvenido a la sección administrador de Bestnid! </h2>
                                     <br>
                                     <br>
+                                    <br>
+                                    <br>
+                                    <br>
                                     <center>
-                                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Deslizar Menu</a>
                                     </center>
                                 </div>
                             </div>

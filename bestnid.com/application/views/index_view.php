@@ -23,6 +23,12 @@
 				<div class= "navbar-collapse navHeaderCollapse"> 
 					<a href="<?= base_url(index_page().'/categorias') ?>" class="navbar-brand"> Categorías </a> 
 					<a href="<?= base_url('images/enConstruccion.jpg') ?>" class="navbar-brand"> Ayuda </a>
+					<?php
+						if($this->session->userdata('userAdmin')) { ?>
+							<a href="<?= base_url(index_page().'/administrador') ?>" class="navbar-brand"> Administrador </a>
+					<?php
+						}
+					?>
 					<ul class="nav navbar-nav navbar-right">
 						<?php
 							if(isset($this->session->userdata['login'])) { ?>
