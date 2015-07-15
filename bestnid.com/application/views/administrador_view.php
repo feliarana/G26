@@ -65,7 +65,22 @@
                                                 <button type="button" class="btn btn-darkest"> Cancelar </button>
                                             </a>
                                         </center>
-                                    <?= form_close() ?> 
+                                    <?= form_close() ?>
+                                    <?php
+                                        if(isset($error)) { ?>
+                                            <script type="text/javascript">
+                                                alert('<?= $error ?>');
+                                            </script>
+                                    <?php
+                                        }
+                                    ?>
+                    <?php
+                                    break;
+                                case 'usuarios_registrados':
+                    ?>
+                                    <h3 align="center">
+                                        <?= 'Usuarios registrados entre el '.date('d-m-Y', strtotime($fecha1)).' y el '.date('d-m-Y', strtotime($fecha2)) ?>
+                                    </h3>
                     <?php
                                     break;
                                 case 'value': 
@@ -204,7 +219,7 @@
 		<!-- Se cargan las funciones javascript de Bootstrap -->
     	<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
 	</body>
-	<script>
+	<script type="text/javascript">
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");

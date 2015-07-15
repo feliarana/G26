@@ -23,7 +23,19 @@ class Administrador extends CI_Controller {
 	}
 
 	function usuarios_registrados() {
-
+		$datos['fecha1'] = $this->input->post('fecha1');
+		$datos['fecha2'] = $this->input->post('fecha2');
+		if($datos['fecha1'] <= $datos['fecha2']) {
+			$datos['opcion'] = 'usuarios_registrados';
+			$datos['usuariosRegistrados'] = $this->administrador_model->obtenerUsuariosRegistrados($datos['fecha1'], $datos['fecha2']);
+			$this->load->view('administrador_view', $datos);
+		}
+		else {
+			$datos['opcion'] = 'consultar_usuarios';
+			$datos['fechaActual'] = mdate('%Y-%m-%d');
+			$datos['error'] = 'Los datos ingresados son incorrectos. La primera fecha debe ser menor o igual a la segunda';
+			$this->load->view('administrador_view', $datos);
+		}
 	}
 
 	function consultar_subastas() {
