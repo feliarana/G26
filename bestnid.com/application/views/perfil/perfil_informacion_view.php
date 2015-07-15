@@ -15,18 +15,19 @@
 
 	</head>
 <div class="bs-example">
+			<?php foreach($query->result() as $row){}?>
 			<h2>Información del usuario</h2>
 		    <dl class="dl-horizontal">
 		        <dt>DNI</dt>
-		        <dd>The tree of elements encoded in the source document.</dd>
+		        <dd> <? echo $row->DNI; ?> </dd>
 		        <dt>Nombre</dt>
-		        <dd>An HTML user agent is any device that interprets HTML documents.</dd>
+		        <dd> <? echo $row->nombre; ?>  </dd>
 		        <dt>Apellido</dt>
-		        <dd>Client-side scripting generally refers to the category</dd>
+		        <dd> <? echo $row->apellido; ?>  </dd>
 		        <dt>Email</dt>
-		        <dd>The tree of elements encoded in the source document.</dd>
+		        <dd> <? echo $row->email; ?>  </dd>
 		        <dt>Direccion</dt>
-		        <dd>The tree of elements encoded in the source document.</dd>
+		        <dd> <? echo $row->direccion; ?>  </dd>
 		        <dt>Teléfono</dt>
-		        <dd>The tree of elements encoded in the source document.</dd>
+		        <dd> <? echo $row->telefono; ?>  </dd>
 </html>
