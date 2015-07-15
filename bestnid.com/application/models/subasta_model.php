@@ -27,6 +27,18 @@ class Subasta_model extends CI_Model {
 		$this->db->update('subasta', array('nombreSubasta' => $subasta['nombreSubasta'], 'descripcion' => $subasta['descripcion'], 'idCategoria' => $subasta['idCategoria'], 'nombreImagen' => $subasta['nombreImagen']));
 	}
 
+	function verificarSubastasGanadas($idUsuario) {
+		$this->db->where('ganador', $idUsuario);
+		$this->db->where('pagada', false);
+		$query = $this->db->get('subasta');
+		if($query->num_rows() > 0) {
+			return (true);
+		}
+		else {
+			return (false);
+		}
+	}
+
 	function agregarOferta($oferta) {
 		$this->db->insert('oferta', $oferta);
 	}

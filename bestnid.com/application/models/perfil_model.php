@@ -61,7 +61,7 @@ class Perfil_model extends CI_Model {
 			return (false);
 	}
 
-	function obtenerMisOfertas($idUsuario) { 	//Va a mostrar las ofertas del usuario que no hayan sido vencidas.
+	function obtenerMisOfertas($idUsuario) { 	// Va a mostrar las ofertas del usuario que no hayan sido vencidas.
 		$formato = "%Y-%m-%d";
 		$fechaActual = mdate($formato);
 		$this->db->from('oferta');

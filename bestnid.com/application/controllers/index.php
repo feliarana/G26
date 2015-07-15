@@ -7,10 +7,15 @@ class Index extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('date');
 		$this->load->library('session');
+		$this->load->model('subasta_model');
 		$this->load->model('listar_subastas_model');
 	}
 
 	function index() {
+		if(isset($this->session->userdata['login'])) {
+			$idUsuario = $this->session->userdata['idUsuario'];
+			$datos['ganador'] = $this->subasta_model->verificarSubastasGanadas($idUsuario);
+		}
 		$datos['subastas'] = $this->listar_subastas_model->obtenerSubastas(); // En $datos['subastas'] se guarda el resultado de la consulta que genera obtenerSubastas()
 		$this->load->view('index_view', $datos);
 	}

@@ -171,9 +171,41 @@
                                     </script>
                     <?php
                                     break;
-                                case 'value': 
+                                case 'consultar_subastas': 
                     ?>
-                                    Como
+                                    <h2 align="center">
+                                        Consultar subastas vendidas
+                                    </h2>
+                                    <h3 align="center">
+                                        Ingrese un rango de fechas
+                                    </h3>
+                                    <br>
+                                    <br>
+                                    <?= form_open('/administrador/subastas_vendidas') ?>
+                                        <div class="row">
+                                            <div class="col-md-4 col-md-offset-4">
+                                                <input type="date" name="fecha1" class="form-control" value="2015-05-01" min="2015-05-01" max="<?= $fechaActual ?>" required="required">
+                                                <br>
+                                                <input type="date" name="fecha2" class="form-control" value="<?= $fechaActual ?>" min="2015-05-01" max="<?= $fechaActual ?>" required="required">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <center>
+                                            <?= form_submit('', 'Consultar', "class='btn btn-darkest'") ?>
+                                            <a href="<?= base_url(index_page().'/administrador') ?>">
+                                                <button type="button" class="btn btn-darkest"> Cancelar </button>
+                                            </a>
+                                        </center>
+                                    <?= form_close() ?>
+                                    <?php
+                                        if(isset($error)) { ?>
+                                            <script type="text/javascript">
+                                                alert('<?= $error ?>');
+                                            </script>
+                                    <?php
+                                        }
+                                    ?>
                     <?php
                                     break;
                                 case 'crear_categoria': 

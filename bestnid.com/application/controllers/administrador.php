@@ -39,7 +39,9 @@ class Administrador extends CI_Controller {
 	}
 
 	function consultar_subastas() {
-
+		$datos['opcion'] = 'consultar_subastas';
+		$datos['fechaActual'] = mdate('%Y-%m-%d');
+		$this->load->view('administrador_view', $datos);
 	}
 
 	function subastas_vendidas() {
