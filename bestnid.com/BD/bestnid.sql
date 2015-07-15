@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-07-2015 a las 06:09:44
+-- Tiempo de generación: 15-07-2015 a las 07:30:58
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -115,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `subasta` (
   `fechaInicio` date NOT NULL,
   `fechaFin` date NOT NULL,
   `ganador` int(10) unsigned DEFAULT NULL,
+  `pagada` tinyint(1) NOT NULL,
   `nombreImagen` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
@@ -122,14 +123,14 @@ CREATE TABLE IF NOT EXISTS `subasta` (
 -- Volcado de datos para la tabla `subasta`
 --
 
-INSERT INTO `subasta` (`idSubasta`, `nombreSubasta`, `descripcion`, `idUsuario`, `idCategoria`, `fechaInicio`, `fechaFin`, `ganador`, `nombreImagen`) VALUES
-(20, 'Espejo', 'Espejo sin marco. Medidas: 0.8m x 1.2m', 5, 12, '2015-06-01', '2015-07-29', NULL, 'espejo.jpg'),
-(27, 'Casa con faro', 'Bonita casa con vista al mar y un faro muy luminoso para orientar barquitos', 12, 9, '2015-06-04', '2015-07-30', NULL, 'faro.jpg'),
-(35, 'Llave', 'Llave de aleación. Me la encontré en la vereda.', 12, 12, '2015-05-24', '2015-07-21', NULL, 'llave.jpg'),
-(37, 'Libro raro', 'No tiene nombre en la tapa. No entiendo que dicen los textos. Parece viejo.', 5, 7, '2015-05-17', '2015-07-30', NULL, 'libro.jpg'),
-(42, 'Taza de café', 'Taza de café con tetera', 1, 12, '2015-07-11', '2015-08-02', NULL, '13072015092955.jpg'),
-(43, 'Resumen de Org', 'Resumen Org', 1, 7, '2015-07-11', '2015-08-01', NULL, '11072015231153.jpg'),
-(44, 'Diseño UX', 'Experiencia de Usuario vs Diseño', 1, 3, '2015-07-14', '2015-08-01', NULL, '14072015103131.jpg');
+INSERT INTO `subasta` (`idSubasta`, `nombreSubasta`, `descripcion`, `idUsuario`, `idCategoria`, `fechaInicio`, `fechaFin`, `ganador`, `pagada`, `nombreImagen`) VALUES
+(20, 'Espejo', 'Espejo sin marco. Medidas: 0.8m x 1.2m', 5, 12, '2015-06-01', '2015-07-29', NULL, 0, 'espejo.jpg'),
+(27, 'Casa con faro', 'Bonita casa con vista al mar y un faro muy luminoso para orientar barquitos', 12, 9, '2015-06-04', '2015-07-30', NULL, 0, 'faro.jpg'),
+(35, 'Llave', 'Llave de aleación. Me la encontré en la vereda.', 12, 12, '2015-05-24', '2015-07-21', NULL, 0, 'llave.jpg'),
+(37, 'Libro raro', 'No tiene nombre en la tapa. No entiendo que dicen los textos. Parece viejo.', 5, 7, '2015-05-17', '2015-07-30', NULL, 0, 'libro.jpg'),
+(42, 'Taza de café', 'Taza de café con tetera', 1, 12, '2015-07-11', '2015-08-02', NULL, 0, '13072015092955.jpg'),
+(43, 'Resumen de Org', 'Resumen Org', 1, 7, '2015-07-11', '2015-08-01', NULL, 0, '11072015231153.jpg'),
+(44, 'Diseño UX', 'Experiencia de Usuario vs Diseño', 1, 3, '2015-07-14', '2015-08-01', NULL, 0, '14072015103131.jpg');
 
 -- --------------------------------------------------------
 
