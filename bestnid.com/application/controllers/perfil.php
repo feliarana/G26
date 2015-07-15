@@ -51,6 +51,7 @@ class Perfil extends CI_Controller {
         $idUsuario= $this->input->get('idUsuario');
         $idSubasta= $this->input->get('idSubasta'); 
         $this->perfil_model->elegirGanador($idSubasta, $idUsuario);
+        $this->subastasFinalizadas();
     }
 
     function desactivarCuenta() {

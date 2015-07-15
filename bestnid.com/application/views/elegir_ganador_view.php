@@ -55,7 +55,7 @@
         //Aca se llama al controlador elegir ganador, enviandole el id de la subasta y el id del usuario elegido como ganador... luego hace un popup y redirecciona
         window.location.href = "<?php echo base_url(index_page().'/perfil/elegirGanador?idSubasta='.$oferta->idSubasta.'&idUsuario='.$oferta->idUsuario) ?>"; 
         alert("Ganador elegido con exito!");
-        window.location.href = "<?php echo base_url(index_page().'/perfil/subastasFinalizadas') ?>";
+
     }   
 </script>
         <!-- Configuracion de la dataTable -->
