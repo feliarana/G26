@@ -208,6 +208,98 @@
                                     ?>
                     <?php
                                     break;
+                                case 'subastas_vendidas':
+                    ?>                 
+                                    <h3 align="center">
+                                        <?= 'Subastas vendidas entre el '.date('d-m-Y', strtotime($fecha1)).' y el '.date('d-m-Y', strtotime($fecha2)) ?>
+                                    </h3>
+                                    <br>
+                                    <h4 align="center">
+                                        <?php
+                                            $gananciaTotal = 0;
+                                            foreach($ganadores as $ganador) {
+                                                $gananciaTotal += 30 * $ganador->monto / 100;
+                                            }
+                                            echo 'La ganancia total de bestnid entre estas fechas es: $'.$gananciaTotal;
+                                        ?>
+                                    </h4>
+                                    <br>
+                                    <br>
+                                    <!-- Se carga la libreria dataTables -->
+                                    <script src="<?= base_url('js/jquery.dataTables.min.js') ?>" type="text/javascript" charset="utf8"></script>
+                                    <table cellpadding="0" cellspacing="0" border="0" class="display" id="tablaSubastas">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre de la Subasta</th>
+                                                <th>Subastador</th>
+                                                <th>Ganador</th>
+                                                <th>Ganancia de Bestnid</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                                if($subastadores && $ganadores) {
+                                                    for($i = 0; $i < count($subastadores); $i++) { ?>
+                                                        <tr class="gradeX">
+                                                            <td>
+                                                                <center>
+                                                                    <?= $subastadores[$i]->nombreSubasta ?>
+                                                                </center>
+                                                            </td>
+                                                            <td>
+                                                                <center>
+                                                                    <?= $subastadores[$i]->nombre.' '.$subastadores[$i]->apellido ?>    
+                                                                </center>
+                                                            </td>
+                                                            <td> 
+                                                                <center>
+                                                                    <?= $ganadores[$i]->nombre.' '.$ganadores[$i]->apellido ?>
+                                                                </center>
+                                                            </td>
+                                                            <td>
+                                                                <center>
+                                                                    <?= '$'. 30 * $ganadores[$i]->monto / 100 ?>
+                                                                </center>
+                                                            </td>
+                                                        </tr>
+                                            <?php
+                                                    }
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                    <!-- Configuracion de la dataTable -->
+                                    <script type="text/javascript" charset="utf-8">
+                                        $(document).ready(function() {
+                                            $('#tablaSubastas').dataTable( {
+                                                "aaSorting":[],
+                                                "aoColumnDefs":[ { 'bSortable': false } ],
+                                                "language": {
+                                                    "search": "Buscar",
+                                                    "lengthMenu": "Mostrar _MENU_ subastas por página",
+                                                    "zeroRecords": "No se han encontrado subastas",
+                                                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                                                    "infoEmpty": "No hay registros disponibles",
+                                                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                    "loadingRecords": "Cargando",
+                                                    "processing":     "Procesando",
+                                                    "zeroRecords":    "No hay subastas coincidentes encontradas",
+                                                    "paginate": {
+                                                        "first":      "Primero",
+                                                        "last":       "Ultimo",
+                                                        "next":       "Siguiente",
+                                                        "previous":   "Anterior"
+                                                    },
+                                                    "aria": {
+                                                        "sortAscending":  ": activar para ordenar columna de forma ascendente",
+                                                        "sortDescending": ": activar para ordenar columna de forma descendente"
+                                                    }
+                                                }
+                                            } );
+                                        } );
+                                    </script>
+                    <?php
+                                    break;
                                 case 'crear_categoria': 
                     ?>
                                     <h2 align="center">

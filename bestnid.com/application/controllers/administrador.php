@@ -45,7 +45,20 @@ class Administrador extends CI_Controller {
 	}
 
 	function subastas_vendidas() {
-
+		$datos['fecha1'] = $this->input->post('fecha1');
+		$datos['fecha2'] = $this->input->post('fecha2');
+		if($datos['fecha1'] <= $datos['fecha2']) {
+			$datos['opcion'] = 'subastas_vendidas';
+			$datos['subastadores'] = $this->administrador_model->obtenerSubastasVendidas($datos['fecha1'], $datos['fecha2']);
+			$datos['ganadores'] = $this->administrador_model->obtenerOfertasGanadoras($datos['fecha1'], $datos['fecha2']);
+			$this->load->view('administrador_view', $datos);
+		}
+		else {
+			$datos['opcion'] = 'consultar_subastas';
+			$datos['fechaActual'] = mdate('%Y-%m-%d');
+			$datos['error'] = 'Los datos ingresados son incorrectos. La primera fecha debe ser menor o igual a la segunda';
+			$this->load->view('administrador_view', $datos);
+		}
 	}
 
 	function crear_categoria() {
