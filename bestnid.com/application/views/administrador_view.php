@@ -39,9 +39,33 @@
                     <?php
                         if(isset($opcion)) { // Si existe la variable opcion
                             switch($opcion) { // Verifica que opcion se eligio y carga la vista correspondiente
-                                case 'value': 
+                                case 'consultar_usuarios': 
                     ?>
-                                    Hola
+                                    <h2 align="center">
+                                        Consultar usuarios registrados
+                                    </h2>
+                                    <h3 align="center">
+                                        Ingrese un rango de fechas
+                                    </h3>
+                                    <br>
+                                    <br>
+                                    <?= form_open('/administrador/usuarios_registrados') ?>
+                                        <div class="row">
+                                            <div class="col-md-4 col-md-offset-4">
+                                                <input type="date" name="fecha1" class="form-control" value="2015-03-01" min="2015-03-01" max="<?= $fechaActual ?>" required="required">
+                                                <br>
+                                                <input type="date" name="fecha2" class="form-control" value="<?= $fechaActual ?>" min="2015-03-01" max="<?= $fechaActual ?>" required="required">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <center>
+                                            <?= form_submit('', 'Consultar', "class='btn btn-darkest'") ?>
+                                            <a href="<?= base_url(index_page().'/administrador') ?>">
+                                                <button type="button" class="btn btn-darkest"> Cancelar </button>
+                                            </a>
+                                        </center>
+                                    <?= form_close() ?> 
                     <?php
                                     break;
                                 case 'value': 

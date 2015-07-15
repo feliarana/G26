@@ -17,10 +17,20 @@ class Administrador extends CI_Controller {
 	}
 
 	function consultar_usuarios() {
+		$datos['opcion'] = 'consultar_usuarios';
+		$datos['fechaActual'] = mdate('%Y-%m-%d');
+		$this->load->view('administrador_view', $datos);
+	}
+
+	function usuarios_registrados() {
 
 	}
 
 	function consultar_subastas() {
+
+	}
+
+	function subastas_vendidas() {
 
 	}
 
