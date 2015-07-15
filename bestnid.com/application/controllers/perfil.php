@@ -13,7 +13,7 @@ class Perfil extends CI_Controller {
 
     function index() { 
         $idUsuario = $this->session->userdata('idUsuario');
-        $datos['subastasPublicadas'] = $this->perfil_model->obtenerSubastasPublicadas($idUsuario); // Retorna las subastas publicadas vigentes del usuario actualmente logueado
+        $datos['subastasPublicadas'] = $this->perfil_model->obtenerSubastasVigentes($idUsuario); // Retorna las subastas publicadas vigentes del usuario actualmente logueado
         $datos['subastasOfertadas'] =  $this->perfil_model->obtenerSubastasOfertadas($idUsuario); // Retorna las subastas vigentes con la oferta correspondiente del usuario actualmente logueado
         $this->load->view('perfil_view', $datos);
     }
@@ -22,14 +22,29 @@ class Perfil extends CI_Controller {
         $this->load->view('perfil/perfil_informacion_view');
     }
 
-    function subastasPublicadas() { 
+    function subastasVigentes() { 
         $idUsuario = $this->session->userdata('idUsuario');
-        $datos['subastas'] = $this->perfil_model->obtenerSubastasPublicadas($idUsuario);
+        $datos['subastas'] = $this->perfil_model->obtenerSubastasVigentes($idUsuario);
         $this->load->view('perfil/perfil_subastas_publicadas_view', $datos);
     }
 
-    function ofertasPublicadas() { 
-        $this->load->view('perfil/perfil_ofertas_publicadas_view');
+    function subastasFinalizadas() { //Este es para el elegir ganador
+        $idUsuario = $this->session->userdata('idUsuario');
+        $datos['subastas'] = $this->perfil_model->obtenerSubastasFinalizadas($idUsuario);
+        $this->load->view('perfil/perfil_subastas_finalizadas_view', $datos);
+    }
+
+
+    function obtenerOfertas($idSubasta) { //Este es para el elegir ganador
+        $idUsuario = $this->session->userdata('idUsuario');
+        $datos['subastas'] = $this->perfil_model->obtenerSubastasFinalizadas($idUsuario);
+        $this->load->view('perfil/perfil_subastas_finalizadas_view', $datos);
+    }
+
+    function misOfertas() { 
+        $idUsuario = $this->session->userdata('idUsuario');
+        $datos['ofertas'] = $this->perfil_model->obtenerMisOfertas($idUsuario);
+        $this->load->view('perfil/mis_ofertas_view', $datos);
     }
 
     function desactivarCuenta() {

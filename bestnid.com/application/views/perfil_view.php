@@ -55,14 +55,17 @@
 		  			<!-- INICIO Elegant Accordion Menu -->
 					<div id='cssmenu'>
 						<ul>
-				   			<li class='active'>
+				   			<li class=''>
 				   				<a href="<?= base_url(index_page().'/perfil?opcion=informacion') ?>"><span> Información </span></a>
 				   			</li>
-				   			<li class='has-sub'><a href='#'><span> Subastas </span></a>
+				   			<li class='has-sub'><a href='#'><span> Mis subastas </span></a>
 				      			<ul>
-				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=subastas_publicadas') ?>'><span> --> Publicadas </span></a></li>
-				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=subastas_ofertadas') ?>'><span> --> Ofertadas </span></a></li>
+				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=subastas_vigentes') ?>'><span> --> Vigentes </span></a></li>
+				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=subastas_finalizadas') ?>'><span> --> Finalizadas </span></a></li>
 				      			</ul>
+				   			</li>
+				   			<li class=''>
+				   				<a href="<?= base_url(index_page().'/perfil?opcion=misOfertas') ?>"><span> Mis ofertas </span></a>
 				   			</li>
 				   			<li class='has-sub'><a href='#'><span> Cuenta </span></a>
 				      			<ul>
@@ -88,20 +91,37 @@
 					<?php 
 						$accion = $this->input->get('opcion'); 
 						switch ($accion) {
-		 					case 'subastas_publicadas':
+		 					case 'subastas_vigentes':
 		 			?>
 		 						<div class="row">
 		 						<div class="col-md-8">
 		 						</div>
-			 					<iframe src="<?= base_url(index_page().'/perfil/subastasPublicadas') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
+			 					<iframe src="<?= base_url(index_page().'/perfil/subastasVigentes') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
 									<p> Su navegador no soporta iframes </p>
 								</iframe>
 								</div>
 			 		<?php
 		 						break;
-		 					case 'subastas_ofertadas':
+		 					case 'subastas_finalizadas':
 		 			?>
-		 						<!-- Código -->
+		 						<div class="row">
+		 						<div class="col-md-8">
+		 						</div>
+			 					<iframe src="<?= base_url(index_page().'/perfil/subastasFinalizadas') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
+									<p> Su navegador no soporta iframes </p>
+								</iframe>
+								</div>
+			 		<?php
+		 						break;
+		 					case 'misOfertas':
+		 			?>
+		 						<div class="row">
+		 						<div class="col-md-8">
+		 						</div>
+			 					<iframe src="<?= base_url(index_page().'/perfil/misOfertas') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
+									<p> Su navegador no soporta iframes </p>
+								</iframe>
+								</div>
 			 		<?php
 		 						break;
 		 					default:
