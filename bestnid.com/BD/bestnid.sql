@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-07-2015 a las 07:30:58
+-- Tiempo de generación: 15-07-2015 a las 12:53:49
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `oferta` (
   `idUsuario` int(11) unsigned NOT NULL,
   `idSubasta` int(11) unsigned NOT NULL,
   `monto` bigint(20) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `oferta`
@@ -98,7 +98,9 @@ CREATE TABLE IF NOT EXISTS `oferta` (
 INSERT INTO `oferta` (`idOferta`, `argumento`, `idUsuario`, `idSubasta`, `monto`) VALUES
 (3, 'Lo quiero para leerlo', 1, 37, 500),
 (5, 'La quiero para mi auto', 1, 35, 50),
-(8, 'La quiero para vivir', 1, 27, 500000);
+(8, 'La quiero para vivir', 1, 27, 500000),
+(9, 'Lo quiero para que conseguir que la gente use WeGo', 5, 44, 10000),
+(10, 'Lo quiero para aprobar Organizacion de Computadoras', 5, 43, 200);
 
 -- --------------------------------------------------------
 
@@ -129,8 +131,8 @@ INSERT INTO `subasta` (`idSubasta`, `nombreSubasta`, `descripcion`, `idUsuario`,
 (35, 'Llave', 'Llave de aleación. Me la encontré en la vereda.', 12, 12, '2015-05-24', '2015-07-21', NULL, 0, 'llave.jpg'),
 (37, 'Libro raro', 'No tiene nombre en la tapa. No entiendo que dicen los textos. Parece viejo.', 5, 7, '2015-05-17', '2015-07-30', NULL, 0, 'libro.jpg'),
 (42, 'Taza de café', 'Taza de café con tetera', 1, 12, '2015-07-11', '2015-08-02', NULL, 0, '13072015092955.jpg'),
-(43, 'Resumen de Org', 'Resumen Org', 1, 7, '2015-07-11', '2015-08-01', NULL, 0, '11072015231153.jpg'),
-(44, 'Diseño UX', 'Experiencia de Usuario vs Diseño', 1, 3, '2015-07-14', '2015-08-01', NULL, 0, '14072015103131.jpg');
+(43, 'Resumen de Org', 'Resumen Org', 1, 7, '2015-07-11', '2015-08-01', 5, 1, '11072015231153.jpg'),
+(44, 'Diseño UX', 'Experiencia de Usuario vs Diseño', 1, 3, '2015-07-14', '2015-07-01', 5, 1, '14072015103131.jpg');
 
 -- --------------------------------------------------------
 
@@ -219,7 +221,7 @@ MODIFY `idComentario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40
 -- AUTO_INCREMENT de la tabla `oferta`
 --
 ALTER TABLE `oferta`
-MODIFY `idOferta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `idOferta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `subasta`
 --
