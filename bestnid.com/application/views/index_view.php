@@ -145,11 +145,13 @@
     	<!-- Este archivo le da estilo introduciendole bootstrap a la libreria dataTables mediante javascript -->
     	<script src="<?= base_url('js/dataTables.bootstrap.min.js') ?>" type="text/javascript" charset="utf8"></script>
 		<?php
-			if($ganador) { ?>
-				<script type="text/javascript">
-					alert('¡Felicitaciones usted tiene subastas ganadas!');
-				</script>
+			if(isset($ganador)) {
+				if($ganador) { ?>
+					<script type="text/javascript">
+						alert('¡Felicitaciones usted tiene subastas ganadas!');
+					</script>
 		<?php
+				}
 			}
 		?>
 	</body>
