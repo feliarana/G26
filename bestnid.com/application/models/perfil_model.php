@@ -85,8 +85,6 @@ class Perfil_model extends CI_Model {
 	}
 
 	function obtenerOfertasPendientes($idUsuario) { // Trae todas las ofertas del usuario y en la vista se cargan solo las que no tengan ganador (pueden estar vigentes, o finalizadas esperando a que se seleccione un ganador)
-		$formato = "%Y-%m-%d";
-		$fechaActual = mdate($formato);
 		$this->db->from('subasta');
 		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
 		$this->db->where('oferta.idUsuario', $idUsuario);
@@ -99,13 +97,29 @@ class Perfil_model extends CI_Model {
 	}
 
 	function obtenerOfertasGanadas($idUsuario) { // Trae las subastas ganadas por el usuario con su respectiva oferta y su subastador
-		$formato = "%Y-%m-%d";
-		$fechaActual = mdate($formato);
+		$fechaActual = mdate("%Y-%m-%d");
 		$this->db->from('subasta');
 		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
 		$this->db->join('usuario', 'subasta.idUsuario = usuario.idUsuario');
 		$this->db->where('oferta.idUsuario', $idUsuario);
 		$this->db->where('subasta.ganador', $idUsuario);
+		$this->db->where('subasta.fechaFin <=', $fechaActual);
+		$this->db->order_by('subasta.fechaFin', 'desc');
+		$query = $this->db->get();
+		if($query->num_rows() > 0)
+			return ($query);
+		else
+			return (false);
+	}
+
+	function obtenerOfertasPerdidas($idUsuario) { // Trae las subastas perdidas por el usuario con su respectiva oferta
+		$fechaActual = mdate("%Y-%m-%d");
+		$this->db->from('subasta');
+		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
+		$this->db->where('oferta.idUsuario', $idUsuario);
+		$this->db->where('subasta.ganador <>', 'NULL');
+		$this->db->where('subasta.ganador <>', $idUsuario);
+		$this->db->where('subasta.fechaFin <=', $fechaActual);
 		$this->db->order_by('subasta.fechaFin', 'desc');
 		$query = $this->db->get();
 		if($query->num_rows() > 0)

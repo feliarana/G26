@@ -68,6 +68,13 @@ class Perfil extends CI_Controller {
         $this->load->view('perfil_view', $datos);
     }
 
+    function ofertas_perdidas() {
+        $datos['opcion'] = 'ofertas_perdidas';
+        $idUsuario = $this->session->userdata('idUsuario');
+        $datos['ofertasPerdidas'] = $this->perfil_model->obtenerOfertasPerdidas($idUsuario);
+        $this->load->view('perfil_view', $datos);
+    }
+
     function desactivarCuenta() {
         $idUsuario = $this->session->userdata('idUsuario');
         $this->perfil_model->desactivarCuenta($idUsuario);
@@ -75,12 +82,6 @@ class Perfil extends CI_Controller {
     }
 
     // Dehhhhh
-
-     function misOfertas() {
-        $idUsuario = $this->session->userdata('idUsuario');
-        $datos['ofertas'] = $datos['subastasOfertadas'] = $this->perfil_model->obtenerSubastasOfertadas($idUsuario); // Retorna las subastas vigentes con la oferta correspondiente del usuario actualmente logueado
-        $this->load->view('perfil/mis_ofertas_view', $datos);
-    }
 
     function verificar_tarjeta() {
 

@@ -54,9 +54,9 @@
 				   				</li>
 				   				<li class='has-sub'><a href="#"><span> Mis ofertas </span></a>
                                     <ul>
-                                        <li><a href="<?= base_url(index_page().'/perfil/ofertas_pendientes') ?>"<span> --> Pendientes </span></a></li>
-                                        <li><a href="<?= base_url(index_page().'/perfil/ofertas_ganadas') ?>"<span> --> Ganadas </span></a></li>
-                                        <li><a href="<?= base_url(index_page().'/perfil/ofertas_perdidas') ?>"<span> --> Perdidas </span></a></li>
+                                        <li><a href="<?= base_url(index_page().'/perfil/ofertas_pendientes') ?>"><span> --> Pendientes </span></a></li>
+                                        <li><a href="<?= base_url(index_page().'/perfil/ofertas_ganadas') ?>"><span> --> Ganadas </span></a></li>
+                                        <li><a href="<?= base_url(index_page().'/perfil/ofertas_perdidas') ?>"><span> --> Perdidas </span></a></li>
                                     </ul>
                                 </li>
 				   				<li class='has-sub'><a href="#"><span> Cuenta </span></a>
@@ -542,7 +542,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </tr>
-                                                            <?php
+                                                        <?php
                                                                 }
                                                             }
                                                         ?>
@@ -582,17 +582,83 @@
 		 									    break;
                                             case 'ofertas_perdidas':
                                 ?>
-                                                algo
+                                                <h3 align="center">
+                                                    Ofertas Perdidas
+                                                </h3>
+                                                <br>
+                                                <br>
+                                                <!-- Se carga la libreria dataTables -->
+                                                <script src="<?= base_url('js/jquery.dataTables.min.js') ?>" type="text/javascript" charset="utf8"></script>
+                                                <table cellpadding="0" cellspacing="0" border="0" class="display" id="tablaSubastas">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Subasta</th>
+                                                            <th>Argumento de la Oferta</th>
+                                                            <th>Monto</th>
+                                                            <th>Estado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                            if($ofertasPerdidas) {
+                                                                foreach($ofertasPerdidas->result() as $oferta) { ?>
+                                                                    <tr class="gradeX">
+                                                                        <td>
+                                                                            <?= $oferta->nombreSubasta ?>
+                                                                        </td>
+                                                                        <td>
+                                                                            <center>
+                                                                                <?= $oferta->argumento ?>
+                                                                            </center>
+                                                                        </td>
+                                                                        <td> 
+                                                                            <center> <?= $oferta->monto ?> </center>
+                                                                        </td>
+                                                                        <td>
+                                                                            <center> Perdida </center>
+                                                                        </td>
+                                                                    </tr>
+                                                        <?php
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                                <!-- Configuracion de la dataTable -->
+                                                <script type="text/javascript" charset="utf-8">
+                                                    $(document).ready(function() {
+                                                        $('#tablaSubastas').dataTable( {
+                                                            "aaSorting":[],
+                                                            "aoColumnDefs":[ { 'bSortable': false } ],
+                                                            "language": {
+                                                                "search": "Buscar",
+                                                                "lengthMenu": "Mostrar _MENU_ subastas por página",
+                                                                "zeroRecords": "No se han encontrado subastas",
+                                                                "info": "Mostrando página _PAGE_ de _PAGES_",
+                                                                "infoEmpty": "No hay registros disponibles",
+                                                                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                                "loadingRecords": "Cargando",
+                                                                "processing":     "Procesando",
+                                                                "zeroRecords":    "No hay subastas coincidentes encontradas",
+                                                                "paginate": {
+                                                                    "first":      "Primero",
+                                                                    "last":       "Ultimo",
+                                                                    "next":       "Siguiente",
+                                                                    "previous":   "Anterior"
+                                                                },
+                                                                "aria": {
+                                                                    "sortAscending":  ": activar para ordenar columna de forma ascendente",
+                                                                    "sortDescending": ": activar para ordenar columna de forma descendente"
+                                                                }
+                                                            }
+                                                        } );
+                                                    } );
+                                                </script>
                                 <?php
                                                 break;
                                             case 'modificar_datos_personales':
 		 						?>
-		 										<div class="row">
-		 											<div class="col-md-8">
-		 											</div>
-				 									<iframe src="<?= base_url(index_page().'/perfil/modificarDatosPersonales') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
-													</iframe>
-												</div>
+		 										
 			 					<?php
 		 										break;
                                             case 'elegir_ganador':
