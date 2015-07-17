@@ -52,7 +52,7 @@ class Crear_subasta extends CI_Controller {
 		else {
 			print "<script type=\"text/javascript\">alert('Archivo inválido. Por favor, seleccione una imagen.');</script>"; 
 			$datos['categorias'] = $this->categorias_model->obtenerCategorias();
-        	$this->load->view('crear_subasta_view', $datos);
+			$this->load->view('crear_subasta_view', $datos);
 
 		}
 	}
