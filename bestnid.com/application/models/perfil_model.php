@@ -107,6 +107,7 @@ class Perfil_model extends CI_Model {
 		$this->db->from('subasta');
 		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
 		$this->db->where('oferta.idUsuario', $idUsuario);
+		//$this->db->where('ganador', 'NULL');
 		$this->db->order_by('subasta.fechaFin', 'asc');
 		$query = $this->db->get();
 		if($query->num_rows() > 0)

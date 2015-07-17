@@ -73,7 +73,7 @@
 					<p align="center">
 						<?= form_label('Seleccione una imagen') ?>
 					</p>
-					<input type="file" name="userfile" id="upload" size="20" />
+					<input type="file" name="userfile" id="upload" size="20" accept=".jpg,.jpeg,.gif,.png"/>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -127,10 +127,10 @@
 				alert('No ha elegido ninguna imagen para la subasta');
 				return false;
 			}
-			else {
+			/*else {
 				alert('¡Subasta modificada exitosamente!');
 				return true;
-			}
+			}*/
 		}
 	</script>
 </html>

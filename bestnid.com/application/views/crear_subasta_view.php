@@ -13,35 +13,25 @@
 				<img src="<?= base_url('images/logo.png') ?>" title="Volver al inicio de Bestnid">
 			</a>
 		</p>
-
-		<?php
-			if(isset($datos_error)) { ?>
-				<h4>
-					<p align="center">
-						<font color="red"> <?= $datos_error ?> </font>
-					</p>
-				</h4>
-		<?php
-			}
-		?>
-
 		<!-- form_open_multipart es para la carga de archivos -->
-		<?= form_open_multipart('crear_subasta/agregarSubasta') ?>
+		<?= form_open_multipart('crear_subasta/agregarSubasta', "onSubmit='return(crear_subasta());'") ?>
 		<?php
 			$nombreSubasta = array(
 				'name' => 'nombreSubasta',
+				'value' => @set_value('nombreSubasta'),
 				'class' => 'form-control',
 	 			'placeholder' => 'Ingrese el nombre del producto',
 	 			'required' => 'required',
-	 			'pattern' => '.{3,30}$',
+	 			'pattern' => '.{3,30}',
 	 			'title' => 'Por favor, ingrese un mínimo de 3 caractéres. Maximo 30.'
 			);
 			$descripcion = array(
 				'name' => 'descripcion',
+				'value' => @set_value('descripcion'),
 				'class' => 'form-control',
 	 			'placeholder' => 'Ingrese la descripción del producto',
 	 			'required' => 'required',
-	 			'pattern' => '.{5,250}$',
+	 			'pattern' => '.{5,250}',
 	 			'title' => 'Por favor, ingrese un mínimo de 5 caractéres. Maximo 250.'
 			);
 		?>
@@ -164,5 +154,17 @@
 		</div>
 		<?= form_close() ?>
 	</body>
-	
+	<script type="text/javascript">
+		function crear_subasta() {
+			var archivo = document.getElementById('upload').value;
+			if(archivo == null || archivo == "") {
+				alert('No ha elegido ninguna imagen para la subasta');
+				return false;
+			}
+			/*else {
+				alert('¡Subasta publicada con éxito!');
+				return true;
+			}*/
+		}
+	</script>
 </html>

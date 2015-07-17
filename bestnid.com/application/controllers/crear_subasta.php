@@ -10,8 +10,6 @@ class Crear_subasta extends CI_Controller {
         $this->load->library('session');
         $this->load->model('categorias_model');
         $this->load->model('subasta_model');
-        $this->load->library('javascript');
-        $this->load->model('listar_subastas_model');
     }
 
     function index() {
@@ -19,7 +17,7 @@ class Crear_subasta extends CI_Controller {
         $this->load->view('crear_subasta_view', $datos);
     }
 
-    function agregarSubasta() {
+	function agregarSubasta() {
     	$formato = '%Y-%m-%d';
     	$fechaActual = mdate($formato);
     	$cantDias = $this->input->post('cantDias');
@@ -41,25 +39,19 @@ class Crear_subasta extends CI_Controller {
 		$config['max_width']  = '5000';
 		$config['max_height']  = '5000';
 		$config['file_name']  = $nombreImagen;
-		
 		$this->load->library('upload', $config);
-
 		if($this->upload->do_upload()) {
 			$datos['nombreImagen'] = $nombreImagen;
 			$this->subasta_model->agregarSubasta($datos);
-			print "<script type=\"text/javascript\">alert('Subasta cargada con exito!');</script>"; 
-			$datos['subastas'] = $this->listar_subastas_model->obtenerSubastas(); 
-			$this->load->view('index_view', $datos);
+			$this->session->set_userdata(array('subastaCreada' => true));
+			redirect(base_url(index_page().'/index'));
 		}
 		else {
-			print "<script type=\"text/javascript\">alert('Archivo inválido. Por favor, seleccione una imagen.');</script>"; 
+			print "<script type=\"text/javascript\">alert('Archivo inválido. Por favor, seleccione una imagen');</script>"; 
 			$datos['categorias'] = $this->categorias_model->obtenerCategorias();
 			$this->load->view('crear_subasta_view', $datos);
-
 		}
 	}
-
-
 
 }
 

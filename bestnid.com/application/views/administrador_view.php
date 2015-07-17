@@ -307,10 +307,11 @@
                                     </h2>
                                     <br>
                                     <br>
-                                    <?= form_open_multipart('administrador/agregarCategoria') ?>
+                                    <?= form_open_multipart('administrador/agregarCategoria', "onSubmit='return(crear_categoria());'") ?>
                                         <?php
                                             $nombreCategoria = array(
                                                 'name' => 'nombreCategoria',
+                                                'value' => @set_value('nombreCategoria'),
                                                 'class' => 'form-control',
                                                 'placeholder' => 'Nombre de la categoría',
                                                 'required' => 'required',
@@ -427,6 +428,13 @@
                                 </div>
                             </div>
                     <?php
+                            if(isset($this->session->userdata['categoriaCreada'])) { ?>
+                                <script type="text/javascript">
+                                    alert('¡Categoría creada con éxito!');
+                                </script>
+                    <?php
+                                $this->session->unset_userdata('categoriaCreada');
+                            }
                         }
                     ?>
                 </div>
@@ -443,6 +451,18 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+
+        function crear_categoria() {
+            var archivo = document.getElementById('upload').value;
+            if(archivo == null || archivo == "") {
+                alert('No ha elegido ninguna imagen para la categoría');
+                return false;
+            }
+            /*else {
+                alert('¡Categoría creada con éxito!');
+                return true;
+            }*/
+        }
 
         function eliminar_categoria() {
             if(confirm('¿Esta seguro que desea eliminar la categoría?') == true) {

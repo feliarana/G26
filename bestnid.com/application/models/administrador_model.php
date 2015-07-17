@@ -52,22 +52,19 @@ class Administrador_model extends CI_Model {
 		}
 	}
 
-	function agregarCategoria($categoria) {
-		$this->db->insert('categoria', $categoria);
-	}
-
-	function obtenerCategoriaPorNombre($categoria) {
-		//Consulta para que no se repitan los nombres de las categorias
-		$this->db->from('categoria');
-		$this->db->where('nombreCategoria', $categoria['nombreCategoria']);
-		$query = $this->db->get();
-
+	function verificarNombreCategoria($nombreCategoria) {
+		$this->db->where('nombreCategoria', $nombreCategoria);
+		$query = $this->db->get('categoria');
 		if($query->num_rows() == 0) {
 			return (true);
 		}
 		else {
 			return (false);
 		}
+	}
+
+	function agregarCategoria($categoria) {
+		$this->db->insert('categoria', $categoria);
 	}
 
 	function eliminarCategoria($idCategoria) {

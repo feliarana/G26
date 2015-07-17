@@ -96,15 +96,16 @@ class Subasta extends CI_Controller {
 		$config['file_name']  = $nombreImagen;
 		$this->load->library('upload', $config);
 		if($this->upload->do_upload()) {
-			// Esto es para que dos imagenes cargadas no tengan el mismo nombre
 			$subasta['nombreImagen'] = $nombreImagen;
 			$this->subasta_model->modificarSubasta($subasta);
+			$this->session->set_userdata(array('subastaModificada' => true));
     		redirect(base_url(index_page().'/index'));
 		}
 		else {
-			$error = array('error' => $this->upload->display_errors());
-			var_dump($error);
-			return ($error);
+			print "<script type=\"text/javascript\">alert('Archivo inválido. Por favor, seleccione una imagen');</script>"; 
+			$datos['subasta'] = $this->subasta_model->obtenerSubastaPorId($subasta['idSubasta']);
+			$datos['categorias'] = $this->categorias_model->obtenerCategorias();
+			$this->load->view('modificar_subasta_view', $datos);
 		}
 	}
 

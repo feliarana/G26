@@ -13,10 +13,7 @@ class Administrador extends CI_Controller {
 	}
 
 	function index() {
-		if ($this->session->userdata('userAdmin'))
-			$this->load->view('administrador_view');
-		else
-			redirect(base_url(index_page().'/index'));	
+		$this->load->view('administrador_view');
 	}
 
 	function consultar_usuarios() {
@@ -79,14 +76,14 @@ class Administrador extends CI_Controller {
 		$config['max_height']  = '5000';
 		$config['file_name']  = $datos['nombreImagen'];
 		$this->load->library('upload', $config);
-
-		if($this->administrador_model->obtenerCategoriaPorNombre($datos) && $this->upload->do_upload()) {
+		$existeNombreCategoria = $this->administrador_model->verificarNombreCategoria($datos['nombreCategoria']);
+		if($existeNombreCategoria && $this->upload->do_upload()) {
 			$this->administrador_model->agregarCategoria($datos);
-			print "<script type=\"text/javascript\">alert('Categoria agregada con exito!');</script>"; 
-    		$this->load->view('administrador_view');
+			$this->session->set_userdata(array('categoriaCreada' => true));
+			redirect(base_url(index_page().'/administrador'));
 		}
 		else {
-			print "<script type=\"text/javascript\">alert('Nombre de categoría o archivo no permitido. Por favor, elija uno válido.');</script>"; 
+			print "<script type=\"text/javascript\">alert('El nombre de categoria ya existe o el archivo es inválido. Por favor, elija uno válido');</script>"; 
 			$datos['opcion'] = 'crear_categoria';
 			$this->load->view('administrador_view', $datos);
 		}

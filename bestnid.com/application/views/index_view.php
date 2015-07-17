@@ -145,6 +145,24 @@
     	<!-- Este archivo le da estilo introduciendole bootstrap a la libreria dataTables mediante javascript -->
     	<script src="<?= base_url('js/dataTables.bootstrap.min.js') ?>" type="text/javascript" charset="utf8"></script>
 		<?php
+			if(isset($this->session->userdata['subastaCreada'])) {
+				if($this->session->userdata['subastaCreada']) { ?>
+					<script type="text/javascript">
+						alert('¡Subasta publicada con exito!');
+					</script>
+		<?php
+					$this->session->unset_userdata('subastaCreada');
+				}
+			}
+			if(isset($this->session->userdata['subastaModificada'])) {
+				if($this->session->userdata['subastaModificada']) { ?>
+					<script type="text/javascript">
+						alert('¡Subasta modificada con exito!');
+					</script>
+		<?php
+					$this->session->unset_userdata('subastaCreada');
+				}
+			}
 			if(isset($notificacionGanador)) {
 				if($notificacionGanador) { ?>
 					<script type="text/javascript">
