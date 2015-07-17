@@ -6,12 +6,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
     	<!-- Se cargan los estilos de bootstrap -->
     	<link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet" media="screen">
-    	<!-- Se cargan los estilos de la libreria dataTables -->
-    	<link href="<?= base_url('css/jquery.dataTables.min.css') ?>" rel="stylesheet" type="text/css">
-    	<!-- Se cargan los estilos con bootstrap de la libreria dataTables -->
-    	<link href="<?= base_url('css/dataTables.bootstrap.css') ?>" rel="stylesheet" type="text/css">
-    	<!-- Se cargan los estilos del Responsive Menu ==> http://cssmenumaker.com/blog/free-css-sidebar-menu-navigations -->
+    	<!-- Se cargan los estilos del elegant accordion menu ==> http://cssmenumaker.com/blog/free-css-sidebar-menu-navigations -->
     	<link href="<?= base_url('css/elegantAccordionMenu.css') ?>" rel="stylesheet" type="text/css">
+		<!-- Se cargan los estilos de la libreria dataTables -->
+        <link href="<?= base_url('css/jquery.dataTables.min.css') ?>" rel="stylesheet" type="text/css">
+        <!-- Se cargan los estilos con bootstrap de la libreria dataTables -->
+        <link href="<?= base_url('css/dataTables.bootstrap.css') ?>" rel="stylesheet" type="text/css">
+        <!-- JQuery cargado de forma local (sin conexion a internet) -->
+        <script src="<?= base_url('js/jquery.js') ?>"></script>
 		<title> Perfil </title>
 	</head>
 	<body>
@@ -26,146 +28,676 @@
 					<a href="<?= base_url(index_page().'/categorias') ?>" class="navbar-brand"> Categorías </a> 
 					<a href="<?= base_url('images/enConstruccion.jpg') ?>" class="navbar-brand"> Ayuda </a>
 					<ul class="nav navbar-nav navbar-right">
-						<?php
-							if(isset($this->session->userdata['login'])) { ?>
-								<a href="<?= base_url(index_page().'/perfil') ?>" class="navbar-brand">
-									<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?>
-								</a>
-								<a href="<?= base_url(index_page().'/logout') ?>" class="navbar-brand"> Cerrar Sesión </a>
-						<?php
-							}
-							else { ?>
-								<a href="<?= base_url(index_page().'/register') ?>" class="navbar-brand"> Registrarse </a>
-								<a href="<?= base_url(index_page().'/login') ?>" class="navbar-brand"> Iniciar Sesión </a>
-						<?php
-							}
-						?>
+						<a href="<?= base_url(index_page().'/perfil') ?>" class="navbar-brand">
+							<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?>
+						</a>
+						<a href="<?= base_url(index_page().'/logout') ?>" class="navbar-brand"> Cerrar Sesión </a>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<p align="center">
-			<a href="<?= base_url(index_page().'/index') ?>">
-				<img src="<?= base_url('images/logo.png') ?>" title="Volver al inicio de Bestnid">
-			</a>
-		</p>
-		<table style="width:100%">
-  			<tr>
-	  			<td width="14%">
-		  			<!-- INICIO Elegant Accordion Menu -->
-					<div id='cssmenu'>
-						<ul>
-				   			<li class=''>
-				   				<a href="<?= base_url(index_page().'/perfil?opcion=informacion') ?>"><span> Información </span></a>
-				   			</li>
-				   			<li class='has-sub'><a href='#'><span> Mis subastas </span></a>
-				      			<ul>
-				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=subastas_vigentes') ?>'><span> --> Vigentes </span></a></li>
-				         			<li><a href='<?= base_url(index_page().'/perfil?opcion=subastas_finalizadas') ?>'><span> --> Finalizadas </span></a></li>
-				      			</ul>
-				   			</li>
-				   			<li class=''>
-				   				<a href="<?= base_url(index_page().'/perfil?opcion=misOfertas') ?>"><span> Mis ofertas </span></a>
-				   			</li>
-				   			<li class='has-sub'><a href='#'><span> Cuenta </span></a>
-				      			<ul>
-				         			<li class='last'><a href='<?= base_url(index_page().'/perfil/modificarDatosPersonales') ?>'><span> --> Modificar mis datos </span></a></li>
-				         			<?php
-				         				if($subastasPublicadas || $subastasOfertadas) { ?>
-				         					<li class='last'><a href='<?= base_url(index_page().'/perfil/desactivarCuenta') ?>' onClick="return(alerta_desactivar_cuenta());"><span> --> Desactivar cuenta </span></a></li>
-				      				<?php
-				      					}
-				      					else { ?>
-				      						<li class='last'><a href='<?= base_url(index_page().'/perfil/desactivarCuenta') ?>' onClick="return(desactivar_cuenta());"><span> --> Desactivar cuenta </span></a></li>	
-				      				<?php
-				      					}
-				      				?>
-				      			</ul>
-				   			</li>
-						</ul>
-					</div>
-					<!-- FIN Elegant Accordion Menu -->
-				</td>
-				<td>
-					<!-- Acá va un switch, el cual va a tomar un iframe, dependiendo de la opcion que se elija-->
-					<?php 
-						$accion = $this->input->get('opcion'); 
-						switch ($accion) {
-		 					case 'subastas_vigentes':
-		 			?>
-		 						<div class="row">
-		 						<div class="col-md-8">
-		 						</div>
-				 					<iframe src="<?= base_url(index_page().'/perfil/subastasVigentes') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
-									</iframe>
-								</div>
-			 		<?php
-		 						break;
-
-		 					case 'subastas_finalizadas':
-		 			?>
-		 						<div class="row">
-		 						<div class="col-md-8">
-		 						</div>
-				 					<iframe src="<?= base_url(index_page().'/perfil/subastasFinalizadas') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
-									</iframe>
-								</div>
-			 		<?php
-		 						break;
-
-		 					case 'misOfertas':
-		 			?>
-		 						<div class="row">
-		 						<div class="col-md-8">
-		 						</div>
-				 					<iframe src="<?= base_url(index_page().'/perfil/misOfertas') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
-									</iframe>
-								</div>
-			 		<?php
-		 						break;
-
-		 					case 'modificarDatosPersonales':
-		 			?>
-		 						<div class="row">
-		 						<div class="col-md-8">
-		 						</div>
-				 					<iframe src="<?= base_url(index_page().'/perfil/modificarDatosPersonales') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
-									</iframe>
-								</div>
-			 		<?php
-		 						break;
-
-		 					default:
-		 			?>
-				 					<iframe src="<?= base_url(index_page().'/perfil/informacion') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
-									</iframe>
-		 			<?php
-		 						break;
-		 				}
-			 		?>
-				</td>
-  			</tr>
-		</table> 
-		<!-- Se carga jquery --> 
-		<script src="<?= base_url('js/jquery.js') ?>" type="text/javascript" charset="utf8"></script> 
-		<!-- Se carga boostrap --> 
+		<div id="wrapper">
+			<table>
+				<tr>
+					<td>
+		  				<!-- INICIO Elegant Accordion Menu -->
+						<div id='cssmenu'>
+							<ul>
+				   				<li class=''>
+				   					<a href="<?= base_url(index_page().'/perfil/informacion') ?>"><span> Informacion Personal </span></a>
+				   				</li>
+				   				<li class='has-sub'><a href="#"><span> Mis subastas </span></a>
+				      				<ul>
+				         				<li><a href="<?= base_url(index_page().'/perfil/subastas_vigentes') ?>"><span> --> Vigentes </span></a></li>
+				         				<li><a href="<?= base_url(index_page().'/perfil/subastas_finalizadas') ?>"><span> --> Finalizadas </span></a></li>
+				      				</ul>
+				   				</li>
+				   				<li class='has-sub'><a href="#"><span> Mis ofertas </span></a>
+                                    <ul>
+                                        <li><a href="<?= base_url(index_page().'/perfil/ofertas_pendientes') ?>"<span> --> Pendientes </span></a></li>
+                                        <li><a href="<?= base_url(index_page().'/perfil/ofertas_ganadas') ?>"<span> --> Ganadas </span></a></li>
+                                        <li><a href="<?= base_url(index_page().'/perfil/ofertas_perdidas') ?>"<span> --> Perdidas </span></a></li>
+                                    </ul>
+                                </li>
+				   				<li class='has-sub'><a href="#"><span> Cuenta </span></a>
+				    				<ul>
+				        				<li class='last'><a href="<?= base_url(index_page().'/perfil/modificarDatosPersonales') ?>"><span> --> Modificar mis datos </span></a></li>
+				        				<?php
+				         					if($this->session->userdata('subastasPublicadas') || $this->session->userdata('subastasOfertadas')) { ?>
+				         						<li class='last'><a href="<?= base_url(index_page().'/perfil/desactivarCuenta') ?>" onClick="return(alerta_desactivar_cuenta());"><span> --> Desactivar cuenta </span></a></li>
+				      					<?php
+				      						}
+				      						else { ?>
+				      							<li class='last'><a href="<?= base_url(index_page().'/perfil/desactivarCuenta') ?>" onClick="return(desactivar_cuenta());"><span> --> Desactivar cuenta </span></a></li>	
+				      					<?php
+				      						}
+				      					?>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<!-- FIN Elegant Accordion Menu -->
+					</td>
+					<td width="100%">
+						<div id="page-content-wrapper">
+            				<div class="container-fluid">
+            					<p align="center">
+									<a href="<?= base_url(index_page().'/index') ?>">
+										<img src="<?= base_url('images/logo.png') ?>" title="Volver al inicio de Bestnid">
+									</a>
+								</p>
+								<?php
+									if(isset($opcion)) { // Si existe la variable opcion 
+										switch ($opcion) {
+											case 'informacion_personal':
+								?>
+												<h1 align="center"> Información Personal </h1>
+		 										<br>
+		 										<div class="row">
+		 											<div class="col-md-4">
+		 											</div>
+		 											<div class="col-md-5">
+		        										<dt> Nombre: <?= $usuario[0]->nombre ?> </dt>
+		        										<dt> Apellido: <?= $usuario[0]->apellido ?> </dt>
+		        										<dt> Email: <?= $usuario[0]->email ?> </dt>
+		        										<dt> DNI: <?= $usuario[0]->DNI ?> </dt>
+		        										<dt> Dirección: <?= $usuario[0]->direccion ?> </dt>
+		        										<dt> Teléfono: <?= $usuario[0]->telefono ?> </dt>
+		        									</div>
+		        								</div>
+		        				<?php
+		        								break;
+		 									case 'subastas_vigentes':
+		 						?>
+		 										<h3 align="center">
+                                        			Subastas Vigentes
+                                    			</h3>
+                                    			<br>
+                                    			<br>
+                                    			<!-- Se carga la libreria dataTables -->
+                                    			<script src="<?= base_url('js/jquery.dataTables.min.js') ?>" type="text/javascript" charset="utf8"></script>
+                                    			<table cellpadding="0" cellspacing="0" border="0" class="display" id="tablaSubastas">
+                                        			<thead>
+                                            			<tr>
+                                                			<th>Imagen</th>
+                                                			<th>Nombre</th>
+                                                			<th>Descripción</th>
+                                                			<th>Fecha de Finalización</th>
+                                            			</tr>
+                                        			</thead>
+                                        			<tbody>
+                                            			<?php
+                                                			if($subastasVigentes) {
+                                                    			foreach($subastasVigentes->result() as $subasta) { ?>
+                                                        			<tr class="gradeX">
+                                                            			<td>
+                                                                			<a href="<?= base_url(index_page().'/subasta?idSubasta='.$subasta->idSubasta) ?>">
+																				<img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px">
+																			</a>
+                                                            			</td>
+                                                            			<td>
+                                                                			<center>
+                                                                    			<a href="<?= base_url(index_page().'/subasta?idSubasta='.$subasta->idSubasta) ?>">
+																					<?= $subasta->nombreSubasta ?>
+																				</a>
+																			</center>
+                                                            			</td>
+                                                            			<td> 
+                                                                			<center> <?= $subasta->descripcion ?> </center>
+                                                            			</td>
+                                                            			<td>
+                                                                			<center> <?= date('d-m-Y', strtotime($subasta->fechaFin)) ?> </center>
+                                                            			</td>
+                                                        			</tr>
+                                            			<?php
+                                                    			}
+                                                			}
+                                            			?>
+                                        			</tbody>
+                                    			</table>
+                                    			<!-- Configuracion de la dataTable -->
+                                    			<script type="text/javascript" charset="utf-8">
+                                        			$(document).ready(function() {
+                                            			$('#tablaSubastas').dataTable( {
+                                                			"aaSorting":[],
+                                                			"aoColumnDefs":[ { 'bSortable': false } ],
+                                                			"language": {
+                                                    			"search": "Buscar",
+                                                    			"lengthMenu": "Mostrar _MENU_ subastas por página",
+                                                    			"zeroRecords": "No se han encontrado subastas",
+                                                    			"info": "Mostrando página _PAGE_ de _PAGES_",
+                                                    			"infoEmpty": "No hay registros disponibles",
+                                                    			"infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                    			"loadingRecords": "Cargando",
+                                                    			"processing":     "Procesando",
+                                                    			"zeroRecords":    "No hay subastas coincidentes encontradas",
+                                                    			"paginate": {
+                                                        			"first":      "Primero",
+                                                        			"last":       "Ultimo",
+                                                        			"next":       "Siguiente",
+                                                        			"previous":   "Anterior"
+                                                    			},
+                                                    			"aria": {
+                                                        			"sortAscending":  ": activar para ordenar columna de forma ascendente",
+                                                        			"sortDescending": ": activar para ordenar columna de forma descendente"
+                                                    			}
+                                                			}
+                                            			} );
+                                        			} );
+                                    			</script>
+			 					<?php
+		 										break;
+		 									case 'subastas_finalizadas':
+		 						?>
+		 										<h3 align="center">
+                                        			Subastas Finalizadas
+                                    			</h3>
+                                    			<br>
+                                    			<br>
+                                    			<!-- Se carga la libreria dataTables -->
+                                    			<script src="<?= base_url('js/jquery.dataTables.min.js') ?>" type="text/javascript" charset="utf8"></script>
+                                    			<table cellpadding="0" cellspacing="0" border="0" class="display" id="tablaSubastas">
+                                        			<thead>
+                                            			<tr>
+                                                			<th>Imagen</th>
+                                                			<th>Nombre</th>
+                                                			<th>Descripción</th>
+                                                			<th>Fecha de Finalización</th>
+                                                			<th>Estado</th>
+                                            			</tr>
+                                        			</thead>
+                                        			<tbody>
+                                            			<?php
+                                                			if($subastasFinalizadas) {
+                                                    			foreach($subastasFinalizadas->result() as $subasta) { ?>
+                                                        			<tr class="gradeX">
+                                                            			<td>
+                                                                			<a href="<?= base_url(index_page().'/subasta?idSubasta='.$subasta->idSubasta) ?>">
+																				<img src="<?= base_url('images/'.$subasta->nombreImagen) ?>" width="50px" height="50px">
+																			</a>
+                                                            			</td>
+                                                            			<td>
+                                                                			<center>
+                                                                    			<a href="<?= base_url(index_page().'/subasta?idSubasta='.$subasta->idSubasta) ?>">
+																					<?= $subasta->nombreSubasta ?>
+																				</a>
+																			</center>
+                                                            			</td>
+                                                            			<td> 
+                                                                			<center> <?= $subasta->descripcion ?> </center>
+                                                            			</td>
+                                                            			<td>
+                                                                			<center> <?= date('d-m-Y', strtotime($subasta->fechaFin)) ?> </center>
+                                                            			</td>
+                                                                        <td>
+                                                                            <?php
+                                                                                if($subasta->ganador == NULL) { ?>
+                                                                                    <a href="<?= base_url(index_page().'/perfil/elegir_ganador?idSubasta='.$subasta->idSubasta) ?>">
+                                                                                        <center>
+                                                                                            <button type="button" class="btn btn-darkest"> Elegir Ganador </button>   
+                                                                                        </center>
+                                                                                    </a>
+                                                                            <?php
+                                                                                }
+                                                                                else {
+                                                                                    if($subasta->pagada) { ?>
+                                                                                        <center> Vendida </center>
+                                                                            <?php
+                                                                                    }
+                                                                                    else { ?>
+                                                                                        <center> Esperando Pago </center>
+                                                                            <?php
+                                                                                    }
+                                                                                }
+                                                                            ?>
+                                                                        </td>
+                                                        			</tr>
+                                            			<?php
+                                                    			}
+                                                			}
+                                            			?>
+                                        			</tbody>
+                                    			</table>
+                                    			<!-- Configuracion de la dataTable -->
+                                    			<script type="text/javascript" charset="utf-8">
+                                        			$(document).ready(function() {
+                                            			$('#tablaSubastas').dataTable( {
+                                                			"aaSorting":[],
+                                                			"aoColumnDefs":[ { 'bSortable': false } ],
+                                                			"language": {
+                                                    			"search": "Buscar",
+                                                    			"lengthMenu": "Mostrar _MENU_ subastas por página",
+                                                    			"zeroRecords": "No se han encontrado subastas",
+                                                    			"info": "Mostrando página _PAGE_ de _PAGES_",
+                                                    			"infoEmpty": "No hay registros disponibles",
+                                                    			"infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                    			"loadingRecords": "Cargando",
+                                                    			"processing":     "Procesando",
+                                                    			"zeroRecords":    "No hay subastas coincidentes encontradas",
+                                                    			"paginate": {
+                                                        			"first":      "Primero",
+                                                        			"last":       "Ultimo",
+                                                        			"next":       "Siguiente",
+                                                        			"previous":   "Anterior"
+                                                    			},
+                                                    			"aria": {
+                                                        			"sortAscending":  ": activar para ordenar columna de forma ascendente",
+                                                        			"sortDescending": ": activar para ordenar columna de forma descendente"
+                                                    			}
+                                                			}
+                                            			} );
+                                        			} );
+                                    			</script>
+			 					<?php
+		 										break;
+		 									case 'ofertas_pendientes':
+		 						?>
+                                                <h3 align="center">
+                                                    Ofertas Pendientes
+                                                </h3>
+                                                <br>
+                                                <br>
+                                                <!-- Se carga la libreria dataTables -->
+                                                <script src="<?= base_url('js/jquery.dataTables.min.js') ?>" type="text/javascript" charset="utf8"></script>
+                                                <table cellpadding="0" cellspacing="0" border="0" class="display" id="tablaSubastas">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Subasta</th>
+                                                            <th>Argumento de la Oferta</th>
+                                                            <th>Monto</th>
+                                                            <th>Estado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                            if($ofertasPendientes) {
+                                                                foreach($ofertasPendientes->result() as $oferta) { ?>
+                                                                    <tr class="gradeX">
+                                                                        <td>
+                                                                            <?= $oferta->nombreSubasta ?>
+                                                                        </td>
+                                                                        <td>
+                                                                            <center>
+                                                                                <?= $oferta->argumento ?>
+                                                                            </center>
+                                                                        </td>
+                                                                        <td> 
+                                                                            <center> <?= $oferta->monto ?> </center>
+                                                                        </td>
+                                                                        <td>
+                                                                            <?php
+                                                                                if($oferta->ganador == NULL) { // Solo se mostraran las ofertas pendientes, es decir, que no tengan ganador
+                                                                                    if(mdate('%Y-%m-%d') < $oferta->fechaFin) { ?> <!-- Si la fecha de actual es menor a la fecha de finalizacion significa que la oferta esta vigente porque la subasta aun no vencio -->
+                                                                                        <center>
+                                                                                            Vigente
+                                                                                        </center>
+                                                                                <?php
+                                                                                    }
+                                                                                    else { ?> <!-- Si la fecha de actual es mayor o igual a la fecha de finalizacion significa que la oferta esta en espera de un ganador porque la subasta ya vencio -->
+                                                                                        <center>
+                                                                                            En espera de un ganador
+                                                                                        </center>
+                                                                            <?php
+                                                                                    }
+                                                                                }
+                                                                            ?>
+                                                                        </td>
+                                                                    </tr>
+                                                        <?php
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                                <!-- Configuracion de la dataTable -->
+                                                <script type="text/javascript" charset="utf-8">
+                                                    $(document).ready(function() {
+                                                        $('#tablaSubastas').dataTable( {
+                                                            "aaSorting":[],
+                                                            "aoColumnDefs":[ { 'bSortable': false } ],
+                                                            "language": {
+                                                                "search": "Buscar",
+                                                                "lengthMenu": "Mostrar _MENU_ subastas por página",
+                                                                "zeroRecords": "No se han encontrado subastas",
+                                                                "info": "Mostrando página _PAGE_ de _PAGES_",
+                                                                "infoEmpty": "No hay registros disponibles",
+                                                                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                                "loadingRecords": "Cargando",
+                                                                "processing":     "Procesando",
+                                                                "zeroRecords":    "No hay subastas coincidentes encontradas",
+                                                                "paginate": {
+                                                                    "first":      "Primero",
+                                                                    "last":       "Ultimo",
+                                                                    "next":       "Siguiente",
+                                                                    "previous":   "Anterior"
+                                                                },
+                                                                "aria": {
+                                                                    "sortAscending":  ": activar para ordenar columna de forma ascendente",
+                                                                    "sortDescending": ": activar para ordenar columna de forma descendente"
+                                                                }
+                                                            }
+                                                        } );
+                                                    } );
+                                                </script>	
+			 					<?php
+		 										break;
+                                            case 'ofertas_ganadas':
+                                ?>
+                                                <h3 align="center">
+                                                    Ofertas Ganadas
+                                                </h3>
+                                                <br>
+                                                <br>
+                                                <!-- Se carga la libreria dataTables -->
+                                                <script src="<?= base_url('js/jquery.dataTables.min.js') ?>" type="text/javascript" charset="utf8"></script>
+                                                <table cellpadding="0" cellspacing="0" border="0" class="display" id="tablaSubastas">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Subasta</th>
+                                                            <th>Argumento de la Oferta</th>
+                                                            <th>Monto</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                            if($ofertasGanadas) {
+                                                                foreach($ofertasGanadas->result() as $oferta) { ?>
+                                                                    <tr class="gradeX">
+                                                                        <td>
+                                                                            <?= $oferta->nombreSubasta ?>
+                                                                        </td>
+                                                                        <td>
+                                                                            <center>
+                                                                                <?= $oferta->argumento ?>
+                                                                            </center>
+                                                                        </td>
+                                                                        <td> 
+                                                                            <center> <?= $oferta->monto ?> </center>
+                                                                        </td>
+                                                                        <td>
+                                                                            <?php
+                                                                                if($oferta->pagada == false) { ?> <!-- Si la subasta no esta pagada aparecera el boton de pagar -->
+                                                                                    <center>
+                                                                                        <button type="button" class="btn btn-darkest" data-toggle="modal" data-target="#myModal1"> Pagar Subasta </button>
+                                                                                    </center>
+                                                                            <?php
+                                                                                }
+                                                                                else { ?> <!-- Si la subastas esta pagada apareceran los datos del subastador -->
+                                                                                    <center>
+                                                                                        <button type="button" class="btn btn-darkest" data-toggle="modal" data-target="#myModal2"> Ver datos del subastador </button>
+                                                                                    </center>
+                                                                            <?php
+                                                                                }
+                                                                            ?>
+                                                                        </td>
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade" id="myModal1" role="dialog">
+                                                                            <div class="modal-dialog">-->
+                                                                                <!-- Modal content-->
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>                
+                                                                                        <h4 class="modal-title"> Ingrese los datos de su tarjeta </h4>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <?php $atributos = array('class' => 'form-horizontal', 'role' => 'form', 'onSubmit' => 'return(pagar_subasta());'); ?>
+                                                                                        <?= form_open("/perfil/pagarSubasta=".$oferta->idSubasta, $atributos) ?>
+                                                                                        <?php
+                                                                                            $nombre = array(
+                                                                                                'name' => 'nombre',
+                                                                                                'class' => 'form-control',
+                                                                                                'placeholder' => 'Ingrese su nombre',
+                                                                                                'required' => 'required',
+                                                                                                'pattern' => '[A-Za-z]{2,20}',
+                                                                                                'title' => 'Ingrese un mínimo de 2 letras, máximo 20'
+                                                                                            );
+                                                                                            $apellido = array(
+                                                                                                'name' => 'apellido',
+                                                                                                'class' => 'form-control',
+                                                                                                'placeholder' => 'Ingrese su apellido',
+                                                                                                'required' => 'required',
+                                                                                                'pattern' => '[A-Za-z]{2,20}',
+                                                                                                'title' => 'Ingrese un mínimo de 2 letras, máximo 20'
+                                                                                            );
+                                                                                            $DNI = array(
+                                                                                                'name' => 'DNI',
+                                                                                                'class' => 'form-control',
+                                                                                                'placeholder' => 'Ingrese su DNI',
+                                                                                                'required' => 'required',
+                                                                                                'pattern' => '[0-9]{8}',
+                                                                                                'title' => 'Por favor, ingrese un DNI válido. Debe tener 8 digitos'
+                                                                                            );
+                                                                                            $numeroTarjeta = array(
+                                                                                                'name' => 'numeroTarjeta',
+                                                                                                'class' => 'form-control',
+                                                                                                'placeholder' => 'Ingrese el número de su tarjeta',
+                                                                                                'required' => 'required',
+                                                                                                'pattern' => '[0-9]{8}',
+                                                                                                'title' => 'Por favor, ingrese un número de tarjeta válido. Debe tener 8 digitos'
+                                                                                            );
+                                                                                            $codigoSeguridad = array(
+                                                                                                'name' => 'codigoSeguridad',
+                                                                                                'class' => 'form-control',
+                                                                                                'placeholder' => 'Ingrese el código de seguridad',
+                                                                                                'required' => 'required',
+                                                                                                'pattern' => '[0-9]{3}',
+                                                                                                'title' => 'Por favor, ingrese un código de seguridad válido. Debe tener 3 digitos'
+                                                                                            );
+                                                                                        ?>
+                                                                                        <center>
+                                                                                            <?= form_input($nombre) ?>
+                                                                                            <br>
+                                                                                            <br>
+                                                                                            <?= form_input($apellido) ?>
+                                                                                            <br>
+                                                                                            <br>
+                                                                                            <?= form_input($DNI) ?>
+                                                                                            <br>
+                                                                                            <br>
+                                                                                            <?= form_input($numeroTarjeta) ?>
+                                                                                            <br>
+                                                                                            <br>
+                                                                                            <?= form_input($codigoSeguridad) ?>
+                                                                                            <br>
+                                                                                            <br>
+                                                                                            <h4>
+                                                                                            <?= form_label('Monto a pagar: $'.$oferta->monto) ?>
+                                                                                            </h4>
+                                                                                            <br>
+                                                                                            <?= form_submit('', 'Efectuar Pago', "class='btn btn-darkest'") ?>
+                                                                                        </center>
+                                                                                        <?= form_close() ?>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal"> Cerrar </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade" id="myModal2" role="dialog">
+                                                                            <div class="modal-dialog">
+                                                                                <!-- Modal content -->
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>                
+                                                                                        <h4 class="modal-title"> Datos del subastador </h4>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <?= form_label('Nombre: '.$oferta->nombre) ?>
+                                                                                        <br>
+                                                                                        <?= form_label('Apellido: '.$oferta->apellido) ?>
+                                                                                        <br>
+                                                                                        <?= form_label('Correo Electrónico: '.$oferta->email) ?>
+                                                                                        <br>
+                                                                                        <?= form_label('Teléfono: '.$oferta->telefono) ?>
+                                                                                        <br>
+                                                                                        <?= form_label('Dirección: '.$oferta->direccion) ?>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal"> Cerrar </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </tr>
+                                                            <?php
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                                <!-- Configuracion de la dataTable -->
+                                                <script type="text/javascript" charset="utf-8">
+                                                    $(document).ready(function() {
+                                                        $('#tablaSubastas').dataTable( {
+                                                            "aaSorting":[],
+                                                            "aoColumnDefs":[ { 'bSortable': false } ],
+                                                            "language": {
+                                                                "search": "Buscar",
+                                                                "lengthMenu": "Mostrar _MENU_ subastas por página",
+                                                                "zeroRecords": "No se han encontrado subastas",
+                                                                "info": "Mostrando página _PAGE_ de _PAGES_",
+                                                                "infoEmpty": "No hay registros disponibles",
+                                                                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                                "loadingRecords": "Cargando",
+                                                                "processing":     "Procesando",
+                                                                "zeroRecords":    "No hay subastas coincidentes encontradas",
+                                                                "paginate": {
+                                                                    "first":      "Primero",
+                                                                    "last":       "Ultimo",
+                                                                    "next":       "Siguiente",
+                                                                    "previous":   "Anterior"
+                                                                },
+                                                                "aria": {
+                                                                    "sortAscending":  ": activar para ordenar columna de forma ascendente",
+                                                                    "sortDescending": ": activar para ordenar columna de forma descendente"
+                                                                }
+                                                            }
+                                                        } );
+                                                    } );
+                                                </script>
+                                <?php
+		 									    break;
+                                            case 'ofertas_perdidas':
+                                ?>
+                                                algo
+                                <?php
+                                                break;
+                                            case 'modificar_datos_personales':
+		 						?>
+		 										<div class="row">
+		 											<div class="col-md-8">
+		 											</div>
+				 									<iframe src="<?= base_url(index_page().'/perfil/modificarDatosPersonales') ?>" width="100%" height="800px" id="iframe1" marginheight="0" frameborder="0" onLoad="autoResize('iframe1');">
+													</iframe>
+												</div>
+			 					<?php
+		 										break;
+                                            case 'elegir_ganador':
+                                ?>
+                                                <h3 align="center">
+                                                    Seleccione la oferta ganadora
+                                                </h3>
+                                                <br>
+                                                <br>
+                                                <!-- Se carga la libreria dataTables -->
+                                                <script src="<?= base_url('js/jquery.dataTables.min.js') ?>" type="text/javascript" charset="utf8"></script>
+                                                <table cellpadding="0" cellspacing="0" border="0" class="display" id="tablaSubastas">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Argumento</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                            if($ofertas) {
+                                                                foreach($ofertas->result() as $oferta) { ?>
+                                                                    <tr class="gradeX">
+                                                                        <td> 
+                                                                            <center> <?= $oferta->argumento ?> </center>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="<?= base_url(index_page().'/perfil/guardarGanador?idSubasta='.$oferta->idSubasta.'&idUsuario='.$oferta->idUsuario) ?>"> <!-- Paso como parametro el idSubasta para buscar la subasta a la que pertenece esta oferta y paso el idUsuario para setearlo en esa subasta como ganador -->
+                                                                                <center>
+                                                                                    <button type="button" class="btn btn-darkest" onClick="return(elegir_ganador());"> Seleccionar </button>   
+                                                                                </center>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                        <?php
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                                <!-- Configuracion de la dataTable -->
+                                                <script type="text/javascript" charset="utf-8">
+                                                    $(document).ready(function() {
+                                                        $('#tablaSubastas').dataTable( {
+                                                            "aaSorting":[],
+                                                            "aoColumnDefs":[ { 'bSortable': false } ],
+                                                            "language": {
+                                                                "search": "Buscar",
+                                                                "lengthMenu": "Mostrar _MENU_ subastas por página",
+                                                                "zeroRecords": "No se han encontrado subastas",
+                                                                "info": "Mostrando página _PAGE_ de _PAGES_",
+                                                                "infoEmpty": "No hay registros disponibles",
+                                                                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                                                "loadingRecords": "Cargando",
+                                                                "processing":     "Procesando",
+                                                                "zeroRecords":    "No hay subastas coincidentes encontradas",
+                                                                "paginate": {
+                                                                    "first":      "Primero",
+                                                                    "last":       "Ultimo",
+                                                                    "next":       "Siguiente",
+                                                                    "previous":   "Anterior"
+                                                                },
+                                                                "aria": {
+                                                                    "sortAscending":  ": activar para ordenar columna de forma ascendente",
+                                                                    "sortDescending": ": activar para ordenar columna de forma descendente"
+                                                                }
+                                                            }
+                                                        } );
+                                                    } );
+                                                </script>
+                                <?php
+                                                break;
+		 								}
+		 							}
+		 							else {
+		 						?>
+		 								<h1 align="center"> ¡Bienvenido a su perfil! </h1>
+		 						<?php
+		 							}
+			 					?>
+            				</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!-- Se cargan las funciones javascript de Bootstrap --> 
 		<script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
-    	<!-- Este archivo le da estilo introduciendole bootstrap a la libreria dataTables mediante javascript -->
-    	<script src="<?= base_url('js/dataTables.bootstrap.min.js') ?>" type="text/javascript" charset="utf8"></script>
     	<!-- Este archivo hace que se pueda desplegar submenú al sidebar -->
   		<script src="<?= base_url('js/elegantAccordionMenu.js') ?>"></script>
+  		<!-- Este archivo le da estilo introduciendole bootstrap a la libreria dataTables mediante javascript -->
+        <script src="<?= base_url('js/dataTables.bootstrap.min.js') ?>" type="text/javascript" charset="utf8"></script>
 	</body>
 	<script type="text/javascript">
-		// Script para que el tamaño del iframe sea dinámico
-  		function iframeLoaded() {
-      		var iFrameID = document.getElementById('idIframe');
-      		if(iFrameID) {
-            	iFrameID.height = "";
-            	iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
-      		}   
-  		}
+        function elegir_ganador() {
+            if(confirm('¿Esta seguro que desea seleccionar esta oferta?') == true) {
+                alert('¡Ganador elegido con exito!');
+                return (true);
+            }
+            else {
+                return (false);
+            }
+        }
 
-  		function desactivar_cuenta() {
+		function desactivar_cuenta() {
             if(confirm('¿Esta seguro que desea desactivar su cuenta?') == true) {
                 alert('¡Su cuenta ha sido desactivada!');
                 return (true);

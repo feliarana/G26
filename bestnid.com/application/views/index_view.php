@@ -74,7 +74,7 @@
 				<tr>
 					<th>Imagen</th>
 					<th>Nombre</th>
-					<th>Descripcion</th>
+					<th>Descripción</th>
 					<th>Fecha de Finalización</th>
 				</tr>
 			</thead>

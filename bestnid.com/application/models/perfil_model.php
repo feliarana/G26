@@ -1,4 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Perfil_model extends CI_Model {
 
@@ -7,13 +7,40 @@ class Perfil_model extends CI_Model {
 		$this->load->database();
 	}
 
-	function datosUsuario($idUsuario) {
-		$this->db->from('usuario');
+	function verificarSubastasPublicadas($idUsuario) {
+		$formato = "%Y-%m-%d";
+		$fechaActual = mdate($formato); // mdate retorna la fecha actual con el formato especificado
 		$this->db->where('idUsuario', $idUsuario);
+		$this->db->where('fechaFin >', $fechaActual);
+		$this->db->order_by('fechaFin', 'asc'); // Ordena las subastas de forma ascendente (por fecha de vencimiento, de las que estas mas proximas a vencer a las que estan mas lejanas a vencer)
+		$query = $this->db->get('subasta'); // En $query almacena el resultado de la consulta
+		if($query->num_rows() > 0)
+			return (true);
+		else
+			return (false);
+	}
+
+	function verificarSubastasOfertadas($idUsuario) { // La diferencia con obtenerOfertasPendientes es que esta funcion solo retorna ofertas de subastas vigentes, esto sirve para desactivar la cuenta en caso de que el usuario no tenga ofertas en subastas vigentes puede desactivarla
+		$formato = "%Y-%m-%d";
+		$fechaActual = mdate($formato);
+		$this->db->from('subasta');
+		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
+		$this->db->where('oferta.idUsuario', $idUsuario);
+		$this->db->where('subasta.fechaFin >', $fechaActual);
+		$this->db->order_by('subasta.fechaFin', 'asc');
 		$query = $this->db->get();
 		if($query->num_rows() > 0)
-			return ($query);
-		else 
+			return (true);
+		else
+			return (false);
+	}
+
+	function obtenerUsuario($idUsuario) {
+		$this->db->where('idUsuario', $idUsuario);
+		$query = $this->db->get('usuario');
+		if($query->num_rows() > 0)
+			return ($query->result());
+		else
 			return (false);
 	}
 
@@ -26,33 +53,43 @@ class Perfil_model extends CI_Model {
 		$query = $this->db->get('subasta'); // En $query almacena el resultado de la consulta
 		if($query->num_rows() > 0)
 			return ($query);
-		else 
+		else
 			return (false);
 	}
 
 	function obtenerSubastasFinalizadas($idUsuario) {
 		$formato = "%Y-%m-%d";
 		$fechaActual = mdate($formato); // mdate retorna la fecha actual con el formato especificado
-		$this->db->from('subasta');
-		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
-		$this->db->where('subasta.idUsuario', $idUsuario);
+		$this->db->where('idUsuario', $idUsuario);
 		$this->db->where('fechaFin <=', $fechaActual);
-		$this->db->order_by('fechaFin', 'asc'); // Ordena las subastas de forma ascendente (por fecha de vencimiento, de las que estas mas proximas a vencer a las que estan mas lejanas a vencer)
-		$this->db->group_by('subasta.idSubasta'); 
-		$query = $this->db->get(); // En $query almacena el resultado de la consulta
+		$this->db->order_by('fechaFin', 'desc'); // Ordena las subastas de forma descendente (por fecha de vencimiento, de las que vencieron mas recientes a las menos recientes)
+		$query = $this->db->get('subasta');
 		if($query->num_rows() > 0)
 			return ($query);
-		else 
+		else
 			return (false);
 	}
 
-	function obtenerSubastasOfertadas($idUsuario) {
+	function obtenerOfertas($idSubasta) {
+		$this->db->where('idSubasta', $idSubasta);
+		$query = $this->db->get('oferta');
+		if($query->num_rows() > 0)
+			return ($query);
+		else
+			return (false);
+	}
+
+	function guardarGanador($idSubasta, $idUsuario) {
+		$this->db->where('idSubasta', $idSubasta);
+		$this->db->update('subasta', array('ganador' => $idUsuario));
+	}
+
+	function obtenerOfertasPendientes($idUsuario) { // Trae todas las ofertas del usuario y en la vista se cargan solo las que no tengan ganador (pueden estar vigentes, o finalizadas esperando a que se seleccione un ganador)
 		$formato = "%Y-%m-%d";
 		$fechaActual = mdate($formato);
 		$this->db->from('subasta');
 		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
 		$this->db->where('oferta.idUsuario', $idUsuario);
-		$this->db->where('subasta.fechaFin >', $fechaActual);
 		$this->db->order_by('subasta.fechaFin', 'asc');
 		$query = $this->db->get();
 		if($query->num_rows() > 0)
@@ -61,38 +98,24 @@ class Perfil_model extends CI_Model {
 			return (false);
 	}
 
-	function obtenerOfertas($idSubasta) { // Es para el Elegir Ganador
-		$this->db->from('oferta');
-		$this->db->where('oferta.idSubasta', $idSubasta);
-		$query = $this->db->get(); // En $query almacena el resultado de la consulta
-		if($query->num_rows() > 0)
-			return ($query);
-		else 
-			return (false);
-	}
-
-	function obtenerMisOfertas($idUsuario) { 	// Va a mostrar las ofertas del usuario que no hayan sido vencidas.
+	function obtenerOfertasGanadas($idUsuario) { // Trae las subastas ganadas por el usuario con su respectiva oferta y su subastador
 		$formato = "%Y-%m-%d";
 		$fechaActual = mdate($formato);
-		$this->db->from('oferta');
-		$this->db->join('subasta', 'subasta.idSubasta = oferta.idSubasta');
+		$this->db->from('subasta');
+		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
+		$this->db->join('usuario', 'subasta.idUsuario = usuario.idUsuario');
 		$this->db->where('oferta.idUsuario', $idUsuario);
-		$this->db->where('subasta.fechaFin >', $fechaActual);
-		$query = $this->db->get(); // En $query almacena el resultado de la consulta
+		$this->db->where('subasta.ganador', $idUsuario);
+		$this->db->order_by('subasta.fechaFin', 'desc');
+		$query = $this->db->get();
 		if($query->num_rows() > 0)
 			return ($query);
-		else 
+		else
 			return (false);
 	}
 
-	function elegirGanador ($idSubasta, $idUsuario){
-		$data = array('ganador' => $idUsuario);
-		$this->db->from('subasta');
-		$this->db->where('subasta.idSubasta', $idSubasta);
-		$this->db->update('subasta',$data);
-	}
-
-	function modificarUsuario($usuario) {
+	function modificarUsuario($datos) {
+		$this->db->update('idUsuario', $datos['idUsuario'];
 		$this->db->update('usuario', $usuario); 
 	}
 

@@ -19,15 +19,15 @@
 			<h2>Información del usuario</h2>
 		    <dl class="dl-horizontal">
 		        <dt>DNI</dt>
-		        <dd> <?php echo $query->result()[0]->DNI ?></dd>
+		        <dd> <? echo $query->result()[0]->DNI; ?> </dd>
 		        <dt>Nombre</dt>
-		        <dd> <?php echo $query->result()[0]->nombre; ?>  </dd>
+		        <dd> <? echo $query->result()[0]->nombre; ?>  </dd>
 		        <dt>Apellido</dt>
-		        <dd> <?php echo $query->result()[0]->apellido; ?>  </dd>
+		        <dd> <? echo $query->result()[0]->apellido; ?>  </dd>
 		        <dt>Email</dt>
-		        <dd> <?php echo $query->result()[0]->email; ?>  </dd>
+		        <dd> <? echo $query->result()[0]->email; ?>  </dd>
 		        <dt>Direccion</dt>
-		        <dd> <?php echo $query->result()[0]->direccion; ?>  </dd>
+		        <dd> <? echo $query->result()[0]->direccion; ?>  </dd>
 		        <dt>Teléfono</dt>
-		        <dd> <?php echo $query->result()[0]->telefono; ?>  </dd>
+		        <dd> <? echo $query->result()[0]->telefono; ?>  </dd>
 </html>

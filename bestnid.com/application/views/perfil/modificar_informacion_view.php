@@ -45,7 +45,7 @@
 	 		$password = array('name' => 'password',
 	 			'type' => 'password',
 	 			'class' => 'form-control',
-	 			'placeholder' => 'Contraseña',
+	 			'placeholder' => 'Contraseña nueva',
 	 			'required' => 'required',
 	 			'pattern' => '.{6,15}',
 	 			'title' => 'Por favor, ingrese un mínimo de 6 caracteres. Maximo 15.'
@@ -54,7 +54,7 @@
 	 		$password2 = array('name' => 'password2',
 	 			'type' => 'password',
 	 			'class' => 'form-control',
-	 			'placeholder' => 'Repetir Contraseña',
+	 			'placeholder' => 'Repetir Contraseña nueva',
 	 			'required' => 'required',
 	 			'pattern' => '.{6,15}',
 	 			'title' => 'Por favor, ingrese un mínimo de 6 caracteres. Maximo 15.'
