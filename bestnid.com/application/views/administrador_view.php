@@ -307,7 +307,7 @@
                                     </h2>
                                     <br>
                                     <br>
-                                    <?= form_open_multipart('administrador/agregarCategoria', "onSubmit = 'return crear_categoria();'") ?>
+                                    <?= form_open_multipart('administrador/agregarCategoria') ?>
                                         <?php
                                             $nombreCategoria = array(
                                                 'name' => 'nombreCategoria',
@@ -339,7 +339,7 @@
                                                 <p align="center">
                                                     <?= form_label('Seleccione una imagen') ?>
                                                 </p>
-                                                <input type="file" name="userfile" id="upload" size="20" />
+                                                <input type="file" name="userfile" id="upload" size="20" accept=".jpg,.jpeg,.gif,.png"/>
                                             </div>
                                             <div class="col-md-4">
                                             </div>
@@ -443,18 +443,6 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-
-        function crear_categoria() {
-            var archivo = document.getElementById('upload').value;
-            if(archivo == null || archivo == "") {
-                alert('No ha elegido ninguna imagen para la categoría');
-                return false;
-            }
-            else {
-                alert('¡Categoría creada con éxito!');
-                return true;
-            }
-        }
 
         function eliminar_categoria() {
             if(confirm('¿Esta seguro que desea eliminar la categoría?') == true) {

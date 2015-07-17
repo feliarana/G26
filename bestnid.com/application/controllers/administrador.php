@@ -78,11 +78,13 @@ class Administrador extends CI_Controller {
 		$this->load->library('upload', $config);
 		if($this->upload->do_upload()) {
 			$this->administrador_model->agregarCategoria($datos);
-    		redirect(base_url(index_page().'/administrador'));
+			print "<script type=\"text/javascript\">alert('Categoria agregada con exito!');</script>"; 
+    		$this->load->view('administrador_view');
 		}
 		else {
-			$error = array('error' => $this->upload->display_errors());
-			return ($error);
+			print "<script type=\"text/javascript\">alert('Por favor, elija una valida.');</script>"; 
+			$datos['opcion'] = 'crear_categoria';
+			$this->load->view('administrador_view', $datos);
 		}
 	}
 
