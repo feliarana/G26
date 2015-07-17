@@ -75,6 +75,12 @@ class Perfil extends CI_Controller {
         $this->load->view('perfil_view', $datos);
     }
 
+    function pagarSubasta() {
+        $idSubasta = $this->input->get('idSubasta');
+        $this->perfil_model->pagarSubasta($idSubasta);
+        redirect(base_url(index_page().'/perfil/ofertas_ganadas'));
+    }
+
     function desactivarCuenta() {
         $idUsuario = $this->session->userdata('idUsuario');
         $this->perfil_model->desactivarCuenta($idUsuario);

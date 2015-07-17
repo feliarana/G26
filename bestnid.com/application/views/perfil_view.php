@@ -442,7 +442,7 @@
                                                                                     </div>
                                                                                     <div class="modal-body">
                                                                                         <?php $atributos = array('class' => 'form-horizontal', 'role' => 'form', 'onSubmit' => 'return(pagar_subasta());'); ?>
-                                                                                        <?= form_open("/perfil/pagarSubasta=".$oferta->idSubasta, $atributos) ?>
+                                                                                        <?= form_open("/perfil/pagarSubasta?idSubasta=".$oferta->idSubasta, $atributos) ?>
                                                                                         <?php
                                                                                             $nombre = array(
                                                                                                 'name' => 'nombre',
@@ -473,7 +473,7 @@
                                                                                                 'class' => 'form-control',
                                                                                                 'placeholder' => 'Ingrese el número de su tarjeta',
                                                                                                 'required' => 'required',
-                                                                                                'pattern' => '[0-9]{8}',
+                                                                                                'pattern' => '[0-9]{16}',
                                                                                                 'title' => 'Por favor, ingrese un número de tarjeta válido. Debe tener 8 digitos'
                                                                                             );
                                                                                             $codigoSeguridad = array(
@@ -485,26 +485,21 @@
                                                                                                 'title' => 'Por favor, ingrese un código de seguridad válido. Debe tener 3 digitos'
                                                                                             );
                                                                                         ?>
-                                                                                        <center>
-                                                                                            <?= form_input($nombre) ?>
-                                                                                            <br>
-                                                                                            <br>
-                                                                                            <?= form_input($apellido) ?>
-                                                                                            <br>
-                                                                                            <br>
-                                                                                            <?= form_input($DNI) ?>
-                                                                                            <br>
-                                                                                            <br>
-                                                                                            <?= form_input($numeroTarjeta) ?>
-                                                                                            <br>
-                                                                                            <br>
-                                                                                            <?= form_input($codigoSeguridad) ?>
-                                                                                            <br>
-                                                                                            <br>
-                                                                                            <h4>
+                                                                                        <?= form_input($nombre) ?>
+                                                                                        <br>
+                                                                                        <?= form_input($apellido) ?>
+                                                                                        <br>
+                                                                                        <?= form_input($DNI) ?>
+                                                                                        <br>
+                                                                                        <?= form_input($numeroTarjeta) ?>
+                                                                                        <br>
+                                                                                        <?= form_input($codigoSeguridad) ?>
+                                                                                        <br>
+                                                                                        <h4 align="center">
                                                                                             <?= form_label('Monto a pagar: $'.$oferta->monto) ?>
-                                                                                            </h4>
-                                                                                            <br>
+                                                                                        </h4>
+                                                                                        <br>
+                                                                                        <center>
                                                                                             <?= form_submit('', 'Efectuar Pago', "class='btn btn-darkest'") ?>
                                                                                         </center>
                                                                                         <?= form_close() ?>
@@ -761,6 +756,11 @@
             else {
                 return (false);
             }
+        }
+
+        function pagar_subasta() {
+            alert('Subasta pagada exitosamente');
+            return (true);
         }
 
 		function desactivar_cuenta() {

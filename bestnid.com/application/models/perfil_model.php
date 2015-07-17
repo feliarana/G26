@@ -128,6 +128,11 @@ class Perfil_model extends CI_Model {
 			return (false);
 	}
 
+	function pagarSubasta($idSubasta) {
+		$this->db->where('idSubasta', $idSubasta);
+		$this->db->update('subasta', array('pagada' => true));
+	}
+
 	function modificarUsuario($datos) {
 		$this->db->where('idUsuario', $datos['idUsuario']);
 		$this->db->update('usuario', $usuario); 
