@@ -13,8 +13,20 @@
 				<img src="<?= base_url('images/logo.png') ?>" title="Volver al inicio de Bestnid">
 			</a>
 		</p>
+
+		<?php
+			if(isset($datos_error)) { ?>
+				<h4>
+					<p align="center">
+						<font color="red"> <?= $datos_error ?> </font>
+					</p>
+				</h4>
+		<?php
+			}
+		?>
+
 		<!-- form_open_multipart es para la carga de archivos -->
-		<?= form_open_multipart('crear_subasta/agregarSubasta', "onSubmit='return(crear_subasta());'") ?>
+		<?= form_open_multipart('crear_subasta/agregarSubasta') ?>
 		<?php
 			$nombreSubasta = array(
 				'name' => 'nombreSubasta',
@@ -70,7 +82,7 @@
 					<p align="center">
 						<?= form_label('Seleccione una imagen') ?>
 					</p>
-					<input type="file" name="userfile" id="upload" size="20" />
+					<input type="file" name="userfile" id="upload" size="20" accept=".jpg,.jpeg,.gif,.png"/>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -152,17 +164,5 @@
 		</div>
 		<?= form_close() ?>
 	</body>
-	<script type="text/javascript">
-		function crear_subasta() {
-			var archivo = document.getElementById('upload').value;
-			if(archivo == null || archivo == "") {
-				alert('No ha elegido ninguna imagen para la subasta');
-				return false;
-			}
-			else {
-				alert('¡Subasta publicada con éxito!');
-				return true;
-			}
-		}
-	</script>
+	
 </html>

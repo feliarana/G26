@@ -10,6 +10,7 @@ class Crear_subasta extends CI_Controller {
         $this->load->library('session');
         $this->load->model('categorias_model');
         $this->load->model('subasta_model');
+        $this->load->library('javascript');
     }
 
     function index() {
@@ -45,13 +46,18 @@ class Crear_subasta extends CI_Controller {
 		if($this->upload->do_upload()) {
 			$datos['nombreImagen'] = $nombreImagen;
 			$this->subasta_model->agregarSubasta($datos);
-    		redirect(base_url(index_page().'/index'));
+			print "<script type=\"text/javascript\">alert('Subasta cargada con exito!');</script>"; 
+			$this->load->view('perfil_view');
 		}
 		else {
-			$error = array('error' => $this->upload->display_errors());
-			return ($error);
+			print "<script type=\"text/javascript\">alert('Archivo inválido. Por favor, seleccione una imagen.');</script>"; 
+			$datos['categorias'] = $this->categorias_model->obtenerCategorias();
+        	$this->load->view('crear_subasta_view', $datos);
+
 		}
 	}
+
+
 
 }
 
