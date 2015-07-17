@@ -210,6 +210,7 @@
                                         			<tbody>
                                             			<?php
                                                 			if($subastasFinalizadas) {
+                                                                $i = 0;
                                                     			foreach($subastasFinalizadas->result() as $subasta) { ?>
                                                         			<tr class="gradeX">
                                                             			<td>
@@ -242,7 +243,7 @@
                                                                                 }
                                                                                 else {
                                                                                     if($subasta->pagada) { ?>
-                                                                                        <center> Pagada </center>
+                                                                                        <center> Pagada. Ganancia: $<?= 70 * $subastasVendidas[$i++]->monto / 100 ?> </center>
                                                                             <?php
                                                                                     }
                                                                                     else { ?>
