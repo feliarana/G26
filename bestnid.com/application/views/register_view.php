@@ -34,8 +34,8 @@
 				'class' => 'form-control',
 	 			'placeholder' => 'D.N.I',
 	 			'required' => 'required',
-	 			'pattern' => '[0-9]{8}',
-	 			'title' => 'Por favor, ingrese un DNI válido.'
+	 			'pattern' => '[0-9]{7,8}',
+	 			'title' => 'Ingrese un mínimo de 7 digitos, máximo 8'
 	 		);
 			
 			$nombre = array('name' => 'nombre',
@@ -44,7 +44,7 @@
 	 			'placeholder' => 'Nombre',
 	 			'required' => 'required',
 	 			'pattern' => '[A-Za-z]{2,20}',
-	 			'title' => 'Por favor, ingrese un mínimo de 2 LETRAS. Maximo 20.'
+	 			'title' => 'Ingrese un mínimo de 2 letras, máximo 20'
 	 		);
 
  	 		$apellido = array('name' => 'apellido',
@@ -53,7 +53,7 @@
 	 			'placeholder' => 'Apellido',
 	 			'required' => 'required',
 	 			'pattern' => '[A-Za-z]{2,20}',
-	 			'title' => 'Por favor, ingrese un mínimo de 2 LETRAS. Maximo 20.'
+	 			'title' => 'Ingrese un mínimo de 2 letras, máximo 20'
 	 		);
 	 	
 	 		$email = array('name' => 'email',
@@ -63,7 +63,7 @@
 		 		'placeholder' => 'E-mail',
 		 		'required' => 'required',
 		 		'pattern' => '.{3,40}',
-	 			'title' => 'Por favor, ingrese un mínimo de 3 caracteres. Maximo 30.'
+	 			'title' => 'Ingrese un mínimo de 3 caracteres, máximo 30'
 		 	);
 
 	 		$password = array('name' => 'password',
@@ -72,7 +72,7 @@
 	 			'placeholder' => 'Contraseña',
 	 			'required' => 'required',
 	 			'pattern' => '.{6,15}',
-	 			'title' => 'Por favor, ingrese un mínimo de 6 caracteres. Maximo 15.'
+	 			'title' => 'Ingrese un mínimo de 6 caracteres, máximo 15'
 	 		);
 
 	 		$password2 = array('name' => 'password2',
@@ -81,7 +81,7 @@
 	 			'placeholder' => 'Repetir Contraseña',
 	 			'required' => 'required',
 	 			'pattern' => '.{6,15}',
-	 			'title' => 'Por favor, ingrese un mínimo de 6 caracteres. Maximo 15.'
+	 			'title' => 'Ingrese un mínimo de 6 caracteres, máximo 15'
 	 		);
 
      		$direccion = array('name' => 'direccion',
@@ -89,8 +89,8 @@
      			'class' => 'form-control',
 	 			'placeholder' => 'Direccion',
 	 			'required' => 'required',
-	 			'pattern' => '.{1,30}',
-	 			'title' => 'Por favor, ingrese un mínimo de 1 caracteres. Maximo 30.'
+	 			'pattern' => '.{2,30}',
+	 			'title' => 'Ingrese un mínimo de 2 caracteres, máximo 30'
 	 		);
  	 
  	 		$telefono = array('name' => 'telefono',
@@ -98,7 +98,7 @@
  	 			'class' => 'form-control',
 	 			'placeholder' => 'Telefono',
 	 			'pattern' => '[0-9]{8,15}',
-	 			'title' => 'Por favor, ingrese un mínimo de 8 NUMEROS'
+	 			'title' => 'Ingrese un mínimo de 8 digitos, máximo 15'
 	 		);
 		?>
 		<p>

@@ -81,53 +81,54 @@ class Perfil extends CI_Controller {
         redirect(base_url(index_page().'/perfil/ofertas_ganadas'));
     }
 
+    function modificar_datos_personales() {
+        $datos['opcion'] = 'modificar_datos_personales';
+        $idUsuario = $this->session->userdata('idUsuario');
+        $datos['usuario'] = $this->perfil_model->obtenerUsuario($idUsuario);
+        $this->load->view('perfil_view', $datos);
+    }
+
+    function verificar_datos() {
+        $idUsuario = $this->session->userdata('idUsuario');
+        $datos = array(
+            'email' => $this->input->post('email'),
+            'DNI' => $this->input->post('DNI'),
+            'nombre' => $this->input->post('nombre'),
+            'apellido' => $this->input->post('apellido'),
+            'direccion' => $this->input->post('direccion'),
+            'telefono' => $this->input->post('telefono')
+            );
+        $existeEmail = $this->perfil_model->verificarEmail($idUsuario, $datos['email']);
+        $existeDNI = $this->perfil_model->verificarDNI($idUsuario, $datos['DNI']);
+        if(!$existeEmail && !$existeDNI) {
+            $this->perfil_model->modificarDatosPersonales($idUsuario, $datos);
+            $mensaje['datos_modificados'] = true;
+            $this->load->view('perfil_view', $mensaje);
+        }
+        else {
+            $datos['opcion'] = 'modificar_datos_personales';
+            $datos['usuario'] = $this->perfil_model->obtenerUsuario($idUsuario);
+            if($existeEmail && $existeDNI) { // Si existe Email y DNI en la base de datos informa un error diciendo que existen ambos
+                $datos['datos_error'] = 'No es posible modificar el Email y el DNI debido a que ya existen en el sistema';
+                $this->load->view('perfil_view', $datos);
+            }
+            else {
+                if($existeEmail) { // Si existe el email lo informa
+                    $datos['datos_error'] = 'No es posible modificar el Email debido a que ya existe en el sistema';
+                    $this->load->view('perfil_view', $datos);
+                }
+                else { // Caso contrario, si existe DNI lo informa
+                    $datos['datos_error'] = 'No es posible modificar el DNI debido a que ya existe en el sistema';
+                    $this->load->view('perfil_view', $datos);
+                }
+            }
+        }
+    }
+
     function desactivarCuenta() {
         $idUsuario = $this->session->userdata('idUsuario');
         $this->perfil_model->desactivarCuenta($idUsuario);
         redirect(base_url(index_page().'/logout'));
-    }
-
-    // Dehhhhh
-
-    function verificar_tarjeta() {
-
-        $idSubasta= $this->input->get('idSubasta'); //Se recibe la subasta para saber que subasta esta pagando el usuario.
-        //TODO
-
-        $idUsuario = $this->session->userdata('idUsuario');
-        $datos['ofertas'] = $this->perfil_model->obtenerMisOfertas($idUsuario);
-        $this->load->view('perfil/mis_ofertas_view', $datos); //Una vez realizado el pago, vuelve a las ofertas del usuario.
-    }
-
-    function modificarDatosPersonales() {
-        $idUsuario = $this->session->userdata('idUsuario');
-        $datos['query'] = $this->perfil_model->datosUsuario($idUsuario); //Esto devuelve una query
-        $this->load->view('perfil/modificar_informacion_view', $datos);
-    }
-
-    function verificar_datos() {
-        $datos = array(
-            'idUsuario' => $idUsuario = $this->session->userdata('idUsuario'),
-            'nombre' => $this->input->post('nombre'),
-            'apellido' => $this->input->post('apellido'),
-            'password' => $this->input->post('password'),
-            'direccion' => $this->input->post('direccion'),
-            'telefono' => $this->input->post('telefono'),
-            'fechaRegistro' => mdate('%Y-%m-%d')
-            );
-        $pass2 = $this->input->post('password2');
-        $passCoincide = ($datos['password'] == $pass2);
-        if($passCoincide) { // Si devuelve true, se registra el usuario, se crea la sesion y se carga la vista correspondiente      
-            $this->perfil_model->modificarUsuario($datos);
-            $this->session->sess_destroy();
-            redirect(base_url(index_page().'/index'));
-        }
-        else {
-            if(!$passCoincide) {
-                $error['datos_error'] = 'Las contraseñas no coinciden';
-                $this->load->view('/perfil/modificarDatosPersonales', $error);
-            }
-        }
     }
 
 }

@@ -61,7 +61,7 @@
                                 </li>
 				   				<li class='has-sub'><a href="#"><span> Cuenta </span></a>
 				    				<ul>
-				        				<li class='last'><a href="<?= base_url(index_page().'/perfil/modificarDatosPersonales') ?>"><span> --> Modificar mis datos </span></a></li>
+				        				<li class='last'><a href="<?= base_url(index_page().'/perfil/modificar_datos_personales') ?>"><span> --> Modificar mis datos </span></a></li>
 				        				<?php
 				         					if($this->session->userdata('subastasPublicadas') || $this->session->userdata('subastasOfertadas')) { ?>
 				         						<li class='last'><a href="<?= base_url(index_page().'/perfil/desactivarCuenta') ?>" onClick="return(alerta_desactivar_cuenta());"><span> --> Desactivar cuenta </span></a></li>
@@ -465,8 +465,8 @@
                                                                                                 'class' => 'form-control',
                                                                                                 'placeholder' => 'Ingrese su DNI',
                                                                                                 'required' => 'required',
-                                                                                                'pattern' => '[0-9]{8}',
-                                                                                                'title' => 'Por favor, ingrese un DNI válido. Debe tener 8 digitos'
+                                                                                                'pattern' => '[0-9]{7,8}',
+                                                                                                'title' => 'Ingrese un mínimo de 7 digitos, máximo 8'
                                                                                             );
                                                                                             $numeroTarjeta = array(
                                                                                                 'name' => 'numeroTarjeta',
@@ -474,7 +474,7 @@
                                                                                                 'placeholder' => 'Ingrese el número de su tarjeta',
                                                                                                 'required' => 'required',
                                                                                                 'pattern' => '[0-9]{16}',
-                                                                                                'title' => 'Por favor, ingrese un número de tarjeta válido. Debe tener 8 digitos'
+                                                                                                'title' => 'Por favor, ingrese un número de tarjeta válido. Debe tener 16 digitos'
                                                                                             );
                                                                                             $codigoSeguridad = array(
                                                                                                 'name' => 'codigoSeguridad',
@@ -653,7 +653,109 @@
                                                 break;
                                             case 'modificar_datos_personales':
 		 						?>
-		 										
+		 									    <h3 align="center">
+                                                    Modificar Datos Personales
+                                                </h3>
+                                                <br>
+                                                <?php
+                                                    if(isset($datos_error)) { ?>
+                                                        <h4>
+                                                            <p align="center">
+                                                                <font color="red"> <?= $datos_error ?> </font>
+                                                            </p>
+                                                        </h4>
+                                                <?php
+                                                    }
+                                                ?>
+                                                <br>
+                                                <?= form_open('perfil/verificar_datos', "onSubmit='return(modificar_datos_personales())'") ?>
+                                                <?php
+                                                    $nombre = array(
+                                                        'name' => 'nombre',
+                                                        'value' =>  $usuario[0]->nombre,
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'Nombre',
+                                                        'required' => 'required',
+                                                        'pattern' => '[A-Za-z]{2,20}',
+                                                        'title' => 'Ingrese un mínimo de 2 letras, máximo 20'
+                                                    );
+                                                    $apellido = array(
+                                                        'name' => 'apellido',
+                                                        'value' =>$usuario[0]->apellido,
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'Apellido',
+                                                        'required' => 'required',
+                                                        'pattern' => '[A-Za-z]{2,20}',
+                                                        'title' => 'Ingrese un mínimo de 2 letras, máximo 20'
+                                                    );
+                                                    $DNI = array(
+                                                        'name' => 'DNI',
+                                                        'value' => $usuario[0]->DNI,
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'DNI',
+                                                        'required' => 'required',
+                                                        'pattern' => '[0-9]{7,8}',
+                                                        'title' => 'Ingrese un mínimo de 7 digitos, máximo 8'
+                                                    );
+                                                    $email = array(
+                                                        'name' => 'email',
+                                                        'type' => 'email',
+                                                        'value' => $usuario[0]->email,
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'Email',
+                                                        'required' => 'required',
+                                                        'pattern' => '{3,30}',
+                                                        'title' => 'Ingrese un mínimo de 3 caracteres, máximo 30'
+                                                    );  
+                                                    $direccion = array(
+                                                        'name' => 'direccion',
+                                                        'value' => $usuario[0]->direccion,
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'Dirección',
+                                                        'required' => 'required',
+                                                        'pattern' => '.{2,30}',
+                                                        'title' => 'Ingrese un mínimo de 2 caracteres, maximo 30'
+                                                    );
+                                                    $telefono = array(
+                                                        'name' => 'telefono',
+                                                        'value' => $usuario[0]->telefono,
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'Teléfono',
+                                                        'required' => 'required',
+                                                        'pattern' => '[0-9]{8,15}',
+                                                        'title' => 'Ingrese un mínimo de 8 números, máximo 15'
+                                                    );
+                                                ?>
+                                                <p>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                        </div>
+                                                        <div class="col-md-4">   
+                                                            <?= form_input($email) ?>
+                                                            <br>
+                                                            <?= form_input($DNI) ?>
+                                                            <br>
+                                                            <?= form_input($nombre) ?>
+                                                            <br>
+                                                            <?= form_input($apellido) ?>
+                                                            <br>
+                                                            <?= form_input($direccion) ?>
+                                                            <br>
+                                                            <?= form_input($telefono) ?>
+                                                            <p align="center">
+                                                                <br>
+                                                                <br>
+                                                                <?= form_submit('', 'Guardar', "class='btn btn-darkest'") ?>
+                                                                <a href="<?= base_url(index_page().'/perfil') ?>">
+                                                                    <button type="button" class="btn btn-darkest"> Cancelar </button>
+                                                                </a>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                        </div>
+                                                    </div>
+                                                </p>
+                                                <?= form_close() ?>
 			 					<?php
 		 										break;
                                             case 'elegir_ganador':
@@ -731,7 +833,13 @@
 		 							else {
 		 						?>
 		 								<h1 align="center"> ¡Bienvenido a su perfil! </h1>
-		 						<?php
+                                <?php
+                                        if(isset($datos_modificados)) { ?>
+                                            <script>
+                                                alert('Sus datos han sido modificados correctamente')
+                                            </script>
+                                <?php
+                                        }
 		 							}
 			 					?>
             				</div>
@@ -761,6 +869,15 @@
         function pagar_subasta() {
             alert('Subasta pagada exitosamente');
             return (true);
+        }
+
+        function modificar_datos_personales() {
+            if(confirm('¿Esta seguro que desea modificar sus datos?') == true) {
+                return (true);
+            }
+            else {
+                return (false);
+            }
         }
 
 		function desactivar_cuenta() {

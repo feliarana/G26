@@ -133,9 +133,33 @@ class Perfil_model extends CI_Model {
 		$this->db->update('subasta', array('pagada' => true));
 	}
 
-	function modificarUsuario($datos) {
-		$this->db->where('idUsuario', $datos['idUsuario']);
-		$this->db->update('usuario', $usuario); 
+	function verificarEmail($idUsuario, $email) {
+		$this->db->where('idUsuario <>', $idUsuario);
+		$this->db->where('email', $email);
+		$query = $this->db->get('usuario');
+		if($query->num_rows() > 0) {
+			return (true);
+		}
+		else {
+			return (false);
+		}
+	}
+
+	function verificarDNI($idUsuario, $DNI) {
+		$this->db->where('idUsuario <>', $idUsuario);
+		$this->db->where('DNI', $DNI);
+		$query = $this->db->get('usuario');
+		if($query->num_rows() > 0) {
+			return (true);
+		}
+		else {
+			return (false);
+		}
+	}
+
+	function modificarDatosPersonales($idUsuario, $datosPersonales) {
+		$this->db->where('idUsuario', $idUsuario);
+		$this->db->update('usuario', $datosPersonales);
 	}
 
 	function desactivarCuenta($idUsuario) {
