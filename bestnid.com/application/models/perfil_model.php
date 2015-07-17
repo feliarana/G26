@@ -162,6 +162,23 @@ class Perfil_model extends CI_Model {
 		$this->db->update('usuario', $datosPersonales);
 	}
 
+	function verificarPasswordActual($idUsuario, $passwordActual) {
+		$this->db->where('idUsuario', $idUsuario);
+		$this->db->where('password', $passwordActual);
+		$query = $this->db->get('usuario');
+		if($query->num_rows() > 0) {
+			return (true);
+		}
+		else {
+			return (false);
+		}
+	}
+
+	function cambiarPassword($idUsuario, $passwordNuevo) {
+		$this->db->where('idUsuario', $idUsuario);
+		$this->db->update('usuario', array('password' => $passwordNuevo));
+	}
+
 	function desactivarCuenta($idUsuario) {
 		$this->db->where('idUsuario', $idUsuario);
 		$this->db->update('usuario', array('activo' => false));

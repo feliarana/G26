@@ -29,7 +29,8 @@
 		<br>
 		<?= form_open('register/verificar_datos') ?>
 		<?php
-			$DNI = array('name' => 'DNI',
+			$DNI = array(
+				'name' => 'DNI',
 				'value' => @set_value('DNI'),
 				'class' => 'form-control',
 	 			'placeholder' => 'D.N.I',
@@ -38,7 +39,8 @@
 	 			'title' => 'Ingrese un mínimo de 7 digitos, máximo 8'
 	 		);
 			
-			$nombre = array('name' => 'nombre',
+			$nombre = array(
+				'name' => 'nombre',
 				'value' => @set_value('nombre'),
 				'class' => 'form-control',
 	 			'placeholder' => 'Nombre',
@@ -47,7 +49,8 @@
 	 			'title' => 'Ingrese un mínimo de 2 letras, máximo 20'
 	 		);
 
- 	 		$apellido = array('name' => 'apellido',
+ 	 		$apellido = array(
+ 	 			'name' => 'apellido',
  	 			'value' => @set_value('apellido'),
  	 			'class' => 'form-control',
 	 			'placeholder' => 'Apellido',
@@ -56,7 +59,8 @@
 	 			'title' => 'Ingrese un mínimo de 2 letras, máximo 20'
 	 		);
 	 	
-	 		$email = array('name' => 'email',
+	 		$email = array(
+	 			'name' => 'email',
 	 			'type' => 'email',
 	 			'value' => @set_value('email'),
 	 			'class' => 'form-control',
@@ -66,7 +70,8 @@
 	 			'title' => 'Ingrese un mínimo de 3 caracteres, máximo 30'
 		 	);
 
-	 		$password = array('name' => 'password',
+	 		$password = array(
+	 			'name' => 'password',
 	 			'type' => 'password',
 	 			'class' => 'form-control',
 	 			'placeholder' => 'Contraseña',
@@ -75,7 +80,8 @@
 	 			'title' => 'Ingrese un mínimo de 6 caracteres, máximo 15'
 	 		);
 
-	 		$password2 = array('name' => 'password2',
+	 		$password2 = array(
+	 			'name' => 'password2',
 	 			'type' => 'password',
 	 			'class' => 'form-control',
 	 			'placeholder' => 'Repetir Contraseña',
@@ -84,7 +90,8 @@
 	 			'title' => 'Ingrese un mínimo de 6 caracteres, máximo 15'
 	 		);
 
-     		$direccion = array('name' => 'direccion',
+     		$direccion = array(
+     			'name' => 'direccion',
      			'value' => @set_value('direccion'),
      			'class' => 'form-control',
 	 			'placeholder' => 'Direccion',
@@ -93,7 +100,8 @@
 	 			'title' => 'Ingrese un mínimo de 2 caracteres, máximo 30'
 	 		);
  	 
- 	 		$telefono = array('name' => 'telefono',
+ 	 		$telefono = array(
+ 	 			'name' => 'telefono',
  	 			'value' => @set_value('telefono'),
  	 			'class' => 'form-control',
 	 			'placeholder' => 'Telefono',

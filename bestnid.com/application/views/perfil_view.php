@@ -62,7 +62,8 @@
 				   				<li class='has-sub'><a href="#"><span> Cuenta </span></a>
 				    				<ul>
 				        				<li class='last'><a href="<?= base_url(index_page().'/perfil/modificar_datos_personales') ?>"><span> --> Modificar mis datos </span></a></li>
-				        				<?php
+				        				<li class='last'><a href="<?= base_url(index_page().'/perfil/cambiar_password') ?>"><span> --> Cambiar contraseña </span></a></li>
+                                        <?php
 				         					if($this->session->userdata('subastasPublicadas') || $this->session->userdata('subastasOfertadas')) { ?>
 				         						<li class='last'><a href="<?= base_url(index_page().'/perfil/desactivarCuenta') ?>" onClick="return(alerta_desactivar_cuenta());"><span> --> Desactivar cuenta </span></a></li>
 				      					<?php
@@ -241,7 +242,7 @@
                                                                                 }
                                                                                 else {
                                                                                     if($subasta->pagada) { ?>
-                                                                                        <center> Vendida </center>
+                                                                                        <center> Pagada </center>
                                                                             <?php
                                                                                     }
                                                                                     else { ?>
@@ -474,7 +475,7 @@
                                                                                                 'placeholder' => 'Ingrese el número de su tarjeta',
                                                                                                 'required' => 'required',
                                                                                                 'pattern' => '[0-9]{16}',
-                                                                                                'title' => 'Por favor, ingrese un número de tarjeta válido. Debe tener 16 digitos'
+                                                                                                'title' => 'El número de tarjeta debe tener 16 digitos'
                                                                                             );
                                                                                             $codigoSeguridad = array(
                                                                                                 'name' => 'codigoSeguridad',
@@ -482,7 +483,7 @@
                                                                                                 'placeholder' => 'Ingrese el código de seguridad',
                                                                                                 'required' => 'required',
                                                                                                 'pattern' => '[0-9]{3}',
-                                                                                                'title' => 'Por favor, ingrese un código de seguridad válido. Debe tener 3 digitos'
+                                                                                                'title' => 'El código de seguridad debe tener 3 digitos'
                                                                                             );
                                                                                         ?>
                                                                                         <?= form_input($nombre) ?>
@@ -704,7 +705,7 @@
                                                         'class' => 'form-control',
                                                         'placeholder' => 'Email',
                                                         'required' => 'required',
-                                                        'pattern' => '{3,30}',
+                                                        'pattern' => '.{3,30}',
                                                         'title' => 'Ingrese un mínimo de 3 caracteres, máximo 30'
                                                     );  
                                                     $direccion = array(
@@ -726,38 +727,107 @@
                                                         'title' => 'Ingrese un mínimo de 8 números, máximo 15'
                                                     );
                                                 ?>
-                                                <p>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                        </div>
-                                                        <div class="col-md-4">   
-                                                            <?= form_input($email) ?>
-                                                            <br>
-                                                            <?= form_input($DNI) ?>
-                                                            <br>
-                                                            <?= form_input($nombre) ?>
-                                                            <br>
-                                                            <?= form_input($apellido) ?>
-                                                            <br>
-                                                            <?= form_input($direccion) ?>
-                                                            <br>
-                                                            <?= form_input($telefono) ?>
-                                                            <p align="center">
-                                                                <br>
-                                                                <br>
-                                                                <?= form_submit('', 'Guardar', "class='btn btn-darkest'") ?>
-                                                                <a href="<?= base_url(index_page().'/perfil') ?>">
-                                                                    <button type="button" class="btn btn-darkest"> Cancelar </button>
-                                                                </a>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                        </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
                                                     </div>
-                                                </p>
+                                                    <div class="col-md-4">   
+                                                        <?= form_input($email) ?>
+                                                        <br>
+                                                        <?= form_input($DNI) ?>
+                                                        <br>
+                                                        <?= form_input($nombre) ?>
+                                                        <br>
+                                                        <?= form_input($apellido) ?>
+                                                        <br>
+                                                        <?= form_input($direccion) ?>
+                                                        <br>
+                                                        <?= form_input($telefono) ?>
+                                                        <p align="center">
+                                                            <br>
+                                                            <br>
+                                                            <?= form_submit('', 'Guardar', "class='btn btn-darkest'") ?>
+                                                            <a href="<?= base_url(index_page().'/perfil') ?>">
+                                                                <button type="button" class="btn btn-darkest"> Cancelar </button>
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                    </div>
+                                                </div>
                                                 <?= form_close() ?>
 			 					<?php
 		 										break;
+                                            case 'cambiar_contraseña':
+                                ?>
+                                                <h3 align="center">
+                                                    Cambiar Contraseña
+                                                </h3>
+                                                <br>
+                                                <?php
+                                                    if(isset($datos_error)) { ?>
+                                                        <h4>
+                                                            <p align="center">
+                                                                <font color="red"> <?= $datos_error ?> </font>
+                                                            </p>
+                                                        </h4>
+                                                <?php
+                                                    }
+                                                ?>
+                                                <br>
+                                                <?= form_open('perfil/verificar_passwords', "onSubmit='return(cambiar_password())'") ?>
+                                                <?php
+                                                    $password1 = array(
+                                                        'name' => 'password1',
+                                                        'type' => 'password',
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'Contraseña actual',
+                                                        'required' => 'required',
+                                                        'pattern' => '.{6,15}',
+                                                        'title' => 'Ingrese un mínimo de 6 caracteres, máximo 15'
+                                                    );
+                                                    $password2 = array(
+                                                        'name' => 'password2',
+                                                        'type' => 'password',
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'Contraseña nueva',
+                                                        'required' => 'required',
+                                                        'pattern' => '.{6,15}',
+                                                        'title' => 'Ingrese un mínimo de 6 caracteres, máximo 15'
+                                                    );
+                                                    $password3 = array(
+                                                        'name' => 'password3',
+                                                        'type' => 'password',
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'Repetir contraseña nueva',
+                                                        'required' => 'required',
+                                                        'pattern' => '.{6,15}',
+                                                        'title' => 'Ingrese un mínimo de 6 caracteres, máximo 15'
+                                                    );
+                                                ?>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <?= form_input($password1) ?>
+                                                        <br>
+                                                        <?= form_input($password2) ?>
+                                                        <br>
+                                                        <?= form_input($password3) ?>
+                                                        <p align="center">
+                                                            <br>
+                                                            <br>
+                                                            <?= form_submit('', 'Guardar', "class='btn btn-darkest'") ?>
+                                                            <a href="<?= base_url(index_page().'/perfil') ?>">
+                                                                <button type="button" class="btn btn-darkest"> Cancelar </button>
+                                                            </a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                    </div>
+                                                </div>
+                                                <?= form_close() ?>
+                                <?php
+                                                break;
                                             case 'elegir_ganador':
                                 ?>
                                                 <h3 align="center">
@@ -840,6 +910,12 @@
                                             </script>
                                 <?php
                                         }
+                                        if(isset($password_cambiado)) { ?>
+                                            <script>
+                                                alert('Su contraseña ha sido cambiada correctamente')
+                                            </script>
+                                <?php
+                                        }
 		 							}
 			 					?>
             				</div>
@@ -873,6 +949,15 @@
 
         function modificar_datos_personales() {
             if(confirm('¿Esta seguro que desea modificar sus datos?') == true) {
+                return (true);
+            }
+            else {
+                return (false);
+            }
+        }
+
+        function cambiar_password() {
+            if(confirm('¿Esta seguro que desea cambiar su contraseña?') == true) {
                 return (true);
             }
             else {

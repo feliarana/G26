@@ -34,6 +34,7 @@ class Register_model extends CI_Model {
 		$query = $this->db->get('usuario');
 		return ($query->result()[0]->idUsuario); // Devuelve el id del usuario
 	}
+
 }
 
 ?>

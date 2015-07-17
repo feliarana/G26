@@ -102,8 +102,8 @@ class Perfil extends CI_Controller {
         $existeDNI = $this->perfil_model->verificarDNI($idUsuario, $datos['DNI']);
         if(!$existeEmail && !$existeDNI) {
             $this->perfil_model->modificarDatosPersonales($idUsuario, $datos);
-            $mensaje['datos_modificados'] = true;
-            $this->load->view('perfil_view', $mensaje);
+            $datos['datos_modificados'] = true;
+            $this->load->view('perfil_view', $datos);
         }
         else {
             $datos['opcion'] = 'modificar_datos_personales';
@@ -121,6 +121,39 @@ class Perfil extends CI_Controller {
                     $datos['datos_error'] = 'No es posible modificar el DNI debido a que ya existe en el sistema';
                     $this->load->view('perfil_view', $datos);
                 }
+            }
+        }
+    }
+
+    function cambiar_password() {
+        $datos['opcion'] = 'cambiar_contraseña';
+        $this->load->view('perfil_view', $datos);
+    }
+
+    function verificar_passwords() {
+        $idUsuario = $this->session->userdata('idUsuario');
+        $datos = array(
+            'passwordActual' => $this->input->post('password1'),
+            'passwordNuevo' => $this->input->post('password2'),
+            'passwordNuevo2' => $this->input->post('password3')
+            );
+        $coincidePassActual = $this->perfil_model->verificarPasswordActual($idUsuario, $datos['passwordActual']);
+        $coincidePassNueva = ($datos['passwordNuevo'] == $datos['passwordNuevo2']);
+        if($coincidePassActual && $coincidePassNueva) {
+            $this->perfil_model->cambiarPassword($idUsuario, $datos['passwordNuevo']);
+            $datos['password_cambiado'] = true;
+            $this->load->view('perfil_view', $datos);
+        }
+        else {
+            if(!$coincidePassActual) {
+                $datos['opcion'] = 'cambiar_contraseña';
+                $datos['datos_error'] = 'La contraseña actual ingresada es incorrecta';
+                $this->load->view('perfil_view', $datos);
+            }
+            else {
+                $datos['opcion'] = 'cambiar_contraseña';
+                $datos['datos_error'] = 'Las contraseñas nuevas no coinciden';
+                $this->load->view('perfil_view', $datos);
             }
         }
     }
