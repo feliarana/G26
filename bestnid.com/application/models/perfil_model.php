@@ -115,7 +115,7 @@ class Perfil_model extends CI_Model {
 	}
 
 	function modificarUsuario($datos) {
-		$this->db->update('idUsuario', $datos['idUsuario'];
+		$this->db->where('idUsuario', $datos['idUsuario']);
 		$this->db->update('usuario', $usuario); 
 	}
 
