@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-07-2015 a las 03:27:52
+-- Tiempo de generación: 17-07-2015 a las 12:10:39
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `password`, `direccion`, `telefono`, `fechaRegistro`, `userAdmin`, `activo`) VALUES
-(1, 36546888, 'Emiliano', 'Retamar', 'ejemplo@hotmail.com', 'hola', 'Calle Falsa 123', 3454222244, '2015-05-11', 0, 1),
+(1, 36546888, 'Emiliano', 'Retamar', 'emiliano_retamar@gmail.com', '111111', 'Circunvalacion 1699', 1164527735, '2015-05-11', 0, 1),
 (5, 4567788, 'Emi', 'Retamar', 'hola@hotmail.com', '123456', 'sakdjkld', 12345678, '2015-06-01', 0, 1),
 (12, 33333333, 'fa', 'fa', 'f@f', '123456', 'fa', 76543232, '2015-06-10', 0, 1),
 (13, 11111111, 'aa', 'aa', 'a@a.com', '123456', 'a', 12345678, '2015-07-03', 0, 1),
