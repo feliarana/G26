@@ -19,11 +19,11 @@ class Administrador_model extends CI_Model {
 		}
 	}
 
-	function obtenerSubastasVendidas($fecha1, $fecha2) {
+	function obtenerSubastasVendidas($fecha1, $fecha2) { // Devuelve las subastas vendidas con su respectivo subastador
 		$this->db->from('subasta');
 		$this->db->join('usuario', 'subasta.idUsuario = usuario.idUsuario');
-		$this->db->where('fechaRegistro >=', $fecha1);
-		$this->db->where('fechaRegistro <=', $fecha2);
+		$this->db->where('fechaFin >=', $fecha1);
+		$this->db->where('fechaFin <=', $fecha2);
 		$this->db->where('ganador <>', 'NULL');
 		$this->db->where('pagada', true);
 		$query = $this->db->get();
@@ -35,12 +35,12 @@ class Administrador_model extends CI_Model {
 		}
 	}
 
-	function obtenerOfertasGanadoras($fecha1, $fecha2) {
+	function obtenerOfertasGanadoras($fecha1, $fecha2) { // Devuelve las subastas vendidas con su respectiva oferta y ganador
 		$this->db->from('subasta');
 		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
 		$this->db->join('usuario', 'subasta.ganador = usuario.idUsuario');
-		$this->db->where('fechaRegistro >=', $fecha1);
-		$this->db->where('fechaRegistro <=', $fecha2);
+		$this->db->where('fechaFin >=', $fecha1);
+		$this->db->where('fechaFin <=', $fecha2);
 		$this->db->where('ganador <>', 'NULL');
 		$this->db->where('pagada', true);
 		$query = $this->db->get();

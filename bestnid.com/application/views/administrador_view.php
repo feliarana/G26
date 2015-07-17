@@ -315,7 +315,7 @@
                                                 'placeholder' => 'Nombre de la categoría',
                                                 'required' => 'required',
                                                 'pattern' => '.{3,30}$',
-                                                'title' => 'Por favor, ingrese un mínimo de 3 caractéres. Maximo 30.'
+                                                'title' => 'Ingrese un mínimo de 3 caracteres, máximo 30'
                                             );
                                         ?>
                                         <div class="row">
