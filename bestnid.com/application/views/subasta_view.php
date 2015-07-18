@@ -145,10 +145,8 @@
                                                     );   
                                             }
                                                 ?>
-                                        <center><label>Necesidad</label></center>
                                         <?= form_textarea($argumento) ?>
                                         <br>
-                                        <center><label>Monto</label></center>
                                         <?= form_input($monto) ?>
                                         <br>
                                         <?= form_submit('', 'Enviar', "class='btn btn-darkest' ") ?>

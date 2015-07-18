@@ -74,11 +74,11 @@ class Perfil_model extends CI_Model {
 		$formato = "%Y-%m-%d";
 		$fechaActual = mdate($formato);
 		$this->db->from('subasta');
-		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
+		$this->db->join('oferta', 'subasta.ganador = oferta.idUsuario');
 		$this->db->where('fechaFin <=', $fechaActual);
-		$this->db->where('subasta.idUsuario', $idUsuario);
-		$this->db->where('ganador <>', 'NULL');
+		$this->db->where('subasta.idUsuario', $idUsuario);		
 		$this->db->where('pagada', true);
+		$this->db->group_by('subasta.idSubasta');
 		$this->db->order_by('fechaFin', 'desc');
 		$query = $this->db->get();
 		if($query->num_rows() > 0) {
@@ -98,6 +98,16 @@ class Perfil_model extends CI_Model {
 			return (false);
 	}
 
+	function obtenerGanadorDeOfertas($idSubasta){
+		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
+		$this->db->where('ganador !=', null);
+		$query = $this->db->get('oferta.idUsuario');
+		if($query->num_rows() > 0)
+			return ($query);
+		else
+			return (false);
+	}
+
 	function guardarGanador($idSubasta, $idUsuario) {
 		$this->db->where('idSubasta', $idSubasta);
 		$this->db->update('subasta', array('ganador' => $idUsuario));
@@ -107,7 +117,7 @@ class Perfil_model extends CI_Model {
 		$this->db->from('subasta');
 		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
 		$this->db->where('oferta.idUsuario', $idUsuario);
-		//$this->db->where('ganador', 'NULL');
+		$this->db->where('ganador', 'NULL');
 		$this->db->order_by('subasta.fechaFin', 'asc');
 		$query = $this->db->get();
 		if($query->num_rows() > 0)

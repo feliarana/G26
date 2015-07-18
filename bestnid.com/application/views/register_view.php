@@ -114,38 +114,30 @@
 				<div class="col-md-5">
 				</div>
 				<div class="col-md-2">
-					<center><label>Email</label></center>
-						<div class="form-group">	
-							<?=	form_input($email) ?>
-						</div>
-					<center><label>Contraseña</label></center>
-						<div class="form-group">	
-							<?=	form_password($password) ?>
-						</div>
-					<center><label>Repetir contraseña</label></center>
-						<div class="form-group">	
-							<?=	form_input($password2) ?>
-						</div>
-					<center><label>DNI</label></center>
-						<div class="form-group">	
-							<?=	form_input($DNI) ?>
-						</div>
-					<center><label>Nombre</label></center>
-						<div class="form-group">	
-							<?=	form_input($nombre) ?>
-						</div>
-					<center><label>Apellido</label></center>
-						<div class="form-group">	
-							<?=	form_input($apellido) ?>
-						</div>
-					<center><label>Dirección</label></center>
-						<div class="form-group">	
-							<?=	form_input($direccion) ?>
-						</div>
-					<center><label>Teléfono</label></center>
-						<div class="form-group">	
-							<?=	form_input($telefono) ?>
-						</div>
+					<div class="form-group">	
+						<?=	form_input($email) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_password($password) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($password2) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($DNI) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($nombre) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($apellido) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($direccion) ?>
+					</div>
+					<div class="form-group">	
+						<?=	form_input($telefono) ?>
+					</div>
 					<p align="center">
 						<br>
 						<?=	form_submit('submit_reg', 'Registrarse', "class='btn btn-darkest'") ?>
