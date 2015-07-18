@@ -220,7 +220,7 @@
                                                             'name' => 'respuesta'.$comentario->idComentario,
                                                             'class' => 'form-control',
                                                             'type' => 'text',
-                                                            'placeholder' => 'Realice su respuesta',
+                                                            'placeholder' => 'Escriba su respuesta...',
                                                         ); 
                                                     ?>
                                                     <?= form_input($respuesta); ?>  
