@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-07-2015 a las 12:10:39
+-- Tiempo de generación: 18-07-2015 a las 02:53:37
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `nombreCategoria` varchar(50) NOT NULL,
   `nombreImagen` varchar(50) DEFAULT NULL,
   `eliminada` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -49,7 +49,8 @@ INSERT INTO `categoria` (`idCategoria`, `nombreCategoria`, `nombreImagen`, `elim
 (9, 'Inmuebles', 'categoria_inmuebles.jpg', 0),
 (10, 'Animales', 'categoria_animales.jpg', 0),
 (11, 'Servicios', 'categoria_servicios.jpg', 0),
-(12, 'Hogar', 'categoria_hogar.jpg', 0);
+(12, 'Hogar', 'categoria_hogar.jpg', 0),
+(13, 'Hogar2', '18072015014822.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `comentario` (
   `idSubasta` int(10) unsigned NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `comentario`
@@ -120,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `subasta` (
   `ganador` int(10) unsigned DEFAULT NULL,
   `pagada` tinyint(1) NOT NULL,
   `nombreImagen` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `subasta`
@@ -128,12 +129,16 @@ CREATE TABLE IF NOT EXISTS `subasta` (
 
 INSERT INTO `subasta` (`idSubasta`, `nombreSubasta`, `descripcion`, `idUsuario`, `idCategoria`, `fechaInicio`, `fechaFin`, `ganador`, `pagada`, `nombreImagen`) VALUES
 (20, 'Espejo', 'Espejo sin marco. Medidas: 0.8m x 1.2m', 5, 12, '2015-06-01', '2015-07-29', NULL, 0, 'espejo.jpg'),
-(27, 'Casa con faro', 'Bonita casa con vista al mar y un faro muy luminoso para orientar barquitos', 12, 9, '2015-06-04', '2015-07-15', 1, 0, 'faro.jpg'),
+(27, 'Casa con faro', 'Bonita casa con vista al mar y un faro muy luminoso para orientar barquitos', 12, 9, '2015-06-04', '2015-07-15', NULL, 0, 'faro.jpg'),
 (35, 'Llave', 'Llave de aleación. Me la encontré en la vereda.', 12, 12, '2015-05-24', '2015-07-21', NULL, 0, 'llave.jpg'),
-(37, 'Libro raro', 'No tiene nombre en la tapa. No entiendo que dicen los textos. Parece viejo.', 5, 7, '2015-05-17', '2015-07-30', 1, 0, 'libro.jpg'),
+(37, 'Libro raro', 'No tiene nombre en la tapa. No entiendo que dicen los textos. Parece viejo.', 5, 7, '2015-05-17', '2015-07-19', NULL, 0, 'libro.jpg'),
 (42, 'Taza de café', 'Taza de café con tetera', 1, 12, '2015-07-11', '2015-08-02', 1, 0, '13072015092955.jpg'),
-(43, 'Resumen de Org', 'Resumen Org', 1, 7, '2015-07-11', '2015-08-01', 5, 0, '11072015231153.jpg'),
-(44, 'Diseño UX', 'Experiencia de Usuario vs Diseño', 1, 3, '2015-07-14', '2015-07-01', 5, 1, '14072015103131.jpg');
+(43, 'Resumen de Org', 'Resumen Org', 1, 7, '2015-07-11', '2015-07-10', 5, 1, '11072015231153.jpg'),
+(44, 'Diseño UX', 'Experiencia de Usuario vs Diseño', 1, 3, '2015-07-14', '2015-07-01', 5, 1, '14072015103131.jpg'),
+(45, 'Programador', 'Codeando', 1, 3, '2015-07-18', '2015-08-02', NULL, 0, '18072015013523.jpg'),
+(46, 'Programador', 'Codeando', 1, 3, '2015-07-18', '2015-08-02', NULL, 0, '18072015003056.jpg'),
+(47, 'Programador', 'Codeando', 1, 1, '2015-07-18', '2015-08-02', NULL, 0, '18072015003817.jpg'),
+(48, 'Programador', 'Codeando', 1, 3, '2015-07-18', '2015-08-02', NULL, 0, '18072015003843.jpg');
 
 -- --------------------------------------------------------
 
@@ -212,12 +217,12 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-MODIFY `idCategoria` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `idCategoria` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-MODIFY `idComentario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
+MODIFY `idComentario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT de la tabla `oferta`
 --
@@ -227,7 +232,7 @@ MODIFY `idOferta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 -- AUTO_INCREMENT de la tabla `subasta`
 --
 ALTER TABLE `subasta`
-MODIFY `idSubasta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
+MODIFY `idSubasta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
