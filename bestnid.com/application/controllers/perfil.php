@@ -38,7 +38,6 @@ class Perfil extends CI_Controller {
         $idUsuario = $this->session->userdata('idUsuario');
         $datos['subastasFinalizadas'] = $this->perfil_model->obtenerSubastasFinalizadas($idUsuario);
         $datos['subastasVendidas'] = $this->perfil_model->obtenerSubastasVendidas($idUsuario);
-        //echo var_dump($datos['subastasVendidas']); die;
         $this->load->view('perfil_view', $datos);
     }
 
