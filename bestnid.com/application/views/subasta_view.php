@@ -167,11 +167,12 @@
         <?= form_open("subasta/comentario?idSubasta=".$subasta[0]->idSubasta, $atributos) ?>
         <?php
             $pregunta = array(
-            'name' => 'comentario',
-            'class' => 'form-control',
-            'type' => 'text',
-            'placeholder' => 'Realice su pregunta'
-            ); 
+                'name' => 'comentario',
+                'class' => 'form-control',
+                'type' => 'text',
+                'placeholder' => 'Realice su pregunta',
+                'required' => 'required'
+            );
         ?>
         <?php
             if(isset($this->session->userdata['login']) && ($this->session->userdata['idUsuario'] != $subasta[0]->idUsuario)) { ?> <!-- Si el usuario esta logueado y no es el dueño de la subasta puede comentar -->
@@ -221,6 +222,7 @@
                                                             'class' => 'form-control',
                                                             'type' => 'text',
                                                             'placeholder' => 'Escriba su respuesta...',
+                                                            'required' => 'required'
                                                         ); 
                                                     ?>
                                                     <?= form_input($respuesta); ?>  

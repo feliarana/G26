@@ -147,14 +147,14 @@
                                                 "aoColumnDefs":[ { 'bSortable': false } ],
                                                 "language": {
                                                     "search": "Buscar",
-                                                    "lengthMenu": "Mostrar _MENU_ subastas por página",
-                                                    "zeroRecords": "No se han encontrado subastas",
+                                                    "lengthMenu": "Mostrar _MENU_ usuarios por página",
+                                                    "zeroRecords": "No se han encontrado usuarios",
                                                     "info": "Mostrando página _PAGE_ de _PAGES_",
                                                     "infoEmpty": "No hay registros disponibles",
                                                     "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                                                     "loadingRecords": "Cargando",
                                                     "processing":     "Procesando",
-                                                    "zeroRecords":    "No hay subastas coincidentes encontradas",
+                                                    "zeroRecords":    "No hay usuarios coincidentes encontrados",
                                                     "paginate": {
                                                         "first":      "Primero",
                                                         "last":       "Ultimo",
@@ -216,11 +216,13 @@
                                     <br>
                                     <h4 align="center">
                                         <?php
-                                            $gananciaTotal = 0;
-                                            foreach($ganadores as $ganador) {
-                                                $gananciaTotal += 30 * $ganador->monto / 100;
+                                            if($ganadores) {
+                                                $gananciaTotal = 0;
+                                                foreach($ganadores as $ganador) {
+                                                    $gananciaTotal += 30 * $ganador->monto / 100;
+                                                }
+                                                echo 'La ganancia total de bestnid entre estas fechas es: $'.$gananciaTotal;
                                             }
-                                            echo 'La ganancia total de bestnid entre estas fechas es: $'.$gananciaTotal;
                                         ?>
                                     </h4>
                                     <br>

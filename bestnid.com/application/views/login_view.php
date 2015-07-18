@@ -70,7 +70,7 @@
             </div>
 		</div>
 		<p align="center">
-			<a href="">Recuperar mi contraseña</a>
+			<a href="#">Recuperar mi contraseña</a>
 		</p>
 		<p align="center">
 			<?= form_submit('', 'Iniciar Sesión', "class='btn btn-darkest'") ?>
