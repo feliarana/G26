@@ -58,8 +58,10 @@
                                     <?= form_open('/administrador/usuarios_registrados') ?>
                                         <div class="row">
                                             <div class="col-md-4 col-md-offset-4">
+                                                <center><label>Desde:</label></center>
                                                 <input type="date" name="fecha1" class="form-control" value="2015-05-01" min="2015-05-01" max="<?= $fechaActual ?>" required="required">
                                                 <br>
+                                                <center><label>Hasta:</label></center>
                                                 <input type="date" name="fecha2" class="form-control" value="<?= $fechaActual ?>" min="2015-05-01" max="<?= $fechaActual ?>" required="required">
                                             </div>
                                         </div>
@@ -184,8 +186,10 @@
                                     <?= form_open('/administrador/subastas_vendidas') ?>
                                         <div class="row">
                                             <div class="col-md-4 col-md-offset-4">
+                                                <center><label>Desde:</label></center>
                                                 <input type="date" name="fecha1" class="form-control" value="2015-05-01" min="2015-05-01" max="<?= $fechaActual ?>" required="required">
                                                 <br>
+                                                <center><label>Hasta:</label></center>
                                                 <input type="date" name="fecha2" class="form-control" value="<?= $fechaActual ?>" min="2015-05-01" max="<?= $fechaActual ?>" required="required">
                                             </div>
                                         </div>

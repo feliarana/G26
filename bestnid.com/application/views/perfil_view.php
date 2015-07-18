@@ -487,14 +487,19 @@
                                                                                                 'title' => 'El código de seguridad debe tener 3 digitos'
                                                                                             );
                                                                                         ?>
+                                                                                        <center><label>Nombre</label></center>
                                                                                         <?= form_input($nombre) ?>
                                                                                         <br>
+                                                                                        <center><label>Apellido</label></center>
                                                                                         <?= form_input($apellido) ?>
                                                                                         <br>
+                                                                                        <center><label>DNI</label></center>
                                                                                         <?= form_input($DNI) ?>
                                                                                         <br>
+                                                                                        <center><label>Número de tarjeta</label></center>
                                                                                         <?= form_input($numeroTarjeta) ?>
                                                                                         <br>
+                                                                                        <center><label>Código de seguridad de tarjeta</label></center>
                                                                                         <?= form_input($codigoSeguridad) ?>
                                                                                         <br>
                                                                                         <h4 align="center">
@@ -731,17 +736,23 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                     </div>
-                                                    <div class="col-md-4">   
+                                                    <div class="col-md-4">  
+                                                    <center><label>Email</label></center>
                                                         <?= form_input($email) ?>
                                                         <br>
+                                                    <center><label>DNI</label></center>
                                                         <?= form_input($DNI) ?>
                                                         <br>
+                                                    <center><label>Nombre</label></center>
                                                         <?= form_input($nombre) ?>
                                                         <br>
+                                                    <center><label>Apellido</label></center>
                                                         <?= form_input($apellido) ?>
                                                         <br>
+                                                    <center><label>Dirección</label></center>
                                                         <?= form_input($direccion) ?>
                                                         <br>
+                                                    <center><label>Teléfono</label></center>
                                                         <?= form_input($telefono) ?>
                                                         <p align="center">
                                                             <br>
@@ -809,10 +820,13 @@
                                                     <div class="col-md-4">
                                                     </div>
                                                     <div class="col-md-4">
+                                                    <center><label>Contraseña actual</label></center>
                                                         <?= form_input($password1) ?>
                                                         <br>
+                                                    <center><label>Contraseña nueva</label></center>
                                                         <?= form_input($password2) ?>
                                                         <br>
+                                                    <center><label>Repetir contraseña nueva</label></center>
                                                         <?= form_input($password3) ?>
                                                         <p align="center">
                                                             <br>
