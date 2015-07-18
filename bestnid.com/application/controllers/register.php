@@ -14,7 +14,12 @@ class Register extends CI_Controller {
 	}
 
 	function index () {
-		$this->load->view('register_view');
+		if(!isset($this->session->userdata['login'])) {
+			$this->load->view('register_view');
+		}
+		else {
+			redirect(base_url(index_page().'/index'));
+		}
 	}
 
 	function verificar_datos() {

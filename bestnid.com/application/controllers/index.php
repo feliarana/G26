@@ -17,7 +17,6 @@ class Index extends CI_Controller {
 			$datos['notificacionGanador'] = $this->subasta_model->verificarSubastasGanadas($idUsuario);
 			$datos['notificacionFinalizadas'] = $this->subasta_model->verificarSubastasFinalizadas($idUsuario);
 		}
-
 		$datos['subastas'] = $this->listar_subastas_model->obtenerSubastas(); // En $datos['subastas'] se guarda el resultado de la consulta que genera obtenerSubastas()
 		$this->load->view('index_view', $datos);
 	}

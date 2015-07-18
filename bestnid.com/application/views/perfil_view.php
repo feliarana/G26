@@ -242,9 +242,10 @@
                                                                             <?php
                                                                                 }
                                                                                 else {
-                                                                                    if($subasta->pagada) { ?>
-                                                                                        <center> Pagada. Ganancia: $<?= 70 * $subastasVendidas[$i++]->monto / 100 ?> </center>
+                                                                                    if($subasta->pagada == true) { ?>
+                                                                                        <center> Pagada. Ganancia: $<?= 70 * $subastasVendidas[$i]->monto / 100 ?> </center>
                                                                             <?php
+                                                                                        $i = $i + 1;
                                                                                     }
                                                                                     else { ?>
                                                                                         <center> Esperando Pago </center>
@@ -316,7 +317,9 @@
                                                                 foreach($ofertasPendientes->result() as $oferta) { ?>
                                                                     <tr class="gradeX">
                                                                         <td>
-                                                                            <?= $oferta->nombreSubasta ?>
+                                                                            <a href="<?= base_url(index_page().'/subasta?idSubasta='.$oferta->idSubasta) ?>">
+                                                                                <?= $oferta->nombreSubasta ?>
+                                                                            </a>
                                                                         </td>
                                                                         <td>
                                                                             <center>
@@ -366,7 +369,7 @@
                                                                 "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                                                                 "loadingRecords": "Cargando",
                                                                 "processing":     "Procesando",
-                                                                "zeroRecords":    "No existen ofertas coincidentes.",
+                                                                "zeroRecords":    "No existen ofertas coincidentes",
                                                                 "paginate": {
                                                                     "first":      "Primero",
                                                                     "last":       "Ultimo",
@@ -407,7 +410,9 @@
                                                                 foreach($ofertasGanadas->result() as $oferta) { ?>
                                                                     <tr class="gradeX">
                                                                         <td>
-                                                                            <?= $oferta->nombreSubasta ?>
+                                                                            <a href="<?= base_url(index_page().'/subasta?idSubasta='.$oferta->idSubasta) ?>">
+                                                                                <?= $oferta->nombreSubasta ?>
+                                                                            </a>
                                                                         </td>
                                                                         <td>
                                                                             <center>
@@ -487,19 +492,19 @@
                                                                                                 'title' => 'El código de seguridad debe tener 3 digitos'
                                                                                             );
                                                                                         ?>
-                                                                                        <center><label>Nombre</label></center>
+                                                                                        <?= form_label('Nombre') ?>
                                                                                         <?= form_input($nombre) ?>
                                                                                         <br>
-                                                                                        <center><label>Apellido</label></center>
+                                                                                        <?= form_label('Apellido') ?>
                                                                                         <?= form_input($apellido) ?>
                                                                                         <br>
-                                                                                        <center><label>DNI</label></center>
+                                                                                        <?= form_label('DNI') ?>
                                                                                         <?= form_input($DNI) ?>
                                                                                         <br>
-                                                                                        <center><label>Número de tarjeta</label></center>
+                                                                                        <?= form_label('Número de tarjeta') ?>
                                                                                         <?= form_input($numeroTarjeta) ?>
                                                                                         <br>
-                                                                                        <center><label>Código de seguridad de tarjeta</label></center>
+                                                                                        <?= form_label('Código de seguridad de la tarjeta') ?>
                                                                                         <?= form_input($codigoSeguridad) ?>
                                                                                         <br>
                                                                                         <h4 align="center">
@@ -565,7 +570,7 @@
                                                                 "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                                                                 "loadingRecords": "Cargando",
                                                                 "processing":     "Procesando",
-                                                                "zeroRecords":    "No existen ofertas coincidentes.",
+                                                                "zeroRecords":    "No existen ofertas coincidentes",
                                                                 "paginate": {
                                                                     "first":      "Primero",
                                                                     "last":       "Ultimo",
@@ -606,7 +611,9 @@
                                                                 foreach($ofertasPerdidas->result() as $oferta) { ?>
                                                                     <tr class="gradeX">
                                                                         <td>
-                                                                            <?= $oferta->nombreSubasta ?>
+                                                                            <a href="<?= base_url(index_page().'/subasta?idSubasta='.$oferta->idSubasta) ?>">
+                                                                                <?= $oferta->nombreSubasta ?>
+                                                                            </a>
                                                                         </td>
                                                                         <td>
                                                                             <center>
@@ -736,23 +743,23 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                     </div>
-                                                    <div class="col-md-4">  
-                                                    <center><label>Email</label></center>
+                                                    <div class="col-md-4">
+                                                        <?= form_label('Correo Electrónico') ?>
                                                         <?= form_input($email) ?>
                                                         <br>
-                                                    <center><label>DNI</label></center>
+                                                        <?= form_label('DNI') ?>
                                                         <?= form_input($DNI) ?>
                                                         <br>
-                                                    <center><label>Nombre</label></center>
+                                                        <?= form_label('Nombre') ?>
                                                         <?= form_input($nombre) ?>
                                                         <br>
-                                                    <center><label>Apellido</label></center>
+                                                        <?= form_label('Apellido') ?>
                                                         <?= form_input($apellido) ?>
                                                         <br>
-                                                    <center><label>Dirección</label></center>
+                                                        <?= form_label('Dirección') ?>
                                                         <?= form_input($direccion) ?>
                                                         <br>
-                                                    <center><label>Teléfono</label></center>
+                                                        <?= form_label('Teléfono') ?>
                                                         <?= form_input($telefono) ?>
                                                         <p align="center">
                                                             <br>
@@ -820,13 +827,13 @@
                                                     <div class="col-md-4">
                                                     </div>
                                                     <div class="col-md-4">
-                                                    <center><label>Contraseña actual</label></center>
+                                                        <?= form_label('Contraseña actual') ?>
                                                         <?= form_input($password1) ?>
                                                         <br>
-                                                    <center><label>Contraseña nueva</label></center>
+                                                        <?= form_label('Contraseña nueva') ?>
                                                         <?= form_input($password2) ?>
                                                         <br>
-                                                    <center><label>Repetir contraseña nueva</label></center>
+                                                        <?= form_label('Repetir contraseña nueva') ?>
                                                         <?= form_input($password3) ?>
                                                         <p align="center">
                                                             <br>
@@ -896,7 +903,7 @@
                                                                 "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                                                                 "loadingRecords": "Cargando",
                                                                 "processing":     "Procesando",
-                                                                "zeroRecords":    "No existen ofertas coincidentes.",
+                                                                "zeroRecords":    "No existen ofertas coincidentes",
                                                                 "paginate": {
                                                                     "first":      "Primero",
                                                                     "last":       "Ultimo",

@@ -32,13 +32,26 @@
                         <?= 'Categoría: '.$categoria[0]->nombreCategoria ?>
                         <br>
                         <br>
-                        <?= 'La subasta finaliza el día: '.date('d-m-Y', strtotime($subasta[0]->fechaFin)) ?>
+                        <?php
+                            if(mdate('%Y-%m-%d') < $subasta[0]->fechaFin) { ?>
+                                <?= 'La subasta finaliza el día: '.date('d-m-Y', strtotime($subasta[0]->fechaFin)) ?>
+                        <?php    
+                            }
+                            else { ?>
+                                Subasta Finalizada
+                                <br>
+                                <br>
+                                <?= 'La subasta finalizo el día: '.date('d-m-Y', strtotime($subasta[0]->fechaFin)) ?>    
+                        <?php
+                            }
+                        ?> 
                     </h4>
                 </div>
             </div>
         </center>
         <br>
         <?php
+        if(mdate('%Y-%m-%d') < $subasta[0]->fechaFin) { // Si la fecha actual es menor a la fecha de finalizacion de la subasta significa que no esta vencida
             if(isset($this->session->userdata['login'])) {
                 if($this->session->userdata['idUsuario'] == $subasta[0]->idUsuario) { ?> <!-- Si la subasta le pertenece, el usuario puede modificarla o eliminarla en caso de que no tenga ofertas -->
                     <center>
@@ -145,10 +158,10 @@
                                                     );   
                                             }
                                                 ?>
-                                        <center><label>Necesidad</label></center>
+                                        <?= form_label('Necesidad') ?>
                                         <?= form_textarea($argumento) ?>
                                         <br>
-                                        <center><label>Monto</label></center>
+                                        <?= form_label('Monto') ?>
                                         <?= form_input($monto) ?>
                                         <br>
                                         <?= form_submit('', 'Enviar', "class='btn btn-darkest' ") ?>
@@ -260,6 +273,7 @@
                 <br>
         <?php 
             }
+        }
         ?>
 
         <!-- Se carga jquery -->

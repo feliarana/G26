@@ -146,6 +146,9 @@
 						<!-- Boton submit -->
 						<br>
 						<?= form_submit('', 'Publicar Subasta', "class='btn btn-darkest'") ?>
+						<a href="<?= base_url(index_page().'/index') ?>">
+							<button type="button" class="btn btn-darkest"> Cancelar </button>
+						</a>
 					</p>
 				</div>
 			</div>

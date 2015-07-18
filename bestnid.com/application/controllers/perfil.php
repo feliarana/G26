@@ -12,11 +12,16 @@ class Perfil extends CI_Controller {
     }
 
     function index() {
-        $idUsuario = $this->session->userdata('idUsuario');
-        $datos['subastasPublicadas'] = $this->perfil_model->verificarSubastasPublicadas($idUsuario); // Retorna las subastas publicadas vigentes del usuario actualmente logueado
-        $datos['subastasOfertadas'] =  $this->perfil_model->verificarSubastasOfertadas($idUsuario); // Retorna las subastas vigentes con la oferta correspondiente del usuario actualmente logueado
-        $this->session->set_userdata($datos);
-        $this->load->view('perfil_view', $datos);
+        if(isset($this->session->userdata['login'])) {
+            $idUsuario = $this->session->userdata('idUsuario');
+            $datos['subastasPublicadas'] = $this->perfil_model->verificarSubastasPublicadas($idUsuario); // Retorna las subastas publicadas vigentes del usuario actualmente logueado
+            $datos['subastasOfertadas'] =  $this->perfil_model->verificarSubastasOfertadas($idUsuario); // Retorna las subastas vigentes con la oferta correspondiente del usuario actualmente logueado
+            $this->session->set_userdata($datos);
+            $this->load->view('perfil_view', $datos);
+        }
+        else {
+            redirect(base_url(index_page().'/login'));
+        }
     }
 
     function informacion() {
@@ -38,7 +43,6 @@ class Perfil extends CI_Controller {
         $idUsuario = $this->session->userdata('idUsuario');
         $datos['subastasFinalizadas'] = $this->perfil_model->obtenerSubastasFinalizadas($idUsuario);
         $datos['subastasVendidas'] = $this->perfil_model->obtenerSubastasVendidas($idUsuario);
-        //echo var_dump($datos['subastasVendidas']); die;
         $this->load->view('perfil_view', $datos);
     }
 

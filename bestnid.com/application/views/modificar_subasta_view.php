@@ -112,6 +112,9 @@
 						<!-- Boton submit -->
 						<br>
 						<?= form_submit('', 'Aceptar', "class='btn btn-darkest'") ?>
+						<a href="<?= base_url(index_page().'/subasta?idSubasta='.$subasta[0]->idSubasta) ?>">
+							<button type="button" class="btn btn-darkest"> Cancelar </button>
+						</a>
 					</p>
 				</div>
 			</div>
@@ -127,10 +130,10 @@
 				alert('No ha elegido ninguna imagen para la subasta');
 				return false;
 			}
-			/*else {
-				alert('¡Subasta modificada exitosamente!');
-				return true;
-			}*/
+			else {
+				if(confirm('¿Esta seguro que desea modificar la subasta?') == false)
+					return false;
+			}
 		}
 	</script>
 </html>

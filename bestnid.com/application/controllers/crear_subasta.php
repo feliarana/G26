@@ -13,8 +13,13 @@ class Crear_subasta extends CI_Controller {
     }
 
     function index() {
-    	$datos['categorias'] = $this->categorias_model->obtenerCategorias();
-        $this->load->view('crear_subasta_view', $datos);
+    	if(isset($this->session->userdata['login'])) {
+    		$datos['categorias'] = $this->categorias_model->obtenerCategorias();
+        	$this->load->view('crear_subasta_view', $datos);
+        }
+        else {
+        	redirect(base_url(index_page().'/login'));
+        }
     }
 
 	function agregarSubasta() {

@@ -42,7 +42,7 @@ class Subasta_model extends CI_Model {
 	function verificarSubastasFinalizadas($idUsuario) {
 		$fechaActual = mdate('%Y-%m-%d');
 		$this->db->where('idUsuario', $idUsuario);
-		$this->db->where('ganador', null);
+		$this->db->where('ganador', null); // Nose porque me deja poner null sin comillas aca y en otros lados no
 		$this->db->where('fechaFin <=', $fechaActual);
 		$query = $this->db->get('subasta');
 		if($query->num_rows() > 0) {

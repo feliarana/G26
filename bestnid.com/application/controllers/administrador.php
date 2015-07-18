@@ -13,7 +13,12 @@ class Administrador extends CI_Controller {
 	}
 
 	function index() {
-		$this->load->view('administrador_view');
+		if(isset($this->session->userdata['userAdmin']) && $this->session->userdata['userAdmin']) {
+				$this->load->view('administrador_view');
+		}
+		else {
+			redirect(base_url(index_page().'/index'));
+		}
 	}
 
 	function consultar_usuarios() {

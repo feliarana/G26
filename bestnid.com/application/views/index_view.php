@@ -59,7 +59,7 @@
 			if(isset($this->session->userdata['login'])) { ?>
 				<center>
 					<a href="<?= base_url(index_page().'/crear_subasta') ?>">
-						<button type="button" class="btn btn-darkest"> Publicar una subasta </button>
+						<button type="button" class="btn btn-darkest"> Publicar una Subasta </button>
 					</a>
 				</center>
 		<?php
@@ -161,30 +161,28 @@
 						alert('¡Subasta modificada con exito!');
 					</script>
 		<?php
-					$this->session->unset_userdata('subastaCreada');
+					$this->session->unset_userdata('subastaModificada');
 				}
-			} 
-		?>
+			} ?>
 		<script type="text/javascript">
-		function notificaciones(){
-			<?php
-				if(isset($notificacionGanador)) {
-					if($notificacionGanador) { ?>
-						alert('¡Felicitaciones usted tiene subastas ganadas!');	
-			<?php
+			function notificaciones() {
+				<?php
+					if(isset($notificacionGanador)) {
+						if($notificacionGanador) { ?>
+							alert('¡Felicitaciones usted tiene subastas ganadas!');	
+				<?php
+						}
 					}
-				}
-			?>
-
-			<?php
-				if(isset($notificacionFinalizadas)) {
-					if($notificacionFinalizadas) { ?>
-						alert('¡Usted tiene subastas finalizadas! Ya puede designar al ganador.	');	
-			<?php
+				?>
+				<?php
+					if(isset($notificacionFinalizadas)) {
+						if($notificacionFinalizadas) { ?>
+							alert('Usted tiene subastas finalizadas. Ya puede designarles ganador');
+				<?php
+						}
 					}
-				}
-			?>
-		}
+				?>
+			}
 		</script>
 	</body>
 </html>

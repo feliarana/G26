@@ -74,7 +74,14 @@ class Perfil_model extends CI_Model {
 		$formato = "%Y-%m-%d";
 		$fechaActual = mdate($formato);
 		$query = $this->db->query("select * from subasta inner join oferta on (subasta.ganador = oferta.idUsuario) where subasta.pagada != 0 and subasta.idSubasta = oferta.idSubasta and subasta.idUsuario =".$idUsuario);
-		
+		/*$this->db->from('subasta');
+		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
+		$this->db->where('fechaFin <=', $fechaActual);
+		$this->db->where('subasta.idUsuario', $idUsuario);
+		$this->db->where('ganador <>', 'NULL');
+		$this->db->where('pagada', '1');
+		$this->db->order_by('fechaFin', 'desc');
+		$query = $this->db->get();*/
 		if($query->num_rows() > 0) {
 			return ($query->result());
 		}
@@ -91,7 +98,6 @@ class Perfil_model extends CI_Model {
 		else
 			return (false);
 	}
-
 
 	function guardarGanador($idSubasta, $idUsuario) {
 		$this->db->where('idSubasta', $idSubasta);

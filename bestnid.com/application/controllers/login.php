@@ -13,7 +13,12 @@ class Login extends CI_Controller {
 	}
 
 	function index() {
-		$this->load->view('login_view');
+		if(!isset($this->session->userdata['login'])) {
+			$this->load->view('login_view');
+		}
+		else {
+			redirect(base_url(index_page().'/index'));
+		}
 	}
 
 	function verificar_datos() {
