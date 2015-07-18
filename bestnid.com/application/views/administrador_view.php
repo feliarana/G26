@@ -239,6 +239,7 @@
                                                 <th>Nombre de la Subasta</th>
                                                 <th>Subastador</th>
                                                 <th>Ganador</th>
+                                                <th>Fecha de Finalización</th>
                                                 <th>Ganancia de Bestnid</th>
                                             </tr>
                                         </thead>
@@ -262,6 +263,10 @@
                                                                     <?= $ganadores[$i]->nombre.' '.$ganadores[$i]->apellido ?>
                                                                 </center>
                                                             </td>
+                                                            <td>
+                                                                <center>
+                                                                    <?= date('d-m-Y', strtotime($subastadores[$i]->fechaFin)) ?>
+                                                                </center>
                                                             <td>
                                                                 <center>
                                                                     <?= '$'. 30 * $ganadores[$i]->monto / 100 ?>

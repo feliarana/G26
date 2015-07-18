@@ -26,6 +26,7 @@ class Administrador_model extends CI_Model {
 		$this->db->where('fechaFin <=', $fecha2);
 		$this->db->where('ganador <>', 'NULL');
 		$this->db->where('pagada', true);
+		$this->db->order_by('fechaFin', 'asc');
 		$query = $this->db->get();
 		if($query->num_rows() > 0) {
 			return ($query->result());
@@ -43,6 +44,7 @@ class Administrador_model extends CI_Model {
 		$this->db->where('fechaFin <=', $fecha2);
 		$this->db->where('ganador <>', 'NULL');
 		$this->db->where('pagada', true);
+		$this->db->order_by('fechaFin', 'asc');
 		$query = $this->db->get();
 		if($query->num_rows() > 0) {
 			return ($query->result());

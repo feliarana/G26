@@ -32,7 +32,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<?php
 							if(isset($this->session->userdata['login'])) { ?>
-								<a onclick="notificaciones()" class="navbar-brand"> Notificaciones </a> 
+								<a onClick="notificaciones()" class="navbar-brand"> Notificaciones </a> 
 								<a href="<?= base_url(index_page().'/perfil') ?>" class="navbar-brand">
 									<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?>
 								</a>
