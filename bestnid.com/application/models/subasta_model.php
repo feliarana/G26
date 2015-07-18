@@ -39,6 +39,20 @@ class Subasta_model extends CI_Model {
 		}
 	}
 
+	function verificarSubastasFinalizadas($idUsuario) {
+		$fechaActual = mdate('%Y-%m-%d');
+		$this->db->where('idUsuario', $idUsuario);
+		$this->db->where('ganador', null);
+		$this->db->where('fechaFin <=', $fechaActual);
+		$query = $this->db->get('subasta');
+		if($query->num_rows() > 0) {
+			return (true);
+		}
+		else {
+			return (false);
+		}
+	}
+
 	function agregarOferta($oferta) {
 		$this->db->insert('oferta', $oferta);
 	}

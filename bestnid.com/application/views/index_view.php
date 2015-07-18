@@ -32,6 +32,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<?php
 							if(isset($this->session->userdata['login'])) { ?>
+								<a onclick="notificaciones()" class="navbar-brand"> Notificaciones </a> 
 								<a href="<?= base_url(index_page().'/perfil') ?>" class="navbar-brand">
 									<?= $this->session->userdata['nombre'].' '.$this->session->userdata['apellido'] ?>
 								</a>
@@ -162,15 +163,28 @@
 		<?php
 					$this->session->unset_userdata('subastaCreada');
 				}
-			}
-			if(isset($notificacionGanador)) {
-				if($notificacionGanador) { ?>
-					<script type="text/javascript">
-						alert('¡Felicitaciones usted tiene subastas ganadas!');
-					</script>
-		<?php
-				}
-			}
+			} 
 		?>
+		<script type="text/javascript">
+		function notificaciones(){
+			<?php
+				if(isset($notificacionGanador)) {
+					if($notificacionGanador) { ?>
+						alert('¡Felicitaciones usted tiene subastas ganadas!');	
+			<?php
+					}
+				}
+			?>
+
+			<?php
+				if(isset($notificacionFinalizadas)) {
+					if($notificacionFinalizadas) { ?>
+						alert('¡Usted tiene subastas finalizadas! Ya puede designar al ganador.	');	
+			<?php
+					}
+				}
+			?>
+		}
+		</script>
 	</body>
 </html>
