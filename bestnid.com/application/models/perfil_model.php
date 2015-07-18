@@ -73,14 +73,8 @@ class Perfil_model extends CI_Model {
 	function obtenerSubastasVendidas($idUsuario) { // Devuelve las subastas vendidas por el usuario con su respectiva oferta
 		$formato = "%Y-%m-%d";
 		$fechaActual = mdate($formato);
-		$this->db->from('subasta');
-		$this->db->join('oferta', 'subasta.ganador = oferta.idUsuario');
-		$this->db->where('fechaFin <=', $fechaActual);
-		$this->db->where('subasta.idUsuario', $idUsuario);		
-		$this->db->where('pagada', true);
-		$this->db->group_by('subasta.idSubasta');
-		$this->db->order_by('fechaFin', 'desc');
-		$query = $this->db->get();
+		$query = $this->db->query("select * from subasta inner join oferta on (subasta.ganador = oferta.idUsuario) where subasta.pagada != 0 and subasta.idSubasta = oferta.idSubasta and subasta.idUsuario =".$idUsuario);
+		
 		if($query->num_rows() > 0) {
 			return ($query->result());
 		}
@@ -108,6 +102,7 @@ class Perfil_model extends CI_Model {
 		$this->db->from('subasta');
 		$this->db->join('oferta', 'subasta.idSubasta = oferta.idSubasta');
 		$this->db->where('oferta.idUsuario', $idUsuario);
+		$this->db->where('ganador', null);
 		$this->db->order_by('subasta.fechaFin', 'asc');
 		$query = $this->db->get();
 		if($query->num_rows() > 0)
