@@ -47,6 +47,9 @@
                             switch($opcion) { // Verifica que opcion se eligio y carga la vista correspondiente
                                 case 'consultar_usuarios': 
                     ?>
+                                    <p align="left">
+                                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Deslizar Menu</a>
+                                    </p>
                                     <h2 align="center">
                                         Consultar usuarios registrados
                                     </h2>
@@ -86,6 +89,9 @@
                                     break;
                                 case 'usuarios_registrados':
                     ?>
+                                    <p align="left">
+                                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Deslizar Menu</a>
+                                    </p>
                                     <h3 align="center">
                                         <?= 'Usuarios registrados entre el '.date('d-m-Y', strtotime($fecha1)).' y el '.date('d-m-Y', strtotime($fecha2)) ?>
                                     </h3>
@@ -175,6 +181,9 @@
                                     break;
                                 case 'consultar_subastas': 
                     ?>
+                                    <p align="left">
+                                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Deslizar Menu</a>
+                                    </p>
                                     <h2 align="center">
                                         Consultar subastas vendidas
                                     </h2>
@@ -214,6 +223,9 @@
                                     break;
                                 case 'subastas_vendidas':
                     ?>                 
+                                    <p align="left">
+                                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Deslizar Menu</a>
+                                    </p>
                                     <h3 align="center">
                                         <?= 'Subastas vendidas entre el '.date('d-m-Y', strtotime($fecha1)).' y el '.date('d-m-Y', strtotime($fecha2)) ?>
                                     </h3>
@@ -313,6 +325,9 @@
                                     break;
                                 case 'crear_categoria': 
                     ?>
+                                    <p align="left">
+                                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Deslizar Menu</a>
+                                    </p>
                                     <h2 align="center">
                                         Crear una categoría
                                     </h2>
@@ -370,6 +385,9 @@
                                     break;
                                 case 'eliminar_categoria': 
                     ?>
+                                    <p align="left">
+                                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Deslizar Menu</a>
+                                    </p>
                                     <h2 align="center">
                                         Seleccione la categoría que desee eliminar 
                                     </h2>
