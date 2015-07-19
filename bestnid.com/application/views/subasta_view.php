@@ -110,9 +110,9 @@
                                         <h4 class="modal-title"> Ofertar </h4>
                                     </div>
                                     <div class="modal-body">
-                                        <?php $atributos = array('class' => 'form-horizontal', 'role' => 'form', 'onSubmit' => 'return(enviar_oferta());'); ?>
                                         <?php
                                             if(!$oferto) { ?> <!-- El usuario oferta por primera vez -->
+                                                <?php $atributos = array('class' => 'form-horizontal', 'role' => 'form', 'onSubmit' => 'return(enviar_oferta());'); ?>
                                                 <?= form_open("/subasta/agregarOferta?idSubasta=".$subasta[0]->idSubasta, $atributos) ?>
                                                 <?php
                                                     $argumento = array(
@@ -135,6 +135,7 @@
                                             }
                                             else { // El usuario modifica la oferta
                                                 ?>
+                                                <?php $atributos = array('class' => 'form-horizontal', 'role' => 'form', 'onSubmit' => 'return(modificar_oferta());'); ?>
                                                 <?= form_open("/subasta/modificarOferta?idSubasta=".$subasta[0]->idSubasta, $atributos) ?>
                                                 <?php
                                                     $argumento = array(
@@ -285,6 +286,16 @@
         function enviar_oferta() {
             if(confirm('¿Confirma los datos ingresados?') == true) {
                 alert('¡Oferta creada exitosamente!');
+                return (true);
+            }
+            else {
+                return (false);
+            }
+        }
+
+        function modificar_oferta() {
+            if(confirm('¿Esta seguro que desea modificar la oferta?') == true) {
+                alert('¡Oferta modificada exitosamente!');
                 return (true);
             }
             else {
