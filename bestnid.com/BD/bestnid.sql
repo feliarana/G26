@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-07-2015 a las 07:48:56
+-- Tiempo de generación: 19-07-2015 a las 07:53:54
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -136,7 +136,7 @@ INSERT INTO `subasta` (`idSubasta`, `nombreSubasta`, `descripcion`, `idUsuario`,
 (42, 'Taza de café', 'Taza de café con tetera', 1, 12, '2015-07-01', '2015-07-15', NULL, 0, '13072015092955.jpg'),
 (43, 'Resumen de Org', 'Resumen Org', 1, 7, '2015-07-11', '2015-07-18', NULL, 0, '11072015231153.jpg'),
 (44, 'Diseño UX', 'Experiencia de Usuario vs Diseño', 1, 3, '2015-07-14', '2015-07-01', 5, 1, '14072015103131.jpg'),
-(45, 'Pibito que le gusta el arte', 'Me gusta el arrrrrrte', 1, 10, '2015-07-19', '2015-08-10', NULL, 0, '19072015074838.jpg');
+(45, 'Pibito que le gusta el arte', 'Me gusta el arrrrrrte', 1, 10, '2015-07-19', '2015-08-18', NULL, 0, '19072015074838.jpg');
 
 -- --------------------------------------------------------
 
