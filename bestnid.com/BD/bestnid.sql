@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-07-2015 a las 12:10:39
+-- Tiempo de generación: 19-07-2015 a las 07:35:46
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `oferta` (
   `idUsuario` int(11) unsigned NOT NULL,
   `idSubasta` int(11) unsigned NOT NULL,
   `monto` bigint(20) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `oferta`
@@ -101,7 +101,9 @@ INSERT INTO `oferta` (`idOferta`, `argumento`, `idUsuario`, `idSubasta`, `monto`
 (8, 'La quiero para vivir', 1, 27, 500000),
 (9, 'Lo quiero para que conseguir que la gente use WeGo', 5, 44, 10000),
 (10, 'Lo quiero para aprobar Organizacion de Computadoras', 5, 43, 200),
-(11, 'Yo quiero vivir ahi', 5, 27, 200000);
+(11, 'Yo quiero vivir ahi', 5, 27, 200000),
+(12, 'La quierooooooo', 17, 35, 5000),
+(13, 'Lo quiero para dar el final de Org', 17, 43, 1000);
 
 -- --------------------------------------------------------
 
@@ -129,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `subasta` (
 INSERT INTO `subasta` (`idSubasta`, `nombreSubasta`, `descripcion`, `idUsuario`, `idCategoria`, `fechaInicio`, `fechaFin`, `ganador`, `pagada`, `nombreImagen`) VALUES
 (20, 'Espejo', 'Espejo sin marco. Medidas: 0.8m x 1.2m', 5, 12, '2015-06-01', '2015-07-29', NULL, 0, 'espejo.jpg'),
 (27, 'Casa con faro', 'Bonita casa con vista al mar y un faro muy luminoso para orientar barquitos', 12, 9, '2015-06-04', '2015-07-15', 1, 0, 'faro.jpg'),
-(35, 'Llave', 'Llave de aleación. Me la encontré en la vereda.', 12, 12, '2015-05-24', '2015-07-21', NULL, 0, 'llave.jpg'),
+(35, 'Llave', 'Llave de aleación. Me la encontré en la vereda.', 12, 12, '2015-05-24', '2015-07-16', 17, 0, 'llave.jpg'),
 (37, 'Libro raro', 'No tiene nombre en la tapa. No entiendo que dicen los textos. Parece viejo.', 5, 7, '2015-05-17', '2015-07-30', 1, 0, 'libro.jpg'),
 (42, 'Taza de café', 'Taza de café con tetera', 1, 12, '2015-07-11', '2015-08-02', 1, 0, '13072015092955.jpg'),
 (43, 'Resumen de Org', 'Resumen Org', 1, 7, '2015-07-11', '2015-08-01', 5, 0, '11072015231153.jpg'),
@@ -166,7 +168,7 @@ INSERT INTO `usuario` (`idUsuario`, `DNI`, `nombre`, `apellido`, `email`, `passw
 (13, 11111111, 'aa', 'aa', 'a@a.com', '123456', 'a', 12345678, '2015-07-03', 0, 1),
 (15, 40293040, 'Rayado', 'Rayado', 'rayado@hotmail.com', '123456', 'calle 50 y 120', 394588585, '2015-07-10', 0, 1),
 (16, 37984506, 'Leandro', 'Prata', 'lean@hotmail.com', '123456', 'A.Korn', 393485960, '2015-07-12', 0, 0),
-(17, 30784991, 'Emiliano', 'Retamar', 'emiliano_retamar@hotmail.com', '111111', 'Guernica', 55555555, '2015-05-01', 1, 1),
+(17, 30784991, 'Emiliano', 'Retamar', 'emiliano_retamar@hotmail.com', '111111', 'Guernica', 99999999, '2015-05-01', 1, 1),
 (18, 36029348, 'Felipe', 'Arana', 'felipearana10@hotmail.com', '111111', 'La Plata', 93847583, '2015-05-01', 1, 1),
 (19, 32858999, 'Gastón', 'Alvarez', 'gaston_alvarez@hotmail.com', '111111', 'La Plata Calle 60 entre 8 y 9', 82938596, '2015-05-01', 1, 1);
 
@@ -222,7 +224,7 @@ MODIFY `idComentario` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40
 -- AUTO_INCREMENT de la tabla `oferta`
 --
 ALTER TABLE `oferta`
-MODIFY `idOferta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `idOferta` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `subasta`
 --
