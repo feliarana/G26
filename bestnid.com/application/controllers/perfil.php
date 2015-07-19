@@ -108,6 +108,13 @@ class Perfil extends CI_Controller {
         $existeDNI = $this->perfil_model->verificarDNI($idUsuario, $datos['DNI']);
         if(!$existeEmail && !$existeDNI) {
             $this->perfil_model->modificarDatosPersonales($idUsuario, $datos);
+            $user = array(
+                'email' => $datos['email'],
+                'nombre' => $datos['nombre'],
+                'apellido' => $datos['apellido'],   
+                'idUsuario' => $idUsuario,
+                'login' => true);
+            $this->session->set_userdata($user); // Se actualizan los datos de la sesion
             $datos['datos_modificados'] = true;
             $this->load->view('perfil_view', $datos);
         }
